@@ -1,10 +1,14 @@
 package com.jaimetorres.model;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 @Entity
 @Table(name = "tipo_documento")
-public class TipoDocumento {
+public class TipoDocumento implements Serializable {
 	
+	private static final long serialVersionUID = 1169207976147876168L;
+
 	@Id
 	@SequenceGenerator(name = "TipoDocumento.sequence", sequenceName = "tipo_documento_id_seq", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TipoDocumento.sequence")	

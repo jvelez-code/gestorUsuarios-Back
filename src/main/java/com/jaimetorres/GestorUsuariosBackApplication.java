@@ -8,6 +8,8 @@ public class GestorUsuariosBackApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GestorUsuariosBackApplication.class, args);
+		System.out.print("Hola Mundo");
+		
 	}
 
 }

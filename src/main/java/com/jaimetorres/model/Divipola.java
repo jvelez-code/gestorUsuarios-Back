@@ -1,12 +1,16 @@
 package com.jaimetorres.model;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "divipola")
-public class Divipola {
+public class Divipola implements Serializable{
 	
 	
+	private static final long serialVersionUID = 4858131739463130864L;
+
 	@Id
 	@Column(name = "id_zona")
 	private Integer idZona;
