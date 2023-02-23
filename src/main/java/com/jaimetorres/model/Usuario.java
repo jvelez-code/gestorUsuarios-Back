@@ -20,7 +20,7 @@ public class Usuario implements Serializable{
 	@Column(name = "usuario")
 	private String usuario;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "tipo_documento")
 	private TipoDocumento tipoDocumento;
 	
@@ -39,12 +39,12 @@ public class Usuario implements Serializable{
 	@Column(name = "segundo_apellido")
 	private String segundoApellido;
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_perfil")
 	private Perfil perfil;
 	
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "empresa")
     private Empresa empresa;
 	

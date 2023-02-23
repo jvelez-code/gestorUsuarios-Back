@@ -16,11 +16,11 @@ public class Contacto  implements Serializable {
 	@Column(name = "id_contacto")
 	private Integer idContacto;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_gestion")
 	private Gestion gestion;
 	
@@ -28,7 +28,7 @@ public class Contacto  implements Serializable {
 	@JoinColumn(name = "id_zona")
 	private Divipola divipola;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_agente")
 	private Usuario usuario;
 	

@@ -35,15 +35,15 @@ public class EstadoGestion implements Serializable {
 	@Column(name = "tipo_llamada")
 	private Integer tipoLlamada;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_empresa", insertable=false, updatable=false)
-	private Empresa idEmpresa;
+	private Empresa empresa;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_estado_gestion_padre", insertable=false, updatable=false)
 	private EstadoGestion estadoGestionPadre;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_tipo_campana", insertable=false, updatable=false)
 	private TipoCampana tipoCampana;
 
@@ -111,12 +111,12 @@ public class EstadoGestion implements Serializable {
 		this.tipoLlamada = tipoLlamada;
 	}
 
-	public Empresa getIdEmpresa() {
-		return idEmpresa;
+	public Empresa getEmpresa() {
+		return empresa;
 	}
 
-	public void setIdEmpresa(Empresa idEmpresa) {
-		this.idEmpresa = idEmpresa;
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
 	}
 
 	public EstadoGestion getEstadoGestionPadre() {

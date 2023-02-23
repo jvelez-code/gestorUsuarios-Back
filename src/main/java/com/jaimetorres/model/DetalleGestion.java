@@ -17,7 +17,7 @@ public class DetalleGestion implements Serializable {
 	@Column(name = "id_detalle_gestion")
 	private Integer idDetalleGestion;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name = "id_gestion")
 	private Gestion gestion;
 
@@ -38,15 +38,15 @@ public class DetalleGestion implements Serializable {
 	@Column(name = "num_real_marcado")
 	private String numRealMarcado;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_agente")
 	private Usuario usuario;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_estado_gestion")
 	private EstadoGestion estadoGestion;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "extension")
 	private Extension extension;
 

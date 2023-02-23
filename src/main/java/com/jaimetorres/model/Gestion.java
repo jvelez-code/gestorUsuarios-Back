@@ -16,73 +16,66 @@ public class Gestion implements Serializable{
 	@Id
 	@SequenceGenerator(name = "Gestion.sequence", sequenceName = "gestion_id_gestion_seq", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Gestion.sequence")
-
 	@Column(name = "id_gestion")
 	private Integer idGestion;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_archivo")
 	private Archivo archivo;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "id_campana")
 	private Campana campana;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
+	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
+		
+	@ManyToOne
+	@JoinColumn(name = "id_estado_gestion")
+	private EstadoGestion estadoGestion;	
+	
+	@Column(name = "fecha_gestion")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaGestion;
+	
+	@Column(name = "id_archivo_exclusion")
+	private Integer idArchivoExclusion;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_agente")
+	private Usuario usuario;
+
+	@Column(name = "ip_act")
+	private String ipAct;
+	
+	@Column(name = "fecha_hora_sis")
+	private String fechaHoraSis;
 	
 	@Column(name = "flag_gestion_sucursal")
 	private String flagGestionSucursal;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_estado_gestion")
-	private EstadoGestion estadoGestion;
+	@Column(name = "id")
+	private String id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_agente")
-	private Usuario agente;
-	
-	@Column(name = "fecha_gestion")
-	@Temporal(TemporalType.TIMESTAMP)	
-	private Date fechaGestion;
-	
-	@Column(name = "valor_cotizacion")    
-	private BigInteger valorCotizacion;
-	
-	@Column(name = "usuario_act")    
-	private String usuarioAct;
-	
-	@Column(name = "ip_act")   	
-	private String ipAct;
-	
-	@OneToMany(mappedBy = "gestion")	
-	private List<Contacto> listaContacto;
-	
-	@OneToMany(mappedBy = "gestion")
-	@OrderBy("nroDocumento")	
-	private List<Empleado> listaEmpleado;
-	
-	@OneToMany(mappedBy = "gestion")	
-	private List<DetalleGestion> listaDetalleGestion;
-	
-	@OneToMany(mappedBy = "gestion")	
-	private List<DetalleGestionComercial> listDetalleGestionComercial;
-	@OneToMany(mappedBy = "gestion")
+	@Column(name = "valor_cotizacion")
+	private String valorCotizacion;
 	
 	@Column(name = "fecha_agenda")
- 	@Temporal(TemporalType.TIMESTAMP)
-    private Date fechaAgenda;
+	private String fechaAgenda;
 	
-	@Column(name = "id_gestion_padre")
-    private Integer idGestionPadre;
 	
-	@Column(name = "fecha_hora_sis")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaHoraSis;
+	public Gestion() {
+		
+	}
 	
-	@Column(name = "callid")   	
-	private String callid;
+	public Gestion(Integer idGestion  ) {
+		this.idGestion = idGestion;
+		
+	}
+	
+	
+	
 
 	public Integer getIdGestion() {
 		return idGestion;
@@ -116,28 +109,12 @@ public class Gestion implements Serializable{
 		this.cliente = cliente;
 	}
 
-	public String getFlagGestionSucursal() {
-		return flagGestionSucursal;
-	}
-
-	public void setFlagGestionSucursal(String flagGestionSucursal) {
-		this.flagGestionSucursal = flagGestionSucursal;
-	}
-
 	public EstadoGestion getEstadoGestion() {
 		return estadoGestion;
 	}
 
 	public void setEstadoGestion(EstadoGestion estadoGestion) {
 		this.estadoGestion = estadoGestion;
-	}
-
-	public Usuario getAgente() {
-		return agente;
-	}
-
-	public void setAgente(Usuario agente) {
-		this.agente = agente;
 	}
 
 	public Date getFechaGestion() {
@@ -148,20 +125,20 @@ public class Gestion implements Serializable{
 		this.fechaGestion = fechaGestion;
 	}
 
-	public BigInteger getValorCotizacion() {
-		return valorCotizacion;
+	public Integer getIdArchivoExclusion() {
+		return idArchivoExclusion;
 	}
 
-	public void setValorCotizacion(BigInteger valorCotizacion) {
-		this.valorCotizacion = valorCotizacion;
+	public void setIdArchivoExclusion(Integer idArchivoExclusion) {
+		this.idArchivoExclusion = idArchivoExclusion;
 	}
 
-	public String getUsuarioAct() {
-		return usuarioAct;
+	public Usuario getAgente() {
+		return usuario;
 	}
 
-	public void setUsuarioAct(String usuarioAct) {
-		this.usuarioAct = usuarioAct;
+	public void setAgente(Usuario agente) {
+		this.usuario = agente;
 	}
 
 	public String getIpAct() {
@@ -172,68 +149,44 @@ public class Gestion implements Serializable{
 		this.ipAct = ipAct;
 	}
 
-	public List<Contacto> getListaContacto() {
-		return listaContacto;
-	}
-
-	public void setListaContacto(List<Contacto> listaContacto) {
-		this.listaContacto = listaContacto;
-	}
-
-	public List<Empleado> getListaEmpleado() {
-		return listaEmpleado;
-	}
-
-	public void setListaEmpleado(List<Empleado> listaEmpleado) {
-		this.listaEmpleado = listaEmpleado;
-	}
-
-	public List<DetalleGestion> getListaDetalleGestion() {
-		return listaDetalleGestion;
-	}
-
-	public void setListaDetalleGestion(List<DetalleGestion> listaDetalleGestion) {
-		this.listaDetalleGestion = listaDetalleGestion;
-	}
-
-	public List<DetalleGestionComercial> getListDetalleGestionComercial() {
-		return listDetalleGestionComercial;
-	}
-
-	public void setListDetalleGestionComercial(List<DetalleGestionComercial> listDetalleGestionComercial) {
-		this.listDetalleGestionComercial = listDetalleGestionComercial;
-	}
-
-	public Date getFechaAgenda() {
-		return fechaAgenda;
-	}
-
-	public void setFechaAgenda(Date fechaAgenda) {
-		this.fechaAgenda = fechaAgenda;
-	}
-
-	public Integer getIdGestionPadre() {
-		return idGestionPadre;
-	}
-
-	public void setIdGestionPadre(Integer idGestionPadre) {
-		this.idGestionPadre = idGestionPadre;
-	}
-
-	public Date getFechaHoraSis() {
+	public String getFechaHoraSis() {
 		return fechaHoraSis;
 	}
 
-	public void setFechaHoraSis(Date fechaHoraSis) {
+	public void setFechaHoraSis(String fechaHoraSis) {
 		this.fechaHoraSis = fechaHoraSis;
 	}
 
-	public String getCallid() {
-		return callid;
+	public String getFlagGestionSucursal() {
+		return flagGestionSucursal;
 	}
 
-	public void setCallid(String callid) {
-		this.callid = callid;
+	public void setFlagGestionSucursal(String flagGestionSucursal) {
+		this.flagGestionSucursal = flagGestionSucursal;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getValorCotizacion() {
+		return valorCotizacion;
+	}
+
+	public void setValorCotizacion(String valorCotizacion) {
+		this.valorCotizacion = valorCotizacion;
+	}
+
+	public String getFechaAgenda() {
+		return fechaAgenda;
+	}
+
+	public void setFechaAgenda(String fechaAgenda) {
+		this.fechaAgenda = fechaAgenda;
 	}
 
 	public static long getSerialversionuid() {
@@ -241,7 +194,7 @@ public class Gestion implements Serializable{
 	}
 	
 	
+
 	
-
-
+	
 }

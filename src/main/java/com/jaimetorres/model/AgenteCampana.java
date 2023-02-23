@@ -16,11 +16,11 @@ public class AgenteCampana implements Serializable {
 	@Column(name = "id_agente_campana")
 	private Integer idAgenteCampana;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_agente")
 	private Usuario agente;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_campana")
 	private Campana campana;
 	

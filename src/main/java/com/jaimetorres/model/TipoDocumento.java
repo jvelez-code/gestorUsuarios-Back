@@ -13,25 +13,24 @@ public class TipoDocumento implements Serializable {
 	@SequenceGenerator(name = "TipoDocumento.sequence", sequenceName = "tipo_documento_id_seq", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TipoDocumento.sequence")	
 	@Column(name = "tipo_doc")
-	private String valor;
+	private String tipoDoc;	
 	
 	@Column(name = "id")
-	private Integer id;
+	private Integer id;	
 	
 	@Column(name = "descripcion")
 	private String descripcion;
 	
 	@Column(name = "empresas")
-	private String empresas;
-	
-	
+	private String empresas;	
 
-	public String getValor() {
-		return valor;
+
+	public String getTipoDoc() {
+		return tipoDoc;
 	}
 
-	public void setValor(String valor) {
-		this.valor = valor;
+	public void setTipoDoc(String tipoDoc) {
+		this.tipoDoc = tipoDoc;
 	}
 
 	public Integer getId() {

@@ -17,7 +17,7 @@ public class Archivo implements Serializable{
 	@Column(name = "id_archivo")
 	private Integer idArchivo;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_campana")
 	private Campana campana;
 	

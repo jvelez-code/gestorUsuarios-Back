@@ -18,11 +18,11 @@ public class Campana implements Serializable{
 	@Column(name = "id_campana")
 	private Integer idCampana;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_tipo_campana")
 	private TipoCampana tipoCampana;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_estado_campana")
 	private EstadoCampana estadoCampana;
 	
@@ -33,7 +33,7 @@ public class Campana implements Serializable{
 	@Column(name = "fecha_hora_cargue")
 	private String fechaHoraCargue;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_coordinador")
 	private Usuario coordinador;
 	
@@ -46,7 +46,7 @@ public class Campana implements Serializable{
 	@Column(name = "nombre")
 	private String nombre;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_empresa")
 	private Empresa empresa;
 	
