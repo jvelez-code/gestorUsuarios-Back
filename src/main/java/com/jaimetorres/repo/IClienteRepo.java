@@ -19,11 +19,14 @@ public interface IClienteRepo extends IGenericRepo<Cliente, Integer> {
 	
 	
 	@Query("FROM Cliente c WHERE c.tipoDocumento.tipoDoc= :tipoDoc AND c.nroDocumento= :nroDocumento")
-	List<Cliente> buscar(@Param("tipoDoc") String tipoDoc,@Param("nroDocumento") String nroDocumento);
+	Cliente buscar(@Param("tipoDoc") String tipoDoc,@Param("nroDocumento") String nroDocumento);
 	
 	
 	@Query(value="SELECT * FROM cliente WHERE id_cliente= :nroCliente ", nativeQuery = true)
 	List<Cliente> buscarByCliente(@Param("nroCliente") Integer nroCliente);
+	
+	@Query("FROM Cliente c WHERE c.idCliente= :nroCliente")
+	List<Cliente> buscarByClientes(@Param("nroCliente") Integer nroCliente);
 //	
 //	
 //	@Query("FROM Cliente c WHERE c.fecha BETWEEN :fechaCliente AND :fechaSgte")

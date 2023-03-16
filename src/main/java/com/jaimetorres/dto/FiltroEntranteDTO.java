@@ -4,10 +4,15 @@ public class FiltroEntranteDTO {
 	
 	private String tipoDoc;
 	private String nroDoc;
-	private Integer nroCliente;
+	private Integer idCliente;
 	private Integer idEmpresa;
 	private Integer idTipoCampana;
 	private Integer idEstadoPadre;
+	
+	
+	public FiltroEntranteDTO() {
+	}
+
 	
 	public String getTipoDoc() {
 		return tipoDoc;
@@ -21,12 +26,15 @@ public class FiltroEntranteDTO {
 	public void setNroDoc(String nroDoc) {
 		this.nroDoc = nroDoc;
 	}
-	public Integer getNroCliente() {
-		return nroCliente;
+		
+	public Integer getIdCliente() {
+		return idCliente;
 	}
-	public void setNroCliente(Integer nroCliente) {
-		this.nroCliente = nroCliente;
+
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
+
 	public Integer getIdEmpresa() {
 		return idEmpresa;
 	}

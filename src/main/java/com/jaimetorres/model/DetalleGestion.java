@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "detalle_gestion")
 public class DetalleGestion implements Serializable {
@@ -17,8 +19,9 @@ public class DetalleGestion implements Serializable {
 	@Column(name = "id_detalle_gestion")
 	private Integer idDetalleGestion;
 	
-	@OneToOne
-	@JoinColumn(name = "id_gestion")
+	@JsonIgnore
+	@ManyToOne()
+	@JoinColumn(name = "id_gestion", nullable = false, foreignKey = @ForeignKey(name = "fk_detallegestion_gestion") )
 	private Gestion gestion;
 
 	
@@ -38,15 +41,15 @@ public class DetalleGestion implements Serializable {
 	@Column(name = "num_real_marcado")
 	private String numRealMarcado;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "id_agente")
 	private Usuario usuario;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "id_estado_gestion")
 	private EstadoGestion estadoGestion;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "extension")
 	private Extension extension;
 
@@ -184,12 +187,5 @@ public class DetalleGestion implements Serializable {
 	public void setCiclo(String ciclo) {
 		this.ciclo = ciclo;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
-
 
 }

@@ -6,8 +6,11 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.model.DetalleGestion;
 import com.jaimetorres.repo.IDetalleGestionRepo;
@@ -21,41 +24,15 @@ public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer>
 	private IDetalleGestionRepo repo;
 	
 	@Override
-	public DetalleGestion registrar(DetalleGestion cli) throws Exception {
-		return repo.save(cli);
+	protected IGenericRepo<DetalleGestion, Integer> getRepo(){
+		return repo;
 	}
+
 
 	@Override
-	public DetalleGestion modificar(DetalleGestion cli) throws Exception {
-		return repo.save(cli);
+	public List<DetalleGestion> buscarHisto(FiltroEntranteDTO filtro) {
+		return repo.buscar(filtro.getIdCliente());
 	}
-
-	@Override
-	public List<DetalleGestion> listar() throws Exception {
-		return repo.findAll();
-	}
-
-	@Override
-	public DetalleGestion listarPorId(Integer id) throws Exception {
-		//Opotional java 8 para capturar los null point exception
-		Optional<DetalleGestion> op = repo.findById(id);
-		return op.isPresent() ? op.get() : new DetalleGestion();
-	}
-
-	@Override
-	public void eliminar(Integer id) throws Exception {
-		repo.deleteById(id);		
-	}
-
-	@Override
-	public List<DetalleGestion> buscar(FiltroEntranteDTO filtro) {
-		return repo.buscar(filtro.getNroCliente());
-	}
-
-//	@Override
-//	public List<DetalleGestion> buscar(FiltroEntranteDTO filtro) {
-//		return repo.buscar(filtro.getNroCliente() );
-//	}		
+	
+	
 }
-
-

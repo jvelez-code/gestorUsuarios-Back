@@ -2,7 +2,11 @@ package com.jaimetorres.model;
 
 import java.io.Serializable;
 
+import javax.annotation.sql.DataSourceDefinition;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "contacto")
@@ -16,15 +20,17 @@ public class Contacto  implements Serializable {
 	@Column(name = "id_contacto")
 	private Integer idContacto;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_cliente")
+	
+	@ManyToOne(cascade = {CascadeType.MERGE})
+	@JoinColumn(name = "id_cliente", nullable = false, foreignKey =  @ForeignKey(name = "fk_contacto_cliente"))
 	private Cliente cliente;
 	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "id_gestion")
+	@JoinColumn(name = "id_gestion", nullable = false, foreignKey = @ForeignKey(name = "fk_contacto_gestion") )
 	private Gestion gestion;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "id_zona")
 	private Divipola divipola;
 	

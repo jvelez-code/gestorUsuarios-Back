@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
@@ -23,32 +24,11 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 	private IGestionRepo repo;
 	
 	@Override
-	public Gestion registrar(Gestion cli) throws Exception {
-		return repo.save(cli);
+	protected IGenericRepo<Gestion, Integer> getRepo(){
+		return repo;
 	}
-
-	@Override
-	public Gestion modificar(Gestion cli) throws Exception {
-		return repo.save(cli);
-	}
-
-	@Override
-	public List<Gestion> listar() throws Exception {
-		return repo.findAll();
-	}
-
-	@Override
-	public Gestion listarPorId(Integer id) throws Exception {
-		//Opotional java 8 para capturar los null point exception
-		Optional<Gestion> op = repo.findById(id);
-		return op.isPresent() ? op.get() : new Gestion();
-	}
-
-	@Override
-	public void eliminar(Integer id) throws Exception {
-		repo.deleteById(id);		
-	}
-
+	
+	
 	@Override
 	public List<Gestion> buscar(FiltroEntranteDTO filtro) {
 		System.out.print("Mundo");
@@ -58,8 +38,27 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 	@Override
 	public List<Gestion> buscarA(FiltroEntranteDTO filtro) {
 		System.out.print("Hola");
-		return repo.buscarA(filtro.getNroCliente());
+		return repo.buscarA(filtro.getIdCliente());
 	}
+
+	@Override
+	public Gestion buscarM(FiltroEntranteDTO filtro) {
+		return repo.buscarM(filtro.getIdCliente());
+	}
+
+
+	@Override
+	public Gestion registrarTransaccional(Gestion gestion) throws Exception {
+		
+		gestion.getListaDetalleGestion().forEach(det ->det.setGestion(gestion));
+		
+		gestion.getListaContacto().forEach(det ->det.setGestion(gestion));
+		
+		return repo.save(gestion);		
+	}
+
+
+
 
 }
 

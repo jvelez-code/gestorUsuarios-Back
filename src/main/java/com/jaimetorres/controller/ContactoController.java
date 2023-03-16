@@ -2,28 +2,38 @@ package com.jaimetorres.controller;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.jaimetorres.dto.FiltroContactoDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
+import com.jaimetorres.model.Cliente;
 import com.jaimetorres.model.Contacto;
+import com.jaimetorres.model.Gestion;
 import com.jaimetorres.service.IContactoService;
 
 @RestController
 @RequestMapping("/contactos")
+
 public class ContactoController {
 
 
 	@Autowired
 	private IContactoService service;
+	
+	@Autowired
+	private ModelMapper modelMapper;
 	
 	//ResponseEntity Para capturar excepciones
 	@GetMapping
@@ -32,11 +42,11 @@ public class ContactoController {
 		return new ResponseEntity<List<Contacto>>(lista, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id}")
-	public Contacto listarPorId(@PathVariable("id") Integer id) throws Exception{
-		return service.listarPorId(id);
-	}
-	
+//	@GetMapping("/{id}")
+//	public Contacto listarPorId(@PathVariable("id") Integer id) throws Exception{
+//		return service.listarPorId(id);
+//	}
+//	
 //	@GetMapping("/hateoas/{id}")
 //	public EntityModel<Contacto> listarPorIdHateoas(@PathVariable("id") Integer id) throws Exception{
 //		Contacto obj=service.listarPorId(id);
@@ -84,15 +94,26 @@ public class ContactoController {
 			service.eliminar(id);		
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 		}
-		
-		//@RequestBody json a objeto  java
+				
 		@PostMapping("/buscar")
-		public ResponseEntity<List<Contacto>> buscar(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<FiltroContactoDTO> post(@RequestBody FiltroEntranteDTO filtro) throws Exception {	
+			Integer idContactoMax=service.buscarMax(filtro);
 			
-			List<Contacto> Contacto = new ArrayList<>();
-			Contacto = service.buscar(filtro);
-			
-			return new ResponseEntity<List<Contacto>>(Contacto, HttpStatus.OK);
+			System.out.println(service.buscarMax(filtro));
+			Contacto post = service.listarPorId(idContactoMax);
+			// convert entity to DTO
+			FiltroContactoDTO postResponse = modelMapper.map(post, FiltroContactoDTO.class);
+
+			return ResponseEntity.ok().body(postResponse);
+		}
+		
+		
+		@PostMapping("/{id}")
+		public ResponseEntity<FiltroContactoDTO> getPostById(@PathVariable(name = "id") Integer id) throws Exception {
+			Contacto post = service.listarPorId(id);
+			// convert entity to DTO
+			FiltroContactoDTO postResponse = modelMapper.map(post, FiltroContactoDTO.class);
+			return ResponseEntity.ok().body(postResponse);
 		}
 		
 }

@@ -8,5 +8,8 @@ import com.jaimetorres.model.Contacto;
 
 public interface IContactoService extends ICRUD<Contacto , Integer >{
 	
-	List<Contacto> buscar(FiltroEntranteDTO filtro);
+	
+	public Integer buscarMax(FiltroEntranteDTO filtro);
+	List<Contacto> buscar(Integer idContactoMax);
+	
 }

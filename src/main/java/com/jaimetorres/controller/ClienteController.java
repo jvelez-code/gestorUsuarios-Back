@@ -87,12 +87,10 @@ public class ClienteController {
 		
 		//@RequestBody json a objeto  java
 		@PostMapping("/buscar")
-		public ResponseEntity<List<Cliente>> buscar(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<Cliente> buscar(@RequestBody FiltroEntranteDTO filtro) throws Exception{
 			
-			List<Cliente> cliente = new ArrayList<>();
-			cliente = service.buscar(filtro);
-			
-			return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
+			Cliente cliente = service.buscar(filtro);			
+			return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 		}
 		
 		//@RequestBody json a objeto  java
@@ -104,4 +102,16 @@ public class ClienteController {
 					
 					return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
 		}
+		
+		@PostMapping("/buscarId")
+		public ResponseEntity<List<Cliente>> buscarId(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+			
+			List<Cliente> cliente = new ArrayList<>();
+			cliente = service.buscarByClientes(filtro);
+			
+			return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
+		}
+		
+		
+	
 }

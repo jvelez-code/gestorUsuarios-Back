@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.model.DetalleGestion;
 import com.jaimetorres.model.EstadoGestion;
 import com.jaimetorres.model.EstadoGestion;
 import com.jaimetorres.repo.IEstadoGestionRepo;
@@ -21,33 +22,10 @@ public class EstadoGestionServiceImpl extends CRUDImpl<EstadoGestion, Integer> i
 	private IEstadoGestionRepo repo;
 	
 	@Override
-	public EstadoGestion registrar(EstadoGestion cli) throws Exception {
-		return repo.save(cli);
+	protected IGenericRepo<EstadoGestion, Integer> getRepo(){
+		return repo;
 	}
-
-	@Override
-	public EstadoGestion modificar(EstadoGestion cli) throws Exception {
-		return repo.save(cli);
-	}
-
-	@Override
-	public List<EstadoGestion> listar() throws Exception {
-		return repo.findAll();
-	}
-
-	@Override
-	public EstadoGestion listarPorId(Integer id) throws Exception {
-		//Opotional java 8 para capturar los null point exception
-		Optional<EstadoGestion> op = repo.findById(id);
-		return op.isPresent() ? op.get() : new EstadoGestion();
-	}
-
-	@Override
-	public void eliminar(Integer id) throws Exception {
-		repo.deleteById(id);
-		
-	}
-
+	
 	@Override
 	public List<EstadoGestion> buscar(FiltroEntranteDTO filtro) {
 		

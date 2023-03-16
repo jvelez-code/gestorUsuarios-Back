@@ -6,12 +6,14 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.Gestion;
@@ -24,6 +26,10 @@ public class GestionController {
 
 	@Autowired
 	private IGestionService service;
+	
+	@Autowired
+	private ModelMapper modelMapper;
+	
 	
 	//ResponseEntity Para capturar excepciones
 	@GetMapping
@@ -60,7 +66,7 @@ public class GestionController {
 	//@RequestBody json a objeto  java
 		@PostMapping
 		public ResponseEntity<Gestion> registrar(@Valid @RequestBody Gestion Gestion) throws Exception{
-			Gestion obj=service.registrar(Gestion);
+			Gestion obj=service.registrarTransaccional(Gestion);
 			
 			//localhost:8080/pacientes/7
 			URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdGestion()).toUri();
@@ -87,14 +93,24 @@ public class GestionController {
 		
 		//@RequestBody json a objeto  java
 		@PostMapping("/buscar")
-		public ResponseEntity<List<Gestion>> buscarA(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<Gestion> buscarA(@RequestBody FiltroEntranteDTO filtro) throws Exception{
 			
-			List<Gestion> Gestion = new ArrayList<>();
-			Gestion = service.buscarA(filtro);
+			Gestion gestion= service.buscarM(filtro);
+			//FiltroDetalleGestionDTO postResponse = modelMapper.map(gestion, FiltroDetalleGestionDTO.class);
 			
-			System.out.print(Gestion.get(1));
-			
-			return new ResponseEntity<List<Gestion>>(Gestion, HttpStatus.OK);
+			return new ResponseEntity<Gestion>(gestion, HttpStatus.OK);
 		}
-	
+		
+		
+//		public ResponseEntity<FiltroDetalleGestionDTO> listarPorIdPrueba(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+//	
+//	
+//			DetalleGestion obj=service.buscar(filtro);
+//			
+//			FiltroDetalleGestionDTO postResponse = modelMapper.map(obj, FiltroDetalleGestionDTO.class); 
+//			return new ResponseEntity<FiltroDetalleGestionDTO>(postResponse, HttpStatus.OK);
+//		}
+		
+		
+
 }

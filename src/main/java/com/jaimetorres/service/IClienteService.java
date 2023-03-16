@@ -8,6 +8,8 @@ import com.jaimetorres.model.Cliente;
 
 public interface IClienteService extends ICRUD<Cliente , Integer >{
 	
-	List<Cliente> buscar(FiltroEntranteDTO filtro);
+	Cliente buscar(FiltroEntranteDTO filtro);
 	List<Cliente> buscarByCliente(FiltroEntranteDTO filtro);
+	List<Cliente> buscarByClientes(FiltroEntranteDTO filtro);
+	
 }

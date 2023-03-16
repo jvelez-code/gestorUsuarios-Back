@@ -30,12 +30,13 @@ public class Divipola implements Serializable{
 	@Column(name = "nombre")
 	private String nombre;
 
-	@Column(name = "id_zona_padre")
-	private Integer idZonapadre;
+//	@Column(name = "id_zona_padre")
+//	private Integer idZonapadre;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_zona_padre", insertable=false, updatable=false)
-	private Divipola divipolaPadre;
+	@ManyToOne(cascade = {CascadeType.MERGE})
+	@JoinColumn(name = "id_zona_padre")
+	private Divipola idZonapadre;
+	
 
 	@Column(name = "dv")
 	private String dv;
@@ -91,20 +92,16 @@ public class Divipola implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public Integer getIdZonapadre() {
+	public Divipola getIdZonapadre() {
 		return idZonapadre;
 	}
 
-	public void setIdZonapadre(Integer idZonapadre) {
+	public void setIdZonapadre(Divipola idZonapadre) {
 		this.idZonapadre = idZonapadre;
 	}
 
-	public Divipola getDivipolaPadre() {
-		return divipolaPadre;
-	}
-
-	public void setDivipolaPadre(Divipola divipolaPadre) {
-		this.divipolaPadre = divipolaPadre;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public String getDv() {

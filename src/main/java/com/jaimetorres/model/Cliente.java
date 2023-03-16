@@ -2,6 +2,7 @@ package com.jaimetorres.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -17,7 +18,7 @@ public class Cliente implements Serializable{
 	@Column(name = "id_cliente")
 	private Integer idCliente;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "tipo_documento")
 	private TipoDocumento tipoDocumento;
 	
@@ -55,9 +56,28 @@ public class Cliente implements Serializable{
 	@Column(name = "ley_1581")
 	private Boolean ley1581;
 	
-	@ManyToOne
+//	@Column(name = "id_zona")
+//	private Integer idZona;
+	
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "id_zona")
-	private Divipola divipola;
+	private Divipola divipola;	
+	
+	@OneToMany(mappedBy = "cliente")
+	private List<DataIACliente> listaDataIACliente; 
+	
+	@Transient
+	private String ubicacion;
+	
+	public Cliente(){}
+	
+	public Cliente(TipoDocumento tipoDoc, String nroDoc, String razonSocial,
+			String direccion) {
+		this.tipoDocumento = tipoDoc;
+		this.nroDocumento = nroDoc;
+		this.razonSocial = razonSocial;
+		this.direccion = direccion;	
+	}
 
 	public Integer getIdCliente() {
 		return idCliente;
@@ -170,8 +190,27 @@ public class Cliente implements Serializable{
 	public void setDivipola(Divipola divipola) {
 		this.divipola = divipola;
 	}
-	
-	
 
+	public List<DataIACliente> getListaDataIACliente() {
+		return listaDataIACliente;
+	}
+
+	public void setListaDataIACliente(List<DataIACliente> listaDataIACliente) {
+		this.listaDataIACliente = listaDataIACliente;
+	}
+
+	public String getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 
 }
