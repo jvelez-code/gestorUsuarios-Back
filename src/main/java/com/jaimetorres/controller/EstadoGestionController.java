@@ -14,8 +14,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
-import com.jaimetorres.model.Cliente;
-import com.jaimetorres.model.EstadoGestion;
+import com.jaimetorres.model.gestor.Cliente;
+import com.jaimetorres.model.gestor.EstadoGestion;
 import com.jaimetorres.service.IEstadoGestionService;
 
 @RestController

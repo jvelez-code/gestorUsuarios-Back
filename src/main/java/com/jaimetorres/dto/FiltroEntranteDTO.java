@@ -3,11 +3,12 @@ package com.jaimetorres.dto;
 public class FiltroEntranteDTO {
 	
 	private String tipoDoc;
-	private String nroDoc;
+	private String nroDocumento;
 	private Integer idCliente;
 	private Integer idEmpresa;
 	private Integer idTipoCampana;
 	private Integer idEstadoPadre;
+	private Integer tipoLlamada;
 	
 	
 	public FiltroEntranteDTO() {
@@ -20,13 +21,18 @@ public class FiltroEntranteDTO {
 	public void setTipoDoc(String tipoDoc) {
 		this.tipoDoc = tipoDoc;
 	}
-	public String getNroDoc() {
-		return nroDoc;
-	}
-	public void setNroDoc(String nroDoc) {
-		this.nroDoc = nroDoc;
-	}
+	
 		
+	public String getNroDocumento() {
+		return nroDocumento;
+	}
+
+
+	public void setNroDocumento(String nroDocumento) {
+		this.nroDocumento = nroDocumento;
+	}
+
+
 	public Integer getIdCliente() {
 		return idCliente;
 	}
@@ -53,6 +59,16 @@ public class FiltroEntranteDTO {
 	public void setIdTipoCampana(Integer idTipoCampana) {
 		this.idTipoCampana = idTipoCampana;
 	}
+
+	public Integer getTipoLlamada() {
+		return tipoLlamada;
+	}
+
+	public void setTipoLlamada(Integer tipoLlamada) {
+		this.tipoLlamada = tipoLlamada;
+	}
+	
+	
 	
 	
 		

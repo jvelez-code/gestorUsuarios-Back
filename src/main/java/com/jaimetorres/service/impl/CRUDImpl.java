@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jaimetorres.repo.IGenericRepo;
+import com.jaimetorres.repo.gestor.IGenericRepo;
 import com.jaimetorres.service.ICRUD;
 
 public abstract class CRUDImpl<T , ID> implements ICRUD<T , ID>{

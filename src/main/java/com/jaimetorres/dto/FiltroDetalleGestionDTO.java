@@ -4,9 +4,9 @@ import java.util.Date;
 
 import javax.annotation.sql.DataSourceDefinition;
 
-import com.jaimetorres.model.Campana;
-import com.jaimetorres.model.Cliente;
-import com.jaimetorres.model.Gestion;
+import com.jaimetorres.model.gestor.Campana;
+import com.jaimetorres.model.gestor.Cliente;
+import com.jaimetorres.model.gestor.Gestion;
 
 
 public class FiltroDetalleGestionDTO {

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
-import com.jaimetorres.model.Cliente;
+import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.service.IClienteService;
 
 @RestController
@@ -33,7 +33,7 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/{id}")
-	public Cliente listarPorId(@PathVariable("id") Integer id) throws Exception{
+	public Cliente listarPorId(@PathVariable("id") Integer id) throws Exception {
 		return service.listarPorId(id);
 	}
 	
@@ -88,7 +88,7 @@ public class ClienteController {
 		//@RequestBody json a objeto  java
 		@PostMapping("/buscar")
 		public ResponseEntity<Cliente> buscar(@RequestBody FiltroEntranteDTO filtro) throws Exception{
-			
+			System.out.println("hola Cliente1");
 			Cliente cliente = service.buscar(filtro);			
 			return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 		}

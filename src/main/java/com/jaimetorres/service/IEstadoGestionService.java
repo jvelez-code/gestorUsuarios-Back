@@ -3,7 +3,7 @@ package com.jaimetorres.service;
 import java.util.List;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
-import com.jaimetorres.model.EstadoGestion;
+import com.jaimetorres.model.gestor.EstadoGestion;
 
 
 public interface IEstadoGestionService extends ICRUD<EstadoGestion , Integer >{

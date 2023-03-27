@@ -14,7 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 import com.jaimetorres.exception.ModeloNotFoundException;
-import com.jaimetorres.model.TipoDocumento;
+import com.jaimetorres.model.gestor.TipoDocumento;
 import com.jaimetorres.service.ITipoDocumentoService;
 
 @RestController

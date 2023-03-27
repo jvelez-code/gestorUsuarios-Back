@@ -10,12 +10,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
-import com.jaimetorres.model.Gestion;
-import com.jaimetorres.model.Gestion;
-import com.jaimetorres.repo.IGestionRepo;
-import com.jaimetorres.repo.IGenericRepo;
+import com.jaimetorres.model.gestor.Gestion;
+import com.jaimetorres.repo.gestor.*;
 import com.jaimetorres.service.IGestionService;
-import com.jaimetorres.service.IGestionService;
+import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 
 @Service
 public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IGestionService {

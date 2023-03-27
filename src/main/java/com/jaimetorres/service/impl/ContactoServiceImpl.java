@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroContactoDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
-import com.jaimetorres.model.Contacto;
-import com.jaimetorres.model.TipoDocumento;
-import com.jaimetorres.repo.IContactoRepo;
-import com.jaimetorres.repo.IGenericRepo;
+import com.jaimetorres.model.gestor.Contacto;
+import com.jaimetorres.model.gestor.TipoDocumento;
+import com.jaimetorres.repo.gestor.IContactoRepo;
+import com.jaimetorres.repo.gestor.IGenericRepo;
 import com.jaimetorres.service.IContactoService;
+import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 
 @Service
 public class ContactoServiceImpl extends CRUDImpl<Contacto, Integer> implements IContactoService {
@@ -34,7 +35,7 @@ public class ContactoServiceImpl extends CRUDImpl<Contacto, Integer> implements 
 	}
 	
 	@Override
-	public List<Contacto> buscar(Integer idContactoMax) {
+	public Contacto buscar(Integer idContactoMax) {
 		
 		return repo.buscar(idContactoMax);
 	}

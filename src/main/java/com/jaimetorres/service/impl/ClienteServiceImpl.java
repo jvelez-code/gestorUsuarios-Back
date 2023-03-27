@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
-import com.jaimetorres.model.Cliente;
-import com.jaimetorres.model.Contacto;
-import com.jaimetorres.repo.IClienteRepo;
-import com.jaimetorres.repo.IGenericRepo;
+import com.jaimetorres.model.gestor.Cliente;
+import com.jaimetorres.repo.gestor.IClienteRepo;
+import com.jaimetorres.repo.gestor.IGenericRepo;
 import com.jaimetorres.service.IClienteService;
+import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 
 @Service
 public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IClienteService {
@@ -27,12 +27,13 @@ public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IC
 	
 	@Override
 	public Cliente buscar(FiltroEntranteDTO filtro) {
-		
 		return repo.buscar(filtro.getTipoDoc(),filtro.getNroDoc());
+		
 	}
 
 	@Override
 	public List<Cliente> buscarByCliente(FiltroEntranteDTO filtro) {
+		System.out.println("hola Cliente");
 		return repo.buscarByCliente(filtro.getIdCliente());
 	}
 

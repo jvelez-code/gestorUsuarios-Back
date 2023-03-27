@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
-import com.jaimetorres.model.DetalleGestion;
-import com.jaimetorres.repo.IDetalleGestionRepo;
-import com.jaimetorres.repo.IGenericRepo;
+import com.jaimetorres.model.gestor.DetalleGestion;
+import com.jaimetorres.repo.gestor.*;
 import com.jaimetorres.service.IDetalleGestionService;
+import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 
 @Service
 public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer> implements IDetalleGestionService {

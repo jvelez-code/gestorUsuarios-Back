@@ -8,13 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
-import com.jaimetorres.model.DetalleGestion;
-import com.jaimetorres.model.EstadoGestion;
-import com.jaimetorres.model.EstadoGestion;
-import com.jaimetorres.repo.IEstadoGestionRepo;
-import com.jaimetorres.repo.IGenericRepo;
+import com.jaimetorres.model.gestor.DetalleGestion;
+import com.jaimetorres.model.gestor.EstadoGestion;
+import com.jaimetorres.repo.gestor.*;
 import com.jaimetorres.service.IEstadoGestionService;
-
+import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 @Service
 public class EstadoGestionServiceImpl extends CRUDImpl<EstadoGestion, Integer> implements IEstadoGestionService {
 
@@ -29,7 +27,7 @@ public class EstadoGestionServiceImpl extends CRUDImpl<EstadoGestion, Integer> i
 	@Override
 	public List<EstadoGestion> buscar(FiltroEntranteDTO filtro) {
 		
-		return repo.buscarEstadoP(filtro.getIdEmpresa(),  filtro.getIdTipoCampana());
+		return repo.buscarEstadoP(filtro.getIdEmpresa(),  filtro.getTipoLlamada());
 		
 	}
 

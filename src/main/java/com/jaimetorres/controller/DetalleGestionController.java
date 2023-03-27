@@ -20,9 +20,9 @@ import com.jaimetorres.dto.FiltroContactoDTO;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
-import com.jaimetorres.model.Cliente;
-import com.jaimetorres.model.Contacto;
-import com.jaimetorres.model.DetalleGestion;
+import com.jaimetorres.model.gestor.Cliente;
+import com.jaimetorres.model.gestor.Contacto;
+import com.jaimetorres.model.gestor.DetalleGestion;
 import com.jaimetorres.service.IDetalleGestionService;
 
 @RestController
@@ -113,15 +113,15 @@ public class DetalleGestionController {
 
 		
 
-//		@PostMapping("/buscar")
-//		public ResponseEntity<List<DetalleGestion>> listarPorIdPrueba(@RequestBody FiltroEntranteDTO filtro) throws Exception{
-//	
-//			List<DetalleGestion> dtg = new ArrayList<>();
-//			dtg=service.buscarHisto(filtro);
-//			
-//			
-//			
-//			return new ResponseEntity<List<DetalleGestion>>(dtg, HttpStatus.OK);
-//		}
-//		
+		@PostMapping("/buscars")
+		public ResponseEntity<List<DetalleGestion>> listarPorIdPruebas(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+	
+			List<DetalleGestion> dtg = new ArrayList<>();
+			dtg=service.buscarHisto(filtro);
+			
+			
+			
+			return new ResponseEntity<List<DetalleGestion>>(dtg, HttpStatus.OK);
+		}
+		
 		}

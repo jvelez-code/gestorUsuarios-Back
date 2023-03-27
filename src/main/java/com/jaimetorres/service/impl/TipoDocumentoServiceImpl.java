@@ -8,12 +8,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jaimetorres.model.Gestion;
-import com.jaimetorres.model.TipoDocumento;
-import com.jaimetorres.repo.ITipoDocumentoRepo;
-import com.jaimetorres.repo.IGenericRepo;
+import com.jaimetorres.model.gestor.Gestion;
+import com.jaimetorres.model.gestor.TipoDocumento;
+import com.jaimetorres.repo.gestor.*;
 import com.jaimetorres.service.ITipoDocumentoService;
-
+import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 @Service
 public class TipoDocumentoServiceImpl extends CRUDImpl<TipoDocumento, Integer> implements ITipoDocumentoService {
 

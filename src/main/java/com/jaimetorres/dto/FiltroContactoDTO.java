@@ -1,10 +1,5 @@
 package com.jaimetorres.dto;
 
-import javax.annotation.sql.DataSourceDefinition;
-
-import com.jaimetorres.model.Cliente;
-import com.jaimetorres.model.Gestion;
-
 
 public class FiltroContactoDTO {
 	
