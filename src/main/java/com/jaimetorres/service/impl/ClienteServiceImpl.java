@@ -27,7 +27,7 @@ public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IC
 	
 	@Override
 	public Cliente buscar(FiltroEntranteDTO filtro) {
-		return repo.buscar(filtro.getTipoDoc(),filtro.getNroDoc());
+		return repo.buscar(filtro.getTipoDoc(),filtro.getNroDocumento());
 		
 	}
 
