@@ -24,7 +24,7 @@ class GestorUsuariosBackApplicationTests {
 		Usuarios us = new Usuarios();
 		us.setIdUsuario(4);
 		us.setUsername("mitotest@gmail.com");
-		us.setPassword(bcrypt.encode("1234"));				
+		us.setPassword(bcrypt.encode("123"));				
 		us.setEnabled(true);
 		
 		Usuarios retorno = repo.save(us);

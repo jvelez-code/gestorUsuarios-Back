@@ -16,9 +16,12 @@ public class AgenteCampana implements Serializable {
 	@Column(name = "id_agente_campana")
 	private Integer idAgenteCampana;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_agente")
-	private Usuario agente;
+//	@ManyToOne
+//	@JoinColumn(name = "id_agente")
+//	private Usuario agente;
+	
+	@Column(name = "id_agente")
+	private Integer idAgente;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_campana")
@@ -35,12 +38,13 @@ public class AgenteCampana implements Serializable {
 		this.idAgenteCampana = idAgenteCampana;
 	}
 
-	public Usuario getAgente() {
-		return agente;
+	
+	public Integer getIdAgente() {
+		return idAgente;
 	}
 
-	public void setAgente(Usuario agente) {
-		this.agente = agente;
+	public void setIdAgente(Integer idAgente) {
+		this.idAgente = idAgente;
 	}
 
 	public Campana getCampana() {

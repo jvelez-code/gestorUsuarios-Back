@@ -33,9 +33,13 @@ public class Campana implements Serializable{
 	@Column(name = "fecha_hora_cargue")
 	private String fechaHoraCargue;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_coordinador")
-	private Usuario coordinador;
+//	@ManyToOne
+//	@JoinColumn(name = "id_coordinador")
+//	private Usuario coordinador;
+	
+	@Column(name = "id_coordinador")
+	private Integer idCoordinador;
+	
 	
 	@Column(name = "tipo_asignacion")
 	private Integer tipoAsignacion;
@@ -93,12 +97,13 @@ public class Campana implements Serializable{
 		this.fechaHoraCargue = fechaHoraCargue;
 	}
 
-	public Usuario getCoordinador() {
-		return coordinador;
+
+	public Integer getIdCoordinador() {
+		return idCoordinador;
 	}
 
-	public void setCoordinador(Usuario coordinador) {
-		this.coordinador = coordinador;
+	public void setIdCoordinador(Integer idCoordinador) {
+		this.idCoordinador = idCoordinador;
 	}
 
 	public Integer getTipoAsignacion() {

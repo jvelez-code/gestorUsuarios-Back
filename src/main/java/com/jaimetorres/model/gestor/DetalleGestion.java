@@ -47,9 +47,13 @@ public class DetalleGestion implements Serializable {
 	@Column(name = "num_real_marcado")
 	private String numRealMarcado;
 	
-	@ManyToOne()
-	@JoinColumn(name = "id_agente")
-	private Usuario usuario;
+//	@ManyToOne()
+//	@JoinColumn(name = "id_agente")
+//	private Usuario usuario;
+	
+	@Column(name = "id_agente")
+	private String idAgente;
+	
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_estado_gestion")
@@ -139,12 +143,14 @@ public class DetalleGestion implements Serializable {
 		this.numRealMarcado = numRealMarcado;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	
+
+	public String getIdAgente() {
+		return idAgente;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setIdAgente(String idAgente) {
+		this.idAgente = idAgente;
 	}
 
 	public EstadoGestion getEstadoGestion() {
