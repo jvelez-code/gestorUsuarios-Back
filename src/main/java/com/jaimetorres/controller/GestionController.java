@@ -17,7 +17,7 @@ import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.Gestion;
-import com.jaimetorres.service.IGestionService;
+import com.jaimetorres.service.gestor.IGestionService;
 
 @RestController
 @RequestMapping("/gestiones")

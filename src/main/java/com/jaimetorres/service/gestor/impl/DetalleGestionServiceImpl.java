@@ -1,4 +1,4 @@
-package com.jaimetorres.service.impl;
+package com.jaimetorres.service.gestor.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +14,8 @@ import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.model.gestor.DetalleGestion;
 import com.jaimetorres.repo.gestor.*;
-import com.jaimetorres.service.IDetalleGestionService;
 import com.jaimetorres.service.contact.impl.CRUDContactImpl;
+import com.jaimetorres.service.gestor.IDetalleGestionService;
 
 @Service
 public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer> implements IDetalleGestionService {

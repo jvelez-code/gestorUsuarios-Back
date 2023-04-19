@@ -16,7 +16,7 @@ import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.EstadoGestion;
-import com.jaimetorres.service.IEstadoGestionService;
+import com.jaimetorres.service.gestor.IEstadoGestionService;
 
 @RestController
 @RequestMapping("/estadoGestiones")

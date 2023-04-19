@@ -1,4 +1,4 @@
-package com.jaimetorres.service.impl;
+package com.jaimetorres.service.gestor.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +14,8 @@ import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.model.gestor.TipoDocumento;
 import com.jaimetorres.repo.gestor.IContactoRepo;
 import com.jaimetorres.repo.gestor.IGenericRepo;
-import com.jaimetorres.service.IContactoService;
 import com.jaimetorres.service.contact.impl.CRUDContactImpl;
+import com.jaimetorres.service.gestor.IContactoService;
 
 @Service
 public class ContactoServiceImpl extends CRUDImpl<Contacto, Integer> implements IContactoService {

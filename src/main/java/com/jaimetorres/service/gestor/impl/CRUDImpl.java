@@ -1,4 +1,4 @@
-package com.jaimetorres.service.impl;
+package com.jaimetorres.service.gestor.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jaimetorres.repo.gestor.IGenericRepo;
-import com.jaimetorres.service.ICRUD;
+import com.jaimetorres.service.gestor.ICRUD;
 
 public abstract class CRUDImpl<T , ID> implements ICRUD<T , ID>{
 	

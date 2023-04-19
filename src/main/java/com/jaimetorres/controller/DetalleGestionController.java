@@ -23,7 +23,7 @@ import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.model.gestor.DetalleGestion;
-import com.jaimetorres.service.IDetalleGestionService;
+import com.jaimetorres.service.gestor.IDetalleGestionService;
 
 @RestController
 @RequestMapping("/detallegestiones")

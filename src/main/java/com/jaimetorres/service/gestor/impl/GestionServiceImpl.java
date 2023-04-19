@@ -1,4 +1,4 @@
-package com.jaimetorres.service.impl;
+package com.jaimetorres.service.gestor.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.model.gestor.Gestion;
 import com.jaimetorres.repo.gestor.*;
-import com.jaimetorres.service.IGestionService;
 import com.jaimetorres.service.contact.impl.CRUDContactImpl;
+import com.jaimetorres.service.gestor.IGestionService;
 
 @Service
 public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IGestionService {

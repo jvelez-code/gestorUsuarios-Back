@@ -15,7 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.Cliente;
-import com.jaimetorres.service.IClienteService;
+import com.jaimetorres.service.gestor.IClienteService;
 
 @RestController
 @RequestMapping("/clientes")

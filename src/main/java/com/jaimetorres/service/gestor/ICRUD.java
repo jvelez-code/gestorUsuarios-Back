@@ -1,4 +1,4 @@
-package com.jaimetorres.service;
+package com.jaimetorres.service.gestor;
 
 import java.util.List;
 

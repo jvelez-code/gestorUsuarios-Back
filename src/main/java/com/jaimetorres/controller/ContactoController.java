@@ -21,7 +21,7 @@ import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.model.gestor.Gestion;
-import com.jaimetorres.service.IContactoService;
+import com.jaimetorres.service.gestor.IContactoService;
 
 @RestController
 @RequestMapping("/contactos")

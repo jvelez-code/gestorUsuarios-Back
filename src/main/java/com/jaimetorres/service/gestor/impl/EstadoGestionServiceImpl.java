@@ -1,4 +1,4 @@
-package com.jaimetorres.service.impl;
+package com.jaimetorres.service.gestor.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,8 +11,8 @@ import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.model.gestor.DetalleGestion;
 import com.jaimetorres.model.gestor.EstadoGestion;
 import com.jaimetorres.repo.gestor.*;
-import com.jaimetorres.service.IEstadoGestionService;
 import com.jaimetorres.service.contact.impl.CRUDContactImpl;
+import com.jaimetorres.service.gestor.IEstadoGestionService;
 @Service
 public class EstadoGestionServiceImpl extends CRUDImpl<EstadoGestion, Integer> implements IEstadoGestionService {
 
