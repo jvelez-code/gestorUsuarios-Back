@@ -9,12 +9,6 @@ public class FiltroContactoDTO {
 	private String telefonoDirecto;
 	private String telefonoCelular;
 	
-	
-	
-	
-	
-	
-	
 	public String getNombre() {
 		return nombre;
 	}

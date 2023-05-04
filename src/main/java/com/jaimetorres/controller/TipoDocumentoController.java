@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -26,6 +27,8 @@ public class TipoDocumentoController {
 	private ITipoDocumentoService service;
 	
 	//ResponseEntity Para capturar excepciones
+	//@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("@authServiceImpl.tieneAcceso('listarId')")
 	@GetMapping
 	public ResponseEntity<List<TipoDocumento>> listar() throws Exception{
 		List<TipoDocumento> lista=service.listar();

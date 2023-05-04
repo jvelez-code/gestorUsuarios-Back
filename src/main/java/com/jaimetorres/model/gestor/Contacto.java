@@ -34,12 +34,9 @@ public class Contacto  implements Serializable {
 	@JoinColumn(name = "id_zona")
 	private Divipola divipola;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "id_agente")
-//	private Usuario usuario;
-	
-	@Column(name = "id_agente")
-	private String idAgente;
+	@ManyToOne
+	@JoinColumn(name = "id_agente")
+	private Usuario usuario;	
 	
 	@Column(name = "numero_contacto")
 	private String numeroContacto;
@@ -109,12 +106,12 @@ public class Contacto  implements Serializable {
 		this.divipola = divipola;
 	}
 
-	public String getIdAgente() {
-		return idAgente;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setIdAgente(String idAgente) {
-		this.idAgente = idAgente;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getNumeroContacto() {

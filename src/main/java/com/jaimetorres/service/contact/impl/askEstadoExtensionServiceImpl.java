@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.FiltroEstadoDTO;
 import com.jaimetorres.model.contact.AskEstadoExtension;
 import com.jaimetorres.repo.contact.IGenericContactRepo;
 import com.jaimetorres.repo.contact.IAskEstadoExtensionRepo;
@@ -26,6 +27,17 @@ public class askEstadoExtensionServiceImpl extends CRUDContactImpl<AskEstadoExte
 		return repo.buscar(filtro.getNroDocumento());
 	}
 
+	@Override
+	public AskEstadoExtension buscarAgente(FiltroEntranteDTO filtro) {
+		return repo.buscarAgente(filtro.getLoginAgente());
+	}
+
+	@Override
+	public void cambioEstado(FiltroEstadoDTO filtro) {
+		repo.actualizarEstado(filtro.getEstadoAsk(), filtro.getLoginAgente());
+	}
+
+	
 	
 	
 

@@ -28,11 +28,12 @@ public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer>
 		return repo;
 	}
 
+
 	@Override
 	public List<DetalleGestion> buscarHisto(FiltroEntranteDTO filtro) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.buscar(filtro.getIdCliente());
 	}
+	
 
 
 	

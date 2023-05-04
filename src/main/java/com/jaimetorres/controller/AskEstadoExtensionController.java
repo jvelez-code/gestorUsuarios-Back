@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.FiltroEstadoDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.contact.AskEstadoExtension;
 import com.jaimetorres.model.gestor.Cliente;
@@ -69,13 +70,32 @@ public class AskEstadoExtensionController {
 		}
 		
 		//@RequestBody json a objeto  java
-				@PostMapping("/buscar")
-				public ResponseEntity<AskEstadoExtension> buscarAgente(@RequestBody FiltroEntranteDTO filtro) throws Exception{
-							
-							AskEstadoExtension askEstadoExtension = new AskEstadoExtension();
-							askEstadoExtension = service.buscar(filtro);
-							
-							return new ResponseEntity<AskEstadoExtension>(askEstadoExtension, HttpStatus.OK);
-				}
+		@PostMapping("/buscar")
+		public ResponseEntity<AskEstadoExtension> buscar(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+
+			AskEstadoExtension askEstadoExtension = new AskEstadoExtension();
+			askEstadoExtension = service.buscar(filtro);
+
+			return new ResponseEntity<AskEstadoExtension>(askEstadoExtension, HttpStatus.OK);
+		}
+
+		@PostMapping("/buscaraAgente")
+		public ResponseEntity<AskEstadoExtension> buscarAgente(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+
+			AskEstadoExtension askEstadoExtension = new AskEstadoExtension();
+			askEstadoExtension = service.buscarAgente(filtro);
+
+			return new ResponseEntity<AskEstadoExtension>(askEstadoExtension, HttpStatus.OK);
+		}
+		
+		@PostMapping("/actualizarEstado")
+		public ResponseEntity<Object> actualizarEstado(@RequestBody FiltroEstadoDTO filtro) throws Exception{
+			try {			
+				service.cambioEstado(filtro);
+			} catch (Exception e) {
+				return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			return new ResponseEntity<Object>(HttpStatus.OK);
+		}
 		
 }

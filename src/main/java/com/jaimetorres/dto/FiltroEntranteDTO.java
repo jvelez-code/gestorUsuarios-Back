@@ -1,8 +1,11 @@
 package com.jaimetorres.dto;
 
+
+
 public class FiltroEntranteDTO {
 	
 	private String tipoDoc;
+	private String loginAgente;
 	private String nroDocumento;
 	private Integer idCliente;
 	private Integer idEmpresa;
@@ -20,9 +23,18 @@ public class FiltroEntranteDTO {
 	}
 	public void setTipoDoc(String tipoDoc) {
 		this.tipoDoc = tipoDoc;
-	}
-	
+	}	
 		
+	public String getLoginAgente() {
+		return loginAgente;
+	}
+
+
+	public void setLoginAgente(String loginAgente) {
+		this.loginAgente = loginAgente;
+	}
+
+
 	public String getNroDocumento() {
 		return nroDocumento;
 	}

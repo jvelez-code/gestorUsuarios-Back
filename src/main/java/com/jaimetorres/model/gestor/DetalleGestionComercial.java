@@ -22,9 +22,12 @@ public class DetalleGestionComercial implements Serializable {
 	@JoinColumn(name = "id_gestion")
 	private Gestion gestion;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_detalle_gestion")
-	private DetalleGestion detalleGestion;
+//	@ManyToOne
+//	@JoinColumn(name = "id_detalle_gestion")
+//	private DetalleGestion detalleGestion;
+	
+	@Column(name = "id_detalle_gestion")
+	private String detalleGestion;
 	
 	@Column(name = "fecha_gestion")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -78,11 +81,11 @@ public class DetalleGestionComercial implements Serializable {
 		this.gestion = gestion;
 	}
 
-	public DetalleGestion getDetalleGestion() {
+	public String getDetalleGestion() {
 		return detalleGestion;
 	}
 
-	public void setDetalleGestion(DetalleGestion detalleGestion) {
+	public void setDetalleGestion(String detalleGestion) {
 		this.detalleGestion = detalleGestion;
 	}
 

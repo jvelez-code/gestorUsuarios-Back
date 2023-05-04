@@ -22,8 +22,8 @@ class GestorUsuariosBackApplicationTests {
 	@Test
 	void verificarClave() {
 		Usuarios us = new Usuarios();
-		us.setIdUsuario(4);
-		us.setUsername("mitotest@gmail.com");
+		us.setIdUsuario(51);
+		us.setUsername("jaime1");
 		us.setPassword(bcrypt.encode("123"));				
 		us.setEnabled(true);
 		

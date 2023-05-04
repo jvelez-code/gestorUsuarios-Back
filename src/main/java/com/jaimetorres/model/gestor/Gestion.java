@@ -40,14 +40,12 @@ public class Gestion implements Serializable{
 	@JoinColumn(name = "id_estado_gestion")
 	private EstadoGestion estadoGestion;
 	
-//	@JsonIgnore
-//	@ManyToOne()
-//	@JoinColumn(name = "id_agente")
-//	private Usuario agente;
+	@JsonIgnore
+	@ManyToOne()
+	@JoinColumn(name = "id_agente")
+	private Usuario agente;
 	
-	@Column(name = "id_agente")   	
-	private String idAgente;
-	
+		
 	@Column(name = "fecha_gestion")
 	@Temporal(TemporalType.TIMESTAMP)	
 	private Date fechaGestion;
@@ -142,14 +140,13 @@ public class Gestion implements Serializable{
 	public void setEstadoGestion(EstadoGestion estadoGestion) {
 		this.estadoGestion = estadoGestion;
 	}
-
 	
-	public String getAgente() {
-		return idAgente;
+	public Usuario getAgente() {
+		return agente;
 	}
 
-	public void setAgente(String idAgente) {
-		this.idAgente = idAgente;
+	public void setAgente(Usuario agente) {
+		this.agente = agente;
 	}
 
 	public Date getFechaGestion() {

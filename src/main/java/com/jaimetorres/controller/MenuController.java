@@ -1,0 +1,35 @@
+package com.jaimetorres.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.jaimetorres.model.gestor.Menu;
+import com.jaimetorres.service.gestor.IMenuService;
+
+@RestController
+@RequestMapping("/menus")
+public class MenuController {
+	
+	@Autowired
+	private IMenuService service;
+	
+	@GetMapping
+	public ResponseEntity<List<Menu>> listar() throws Exception{
+		List<Menu> menus = new ArrayList<>();
+		menus = service.listar();
+		return new ResponseEntity<List<Menu>>(menus, HttpStatus.OK);
+	}
+	
+	@PostMapping("/usuario")
+	public ResponseEntity<List<Menu>> listar(@RequestBody String nombre) throws Exception{
+		List<Menu> menus = new ArrayList<>();
+		menus = service.listarMenuPorUsuario(nombre);
+		return new ResponseEntity<List<Menu>>(menus, HttpStatus.OK);
+	}
+
+}
