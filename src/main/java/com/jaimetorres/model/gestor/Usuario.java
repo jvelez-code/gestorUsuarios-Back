@@ -41,8 +41,7 @@ public class Usuario implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name = "id_perfil")
-	private Perfil perfil;
-	
+	private Perfil perfil;	
 	
 	@ManyToOne
 	@JoinColumn(name = "empresa")
@@ -54,8 +53,8 @@ public class Usuario implements Serializable{
 //	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 //    private List<DetalleHorario> detalleHorarioList;
 	
-//	@OneToMany(mappedBy =  "agente")
-//	private List<AgenteCampana> agenteCampanaList;
+	@OneToMany(mappedBy =  "usuario", cascade = { CascadeType.ALL }, orphanRemoval = true)
+	private List<AgenteCampana> agenteCampanaList;
 
 	public Integer getIdUsuario() {
 		return idUsuario;

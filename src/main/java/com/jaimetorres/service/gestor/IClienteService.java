@@ -11,5 +11,6 @@ public interface IClienteService extends ICRUD<Cliente , Integer >{
 	Cliente buscar(FiltroEntranteDTO filtro);
 	List<Cliente> buscarByCliente(FiltroEntranteDTO filtro);
 	List<Cliente> buscarByClientes(FiltroEntranteDTO filtro);
+	Cliente buscarIdAsterisk(Integer tipo, String nroDocumento);
 	
 }

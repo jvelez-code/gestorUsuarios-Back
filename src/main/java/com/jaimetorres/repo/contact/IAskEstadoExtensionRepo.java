@@ -18,7 +18,7 @@ public interface IAskEstadoExtensionRepo extends IGenericContactRepo< AskEstadoE
 	
 	@Transactional
 	@Modifying
-	@Query("UPDATE AskEstadoExtension c SET c.estadoAsk= :estadoAsk, c.fechahoraInicioEstado = now(), c.numeroOrigen = null WHERE c.loginAgente= :loginAgente ") 
+	@Query("UPDATE AskEstadoExtension c SET c.askEstado.idEstado= :estadoAsk, c.fechahoraInicioEstado = now(), c.numeroOrigen = null WHERE c.loginAgente= :loginAgente ") 
 	void actualizarEstado(@Param("estadoAsk") Integer estadoAsk, @Param("loginAgente") String loginAgente);
 	
 	

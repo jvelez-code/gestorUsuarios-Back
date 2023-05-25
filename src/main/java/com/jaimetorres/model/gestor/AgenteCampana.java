@@ -16,12 +16,12 @@ public class AgenteCampana implements Serializable {
 	@Column(name = "id_agente_campana")
 	private Integer idAgenteCampana;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "id_agente")
-//	private Usuario agente;
+	@ManyToOne
+	@JoinColumn(name = "id_agente",nullable = false, foreignKey = @ForeignKey(name ="fk_agentecampana_agente"))
+	private Usuario usuario;
 	
-	@Column(name = "id_agente")
-	private Integer idAgente;
+//	@Column(name = "id_agente")
+//	private Integer idAgente;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_campana")
@@ -29,6 +29,30 @@ public class AgenteCampana implements Serializable {
 	
 	@Column(name = "activo")
 	private Boolean activo;
+	
+	
+	
+	
+	
+
+	public AgenteCampana() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	
+
+	public AgenteCampana(Integer idAgenteCampana, Usuario usuario, Campana campana, Boolean activo) {
+		super();
+		this.idAgenteCampana = idAgenteCampana;
+		this.usuario = usuario;
+		this.campana = campana;
+		this.activo = activo;
+	}
+
+
+
 
 	public Integer getIdAgenteCampana() {
 		return idAgenteCampana;
@@ -37,14 +61,24 @@ public class AgenteCampana implements Serializable {
 	public void setIdAgenteCampana(Integer idAgenteCampana) {
 		this.idAgenteCampana = idAgenteCampana;
 	}
+	
+	
 
 	
-	public Integer getIdAgente() {
-		return idAgente;
+//	public Integer getIdAgente() {
+//		return idAgente;
+//	}
+//
+//	public void setIdAgente(Integer idAgente) {
+//		this.idAgente = idAgente;
+//	}
+
+	public Usuario getAgente() {
+		return usuario;
 	}
 
-	public void setIdAgente(Integer idAgente) {
-		this.idAgente = idAgente;
+	public void setAgente(Usuario agente) {
+		this.usuario = agente;
 	}
 
 	public Campana getCampana() {

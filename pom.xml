@@ -49,12 +49,7 @@
 			<artifactId>spring-hateoas</artifactId>
 		</dependency>
 
-		<!-- Jasper Reports -->
-		<dependency>
-			<groupId>net.sf.jasperreports</groupId>
-			<artifactId>jasperreports</artifactId>
-			<version>6.5.1</version>
-		</dependency>
+		
 
 		<!-- Seguridad -->
 		<dependency>

@@ -11,97 +11,76 @@ import com.jaimetorres.model.gestor.Gestion;
 
 public class FiltroDetalleGestionDTO {
 	
-	private Integer idDetalleGestion;
-	private Integer estadoGestion;
-	private String usuarioAct;
-	private Date fechaHoraSis;
+	
+	private String fecha;
+	private String usuario;
+	private String campana;
+	private String tipo;
+	private String subtipo;
 	private String observacion;
-	private String numRealMarcado;
-	private Integer idEmpresa;
+	private String numero;
 	
-	
-	
+	public FiltroDetalleGestionDTO(String fecha, String usuario, String campana, String tipo, String subtipo,
+			String observacion, String numero) {
+		super();
+		this.fecha = fecha;
+		this.usuario = usuario;
+		this.campana = campana;
+		this.tipo = tipo;
+		this.subtipo = subtipo;
+		this.observacion = observacion;
+		this.numero = numero;
+	}
 	public FiltroDetalleGestionDTO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public Integer getIdEmpresa() {
-		return idEmpresa;
+	public String getFecha() {
+		return fecha;
 	}
-
-
-
-
-	public void setIdEmpresa(Integer idEmpresa) {
-		this.idEmpresa = idEmpresa;
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
-
-
-
-
-	public Integer getIdDetalleGestion() {
-		return idDetalleGestion;
+	public String getUsuario() {
+		return usuario;
 	}
-
-
-	public void setIdDetalleGestion(Integer idDetalleGestion) {
-		this.idDetalleGestion = idDetalleGestion;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
-
-
-	public Integer getEstadoGestion() {
-		return estadoGestion;
+	public String getCampana() {
+		return campana;
 	}
-
-
-	public void setEstadoGestion(Integer estadoGestion) {
-		this.estadoGestion = estadoGestion;
+	public void setCampana(String campana) {
+		this.campana = campana;
 	}
-
-
-	public String getUsuarioAct() {
-		return usuarioAct;
+	public String getTipo() {
+		return tipo;
 	}
-
-
-	public void setUsuarioAct(String usuario_act) {
-		this.usuarioAct = usuario_act;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
-
-
-	public Date getFechaHoraSis() {
-		return fechaHoraSis;
+	public String getSubtipo() {
+		return subtipo;
 	}
-
-
-	public void setFechaHoraSis(Date fechaHoraSis) {
-		this.fechaHoraSis = fechaHoraSis;
+	public void setSubtipo(String subtipo) {
+		this.subtipo = subtipo;
 	}
-
-
 	public String getObservacion() {
 		return observacion;
 	}
-
-
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
 	}
-
-
-	public String getNumRealMarcado() {
-		return numRealMarcado;
+	public String getNumero() {
+		return numero;
 	}
-
-
-	public void setNumRealMarcado(String numRealMarcado) {
-		this.numRealMarcado = numRealMarcado;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 	
 	
-	
 
-	}
+}
 	
 	
 

@@ -23,6 +23,8 @@ import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.model.gestor.DetalleGestion;
+import com.jaimetorres.model.gestor.Gestion;
+import com.jaimetorres.model.gestor.Menu;
 import com.jaimetorres.service.gestor.IDetalleGestionService;
 
 @RestController
@@ -69,59 +71,52 @@ public class DetalleGestionController {
 //	}
 	
 	//@RequestBody json a objeto  java
-		@PostMapping
-		public ResponseEntity<DetalleGestion> registrar(@Valid @RequestBody DetalleGestion DetalleGestion) throws Exception{
-			DetalleGestion obj=service.registrar(DetalleGestion);
-			
-			//localhost:8080/pacientes/7
-			URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdDetalleGestion()).toUri();
-			return new ResponseEntity<DetalleGestion>(obj, HttpStatus.CREATED);
+	@PostMapping
+	public ResponseEntity<DetalleGestion> registrar(@Valid @RequestBody DetalleGestion DetalleGestion) throws Exception{
+		DetalleGestion obj=service.registrar(DetalleGestion);
+
+		//localhost:8080/pacientes/7
+		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdDetalleGestion()).toUri();
+		return new ResponseEntity<DetalleGestion>(obj, HttpStatus.CREATED);
+	}
+
+
+	@PutMapping
+	public ResponseEntity<DetalleGestion> modificar(@Valid @RequestBody DetalleGestion DetalleGestion) throws Exception{
+		DetalleGestion obj=service.modificar(DetalleGestion);
+		return new ResponseEntity<DetalleGestion>(obj, HttpStatus.OK);
+	}
+
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
+		DetalleGestion obj=service.listarPorId(id);
+		if(obj==null) {
+			throw new ModeloNotFoundException("ID NO ENCONTRADO: " +id);
 		}
-		
-		
-		@PutMapping
-		public ResponseEntity<DetalleGestion> modificar(@Valid @RequestBody DetalleGestion DetalleGestion) throws Exception{
-			DetalleGestion obj=service.modificar(DetalleGestion);
-			return new ResponseEntity<DetalleGestion>(obj, HttpStatus.OK);
-		}
-		
-		
-		@DeleteMapping("/{id}")
-		public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
-			DetalleGestion obj=service.listarPorId(id);
-			if(obj==null) {
-				throw new ModeloNotFoundException("ID NO ENCONTRADO: " +id);
-			}
-			service.eliminar(id);		
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-		}
-		
-		
-//		//@RequestBody json a objeto  java
-		@PostMapping("/buscar")
-		public ResponseEntity<List<FiltroDetalleGestionDTO>> listarPorIdPrueba(@RequestBody FiltroEntranteDTO filtro) throws Exception{
-	
-			List<FiltroDetalleGestionDTO> postResponse = new ArrayList<>();
-			List<DetalleGestion> obj=service.buscarHisto(filtro);
-			
-			//FiltroDetalleGestionDTO postResponse = modelMapper.map(obj, FiltroDetalleGestionDTO.class);
-			postResponse = (List<FiltroDetalleGestionDTO>) modelMapper.map(obj, FiltroDetalleGestionDTO.class);
-			return new ResponseEntity<List<FiltroDetalleGestionDTO>>(postResponse, HttpStatus.OK);
-		}
-		
-		
+		service.eliminar(id);		
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+
+
+	//		//@RequestBody json a objeto  java
+	@PostMapping("/buscar")
+	public ResponseEntity<List<Gestion>> listarPorIdPrueba(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+
+		List<Gestion> obj=service.buscarHisto(filtro);
+
+		//FiltroDetalleGestionDTO postResponse = modelMapper.map(obj, FiltroDetalleGestionDTO.class);
+		//postResponse = (List<Gestion>) modelMapper.map(obj, Gestion.class);
+		return new ResponseEntity<List<Gestion>>(obj, HttpStatus.OK);
+	}
+
+	@PostMapping("/buscarCliente")
+	public ResponseEntity<List<FiltroDetalleGestionDTO>> buscarClienteId(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		List<FiltroDetalleGestionDTO> menus = new ArrayList<>();
+		menus = service.buscarM(filtro);
+		return new ResponseEntity<List<FiltroDetalleGestionDTO>>(menus, HttpStatus.OK);
+	}
 
 		
-
-		@PostMapping("/buscars")
-		public ResponseEntity<List<DetalleGestion>> listarPorIdPruebas(@RequestBody FiltroEntranteDTO filtro) throws Exception{
-	
-			List<DetalleGestion> dtg = new ArrayList<>();
-			dtg=service.buscarHisto(filtro);
-			
-			
-			
-			return new ResponseEntity<List<DetalleGestion>>(dtg, HttpStatus.OK);
-		}
 		
 		}

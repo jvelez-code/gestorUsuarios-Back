@@ -18,8 +18,12 @@ public class AskEstadoExtension implements Serializable {
 	@Column(name="login_agente", nullable = false, unique = true)
 	private String loginAgente;
 	
-	@Column(name="estado", nullable = false)
-	private Integer estadoAsk;
+//	@Column(name="estado", nullable = false)
+//	private Integer estadoAsk;
+	
+	@ManyToOne
+	@JoinColumn(name="estado",nullable = false, foreignKey = @ForeignKey(name = "fk_ask_estado_extension_estado"))
+	private AskEstado askEstado;
 	
 	@Column(name="numero_origen", nullable = false)
 	private String numeroOrigen;
@@ -41,6 +45,25 @@ public class AskEstadoExtension implements Serializable {
 	@Column(name="activo", nullable = false)
 	private boolean activoAsk;	
 	
+	
+	
+
+	public AskEstadoExtension() {
+		super();
+	}
+
+	public AskEstadoExtension(Integer idExtension, String loginAgente, String numeroOrigen, Date fechahoraUltimaLlamada,
+			Date fechahoraInicioEstado, String nroDocumento, String empresaAsk, boolean activoAsk) {
+		super();
+		this.idExtension = idExtension;
+		this.loginAgente = loginAgente;
+		this.numeroOrigen = numeroOrigen;
+		this.fechahoraUltimaLlamada = fechahoraUltimaLlamada;
+		this.fechahoraInicioEstado = fechahoraInicioEstado;
+		this.nroDocumento = nroDocumento;
+		this.empresaAsk = empresaAsk;
+		this.activoAsk = activoAsk;
+	}
 
 	public Integer getIdExtension() {
 		return idExtension;
@@ -50,16 +73,26 @@ public class AskEstadoExtension implements Serializable {
 		this.idExtension = idExtension;
 	}
 
-	public Integer getEstadoAsk() {
-		return estadoAsk;
-	}
-
-	public void setEstadoAsk(Integer estadoAsk) {
-		this.estadoAsk = estadoAsk;
-	}
+//	public Integer getEstadoAsk() {
+//		return estadoAsk;
+//	}
+//
+//	public void setEstadoAsk(Integer estadoAsk) {
+//		this.estadoAsk = estadoAsk;
+//	}
+	
+	
 
 	public String getLoginAgente() {
 		return loginAgente;
+	}
+
+	public AskEstado getAskEstado() {
+		return askEstado;
+	}
+
+	public void setAskEstado(AskEstado askEstado) {
+		this.askEstado = askEstado;
 	}
 
 	public void setLoginAgente(String loginAgente) {

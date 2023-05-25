@@ -9,6 +9,7 @@ public class FiltroEstadoDTO {
 	private Integer estadoAsk;
 	
 	
+	
 	public FiltroEstadoDTO() {
 	}
 	

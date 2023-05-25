@@ -46,63 +46,49 @@ public class ContactoController {
 	public Contacto listarPorId(@PathVariable("id") Integer id) throws Exception {
 		return service.listarPorId(id);
 	}
-	
-	//@RequestBody json a objeto  java
-		@PostMapping
-		public ResponseEntity<Contacto> registrar(@Valid @RequestBody Contacto Contacto) throws Exception{
-			Contacto obj=service.registrar(Contacto);
-			
-			//localhost:8080/pacientes/7
-			URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdContacto()).toUri();
-			return new ResponseEntity<Contacto>(obj, HttpStatus.CREATED);
-		}
-		
-		
-		@PutMapping
-		public ResponseEntity<Contacto> modificar(@Valid @RequestBody Contacto Contacto) throws Exception{
-			Contacto obj=service.modificar(Contacto);
-			return new ResponseEntity<Contacto>(obj, HttpStatus.OK);
-		}
-		
-		
-		@DeleteMapping("/{id}")
-		public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
-			Contacto obj=service.listarPorId(id);
-			if(obj==null) {
-				throw new ModeloNotFoundException("ID NO ENCONTRADO: " +id);
-			}
-			service.eliminar(id);		
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-		}
-				
-//		@PostMapping("/buscar")
-//		public ResponseEntity<FiltroContactoDTO> post(@RequestBody FiltroEntranteDTO filtro) throws Exception {	
-//			Integer idContactoMax=service.buscarMax(filtro);
-//			
-//			System.out.println(service.buscarMax(filtro));
-//			List<Contacto> post = (List<Contacto>) service.buscar(idContactoMax);
-//			// convert entity to DTO
-//			FiltroContactoDTO postResponse = modelMapper.map(post, FiltroContactoDTO.class);
-//
-//			return ResponseEntity.ok().body(postResponse);
-//		}
-//	
 
-		@PostMapping("/buscar")
-		public ResponseEntity<Contacto> listarPorId(@RequestBody FiltroEntranteDTO filtro) throws Exception{
-			Integer idContactoMax=service.buscarMax(filtro);
-			System.out.println(service.buscarMax(filtro));
-			Contacto lista=service.buscar(idContactoMax);
-			return new ResponseEntity<Contacto>(lista, HttpStatus.OK);
+	//@RequestBody json a objeto  java
+	@PostMapping
+	public ResponseEntity<Contacto> registrar(@Valid @RequestBody Contacto Contacto) throws Exception{
+		Contacto obj=service.registrar(Contacto);
+
+		//localhost:8080/pacientes/7
+		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdContacto()).toUri();
+		return new ResponseEntity<Contacto>(obj, HttpStatus.CREATED);
+	}
+
+
+	@PutMapping
+	public ResponseEntity<Contacto> modificar(@Valid @RequestBody Contacto Contacto) throws Exception{
+		Contacto obj=service.modificar(Contacto);
+		return new ResponseEntity<Contacto>(obj, HttpStatus.OK);
+	}
+
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
+		Contacto obj=service.listarPorId(id);
+		if(obj==null) {
+			throw new ModeloNotFoundException("ID NO ENCONTRADO: " +id);
 		}
-		
-		
-		@PostMapping("/{id}")
-		public ResponseEntity<FiltroContactoDTO> getPostById(@PathVariable(name = "id") Integer id) throws Exception {
-			Contacto post = service.listarPorId(id);
-			// convert entity to DTO
-			FiltroContactoDTO postResponse = modelMapper.map(post, FiltroContactoDTO.class);
-			return ResponseEntity.ok().body(postResponse);
-		}
-		
+		service.eliminar(id);		
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+
+	@PostMapping("/buscar")
+	public ResponseEntity<Contacto> listarPorId(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		Integer idContactoMax=service.buscarMax(filtro);
+		Contacto lista=service.buscar(idContactoMax);
+		return new ResponseEntity<Contacto>(lista, HttpStatus.OK);
+	}
+
+
+	@PostMapping("/{id}")
+	public ResponseEntity<FiltroContactoDTO> getPostById(@PathVariable(name = "id") Integer id) throws Exception {
+		Contacto post = service.listarPorId(id);
+		// convert entity to DTO
+		FiltroContactoDTO postResponse = modelMapper.map(post, FiltroContactoDTO.class);
+		return ResponseEntity.ok().body(postResponse);
+	}
+
 }

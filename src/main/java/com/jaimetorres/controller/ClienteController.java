@@ -14,7 +14,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
+import com.jaimetorres.model.contact.LlamadaEntrante;
 import com.jaimetorres.model.gestor.Cliente;
+import com.jaimetorres.service.contact.ILlamadaEntranteService;
 import com.jaimetorres.service.gestor.IClienteService;
 
 @RestController
@@ -24,6 +26,10 @@ public class ClienteController {
 
 	@Autowired
 	private IClienteService service;
+	
+	@Autowired
+	private ILlamadaEntranteService serviceLlama;
+
 	
 	//ResponseEntity Para capturar excepciones
 	@GetMapping
@@ -112,6 +118,13 @@ public class ClienteController {
 			return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
 		}
 		
+
+		@PostMapping("/buscarAsterisk")
+		public ResponseEntity<Cliente> buscarIdAsterisk(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+			LlamadaEntrante obj = serviceLlama.buscarIdAsterisk(filtro);
+			Cliente cli = service.buscarIdAsterisk(obj.getTipo_cliente(), obj.getNumero_documento());			
+			return new ResponseEntity<Cliente>(cli, HttpStatus.OK);
+		}
 		
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.jaimetorres.model.contact.LlamadaEntrante;
 import com.jaimetorres.model.gestor.Cliente;
 
 
@@ -20,9 +21,11 @@ public interface IClienteRepo extends IGenericRepo< Cliente , Integer > {
 	
 	@Query("FROM Cliente c WHERE c.idCliente= :nroCliente")
 	List<Cliente> buscarByClientes(@Param("nroCliente") Integer nroCliente);
-//	
-//	
-//	@Query("FROM Cliente c WHERE c.fecha BETWEEN :fechaCliente AND :fechaSgte")
-//	List<Cliente> buscarFecha(@Param("fechaCliente") LocalDateTime fechaCliente,@Param("fechaSgte") LocalDateTime fechaSgte);
+	
+	@Query(value="SELECT  c.* FROM cliente c, tipo_documento td "
+			+ "WHERE c.tipo_documento =td.tipo_doc and td.id = :tipo AND c.nro_documento = :nroDocumento", nativeQuery = true)
+	Cliente buscarAsteriskCliente(@Param("tipo") Integer tipo, @Param("nroDocumento") String nroDocumento);
+
+
 
 }

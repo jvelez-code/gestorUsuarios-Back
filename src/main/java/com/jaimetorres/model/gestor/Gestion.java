@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "gestion")
-public class Gestion implements Serializable{
+public class Gestion implements Serializable {
 	
 	private static final long serialVersionUID = 6374638625076330423L;
 	@Id
@@ -34,13 +34,12 @@ public class Gestion implements Serializable{
 	private Cliente cliente;
 	
 	@Column(name = "flag_gestion_sucursal")
-	private String flagGestionSucursal;
+	private Boolean flagGestionSucursal;
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_estado_gestion")
 	private EstadoGestion estadoGestion;
 	
-	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name = "id_agente")
 	private Usuario agente;
@@ -62,7 +61,8 @@ public class Gestion implements Serializable{
 	@OneToMany(mappedBy = "gestion", cascade = { CascadeType.ALL }, orphanRemoval = true)	
 	private List<Contacto> listaContacto;
 	
-	@OneToMany(mappedBy = "gestion")
+	@OneToMany(fetch = FetchType.EAGER)
+	//@OneToMany(mappedBy = "gestion")
 	@OrderBy("nroDocumento")	
 	private List<Empleado> listaEmpleado;
 	
@@ -92,6 +92,51 @@ public class Gestion implements Serializable{
 	
 	@Column(name = "callid")   	
 	private String callid;
+	
+	
+	
+	
+
+	public Gestion(Integer idGestion, Archivo archivo, Campana campana, Cliente cliente, Boolean flagGestionSucursal,
+			EstadoGestion estadoGestion, Usuario agente, Date fechaGestion, BigInteger valorCotizacion,
+			String usuarioAct, String ipAct, List<Contacto> listaContacto, List<Empleado> listaEmpleado,
+			List<DetalleGestion> listaDetalleGestion, List<DetalleGestionComercial> listDetalleGestionComercial,
+			List<DataIAGestion> listaDataIAGestion, Archivo archivoExclusion, Date fechaAgenda, Integer idGestionPadre,
+			Date fechaHoraSis, String callid) {
+		super();
+		this.idGestion = idGestion;
+		this.archivo = archivo;
+		this.campana = campana;
+		this.cliente = cliente;
+		this.flagGestionSucursal = flagGestionSucursal;
+		this.estadoGestion = estadoGestion;
+		this.agente = agente;
+		this.fechaGestion = fechaGestion;
+		this.valorCotizacion = valorCotizacion;
+		this.usuarioAct = usuarioAct;
+		this.ipAct = ipAct;
+		this.listaContacto = listaContacto;
+		this.listaEmpleado = listaEmpleado;
+		this.listaDetalleGestion = listaDetalleGestion;
+		this.listDetalleGestionComercial = listDetalleGestionComercial;
+		this.listaDataIAGestion = listaDataIAGestion;
+		this.archivoExclusion = archivoExclusion;
+		this.fechaAgenda = fechaAgenda;
+		this.idGestionPadre = idGestionPadre;
+		this.fechaHoraSis = fechaHoraSis;
+		this.callid = callid;
+	}
+	
+	
+	
+
+	public Gestion() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 
 	public Integer getIdGestion() {
 		return idGestion;
@@ -125,11 +170,11 @@ public class Gestion implements Serializable{
 		this.cliente = cliente;
 	}
 
-	public String getFlagGestionSucursal() {
+	public Boolean getFlagGestionSucursal() {
 		return flagGestionSucursal;
 	}
 
-	public void setFlagGestionSucursal(String flagGestionSucursal) {
+	public void setFlagGestionSucursal(Boolean flagGestionSucursal) {
 		this.flagGestionSucursal = flagGestionSucursal;
 	}
 

@@ -18,6 +18,7 @@ import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.contact.AskEstadoExtension;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.service.contact.IAskEstadoExtensionService;
+import com.jaimetorres.service.contact.IAskLogEstadoService;
 
 @RestController
 @RequestMapping("/askEstadoExtensiones")
@@ -26,6 +27,9 @@ public class AskEstadoExtensionController {
 
 	@Autowired
 	private IAskEstadoExtensionService service;
+	
+	@Autowired
+	private IAskLogEstadoService serviceExt;
 	
 	
 	//ResponseEntity Para capturar excepciones
@@ -92,6 +96,10 @@ public class AskEstadoExtensionController {
 		public ResponseEntity<Object> actualizarEstado(@RequestBody FiltroEstadoDTO filtro) throws Exception{
 			try {			
 				service.cambioEstado(filtro);
+				Integer maxLog= serviceExt.buscarExt(filtro);
+				serviceExt.actualizarExt(maxLog);
+				serviceExt.registrarExt(filtro);
+				
 			} catch (Exception e) {
 				return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
