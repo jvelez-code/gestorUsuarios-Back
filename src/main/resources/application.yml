@@ -16,3 +16,16 @@ spring:
             required: true     
     protocol: smtp
     test-connection: false
+    
+#server:
+  #ssl:
+    #key-store: classpath:helpvoz.p12
+    #key-store-password: master
+    #key-alias: gestorCli 
+    #key-store-type: PKCS12 
+  #port: 8443
+  
+  
+  
+  
+  

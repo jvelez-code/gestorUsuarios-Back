@@ -1,9 +1,10 @@
 package com.jaimetorres.dto;
 
 
-
+//Captura las variables del front para gestion Entrante
 public class FiltroEntranteDTO {
 	
+	private String tipo;
 	private String tipoDoc;
 	private String loginAgente;
 	private String nroDocumento;
@@ -18,6 +19,15 @@ public class FiltroEntranteDTO {
 	}
 
 	
+	
+	
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	public String getTipoDoc() {
 		return tipoDoc;
 	}

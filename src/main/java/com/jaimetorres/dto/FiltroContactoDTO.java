@@ -9,6 +9,22 @@ public class FiltroContactoDTO {
 	private String telefonoDirecto;
 	private String telefonoCelular;
 	
+	
+	
+	
+	public FiltroContactoDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public FiltroContactoDTO(String nombre, String correoElectronico, String numeroContacto, String telefonoDirecto,
+			String telefonoCelular) {
+		super();
+		this.nombre = nombre;
+		this.correoElectronico = correoElectronico;
+		this.numeroContacto = numeroContacto;
+		this.telefonoDirecto = telefonoDirecto;
+		this.telefonoCelular = telefonoCelular;
+	}
 	public String getNombre() {
 		return nombre;
 	}
