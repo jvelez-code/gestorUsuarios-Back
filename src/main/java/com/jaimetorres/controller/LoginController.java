@@ -41,18 +41,20 @@ public class LoginController {
 	public ResponseEntity<Integer> enviarCorreo(@RequestBody String correo) throws Exception {
 		int rpta = 0;
 		
+		System.out.println(correo +" llego");
 		Usuarios us = service.verificarNombreUsuario(correo);
 		if(us != null && us.getIdUsuario() > 0) {
 			ResetToken token = new ResetToken();
 			token.setToken(UUID.randomUUID().toString());
 			token.setUser(us);
 			token.setExpiracion(10);
-			tokenService.guardar(token);
+			System.out.print(token.getUser().getIdUsuario() + "Holasss");
+//			tokenService.guardar(token);
 			
 			Mail mail = new Mail();
-			mail.setFrom("email.prueba.demo@gmail.com");
+			mail.setFrom("jaimev_tec@jaimetorres.net");
 			mail.setTo(us.getUsername());
-			mail.setSubject("RESTABLECER CONTRASEÑA  MEDIAPP");
+			mail.setSubject("RESTABLECER CONTRASEÑA GESTOR");
 			
 			Map<String, Object> model = new HashMap<>();
 			String url = "http://localhost:4200/recuperar/" + token.getToken();

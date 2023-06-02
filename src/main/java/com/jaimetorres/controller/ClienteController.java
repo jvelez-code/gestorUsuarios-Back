@@ -94,7 +94,6 @@ public class ClienteController {
 		//@RequestBody json a objeto  java
 		@PostMapping("/buscar")
 		public ResponseEntity<Cliente> buscar(@RequestBody FiltroEntranteDTO filtro) throws Exception{
-			System.out.println("hola Cliente1");
 			Cliente cliente = service.buscar(filtro);			
 			return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 		}
@@ -122,7 +121,7 @@ public class ClienteController {
 		@PostMapping("/buscarAsterisk")
 		public ResponseEntity<Cliente> buscarIdAsterisk(@RequestBody FiltroEntranteDTO filtro) throws Exception{
 			LlamadaEntrante obj = serviceLlama.buscarIdAsterisk(filtro);
-			Cliente cli = service.buscarIdAsterisk(obj.getTipo_cliente(), obj.getNumero_documento());			
+			Cliente cli = service.buscarIdAsterisk(obj.getTipo_documento(), obj.getNumero_documento());
 			return new ResponseEntity<Cliente>(cli, HttpStatus.OK);
 		}
 		

@@ -92,5 +92,12 @@ public class UsuarioController {
 		return new ResponseEntity<AgenteDTO>(obj, HttpStatus.OK);
 	}
 	
+	@PostMapping("/cerrar")
+	public ResponseEntity<Void> cerrarSesion(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		
+		service.cerrarSesion(filtro);
+		
+		return new ResponseEntity<Void>( HttpStatus.OK);
+	}
 
 }

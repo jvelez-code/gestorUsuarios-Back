@@ -1,5 +1,6 @@
 package com.jaimetorres.model.gestor;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "usuarios")
@@ -27,6 +30,10 @@ public class Usuarios {
 
 	@Column(name = "estado", nullable = false)
 	private boolean enabled;
+	
+	@Column(name = "fecha_cambio")
+	@Temporal(TemporalType.TIMESTAMP)	
+	private Date fechaCambio;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario"), inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "idRol"))
@@ -64,6 +71,14 @@ public class Usuarios {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}	
+
+	public Date getFechaCambio() {
+		return fechaCambio;
+	}
+
+	public void setFechaCambio(Date fechaCambio) {
+		this.fechaCambio = fechaCambio;
 	}
 
 	public List<Rol> getRoles() {

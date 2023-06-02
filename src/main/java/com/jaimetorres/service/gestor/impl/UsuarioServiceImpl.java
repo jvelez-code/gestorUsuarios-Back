@@ -30,6 +30,12 @@ public class UsuarioServiceImpl extends CRUDImpl<Usuario, Integer> implements IU
 	public Usuario buscar(FiltroEntranteDTO filtro) {
 		return repo.buscarUsuario(filtro.getLoginAgente());
 	}
+
+	@Override
+	public void cerrarSesion(FiltroEntranteDTO filtro) {
+		repo.cerrarSesion(filtro.getLoginAgente());
+		System.out.print("Hola mundo");
+	}
 	
 	
 }
