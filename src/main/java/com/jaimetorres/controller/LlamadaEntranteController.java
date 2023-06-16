@@ -16,6 +16,7 @@ import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.contact.LlamadaEntrante;
 import com.jaimetorres.model.gestor.Cliente;
+import com.jaimetorres.model.gestor.EstadoGestion;
 import com.jaimetorres.service.contact.ILlamadaEntranteService;
 
 @RestController
@@ -66,6 +67,34 @@ public class LlamadaEntranteController {
 			}
 			service.eliminar(id);		
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+		
+		@PostMapping("/buscarAsterisk")
+		public ResponseEntity<Boolean> buscarAsterisk(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+			    Boolean logueo;	
+		    	String evento = service.validarAsterisk(filtro);		    	
+				if (evento.equals("AGENTLOGOFF")) {
+					logueo=false;
+				}
+				else {
+					logueo=true;
+				}
+			
+					return new ResponseEntity<Boolean>(logueo, HttpStatus.OK);
+		}
+		
+		@PostMapping("/buscarLlamada")
+		public ResponseEntity<Boolean> buscarLlamada(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+			    Boolean logueo;	
+		    	String evento = service.validarAsterisk(filtro);		    	
+				if (evento.equals("CONNECT")) {
+					logueo=true;
+				}
+				else {
+					logueo=false;
+				}
+			
+					return new ResponseEntity<Boolean>(logueo, HttpStatus.OK);
 		}
 		
 		

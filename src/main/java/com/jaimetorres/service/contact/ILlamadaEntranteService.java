@@ -8,5 +8,6 @@ import com.jaimetorres.model.contact.LlamadaEntrante;
 public interface ILlamadaEntranteService extends ICRUDContact<LlamadaEntrante, Integer >  {
 	
 	LlamadaEntrante buscarIdAsterisk (FiltroEntranteDTO filtro);
+	String validarAsterisk (FiltroEntranteDTO filtro);
 
 }

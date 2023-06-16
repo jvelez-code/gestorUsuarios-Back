@@ -113,7 +113,6 @@ public class ClienteController {
 			
 			List<Cliente> cliente = new ArrayList<>();
 			cliente = service.buscarByClientes(filtro);
-			
 			return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
 		}
 		

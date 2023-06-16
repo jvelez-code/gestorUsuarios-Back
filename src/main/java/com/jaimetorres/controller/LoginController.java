@@ -49,10 +49,10 @@ public class LoginController {
 			token.setUser(us);
 			token.setExpiracion(10);
 			System.out.print(token.getUser().getIdUsuario() + "Holasss");
-//			tokenService.guardar(token);
+			tokenService.guardar(token);
 			
 			Mail mail = new Mail();
-			mail.setFrom("jaimev_tec@jaimetorres.net");
+			mail.setFrom("ASOPAGOS");
 			mail.setTo(us.getUsername());
 			mail.setSubject("RESTABLECER CONTRASEÑA GESTOR");
 			

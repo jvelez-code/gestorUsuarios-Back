@@ -27,6 +27,11 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 		return repo.buscarIdAsterisk(filtro.getNroDocumento());
 	}
 
+	@Override
+	public String validarAsterisk(FiltroEntranteDTO filtro) {
+		return repo.validarAsterisk(filtro.getNroDocumento());
+	}
+
 	
 
 	

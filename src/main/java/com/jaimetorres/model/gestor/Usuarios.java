@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -20,6 +22,7 @@ public class Usuarios {
 	
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idUsuario;
 
 	@Column(name = "nombre", nullable = false, unique = true)
@@ -34,10 +37,14 @@ public class Usuarios {
 	@Column(name = "fecha_cambio")
 	@Temporal(TemporalType.TIMESTAMP)	
 	private Date fechaCambio;
+	
+	@Column(name = "correo" , nullable = false, unique = true)
+	private String email;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario"), inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "idRol"))
 	private List<Rol> roles;
+	
 
 	
 
@@ -79,6 +86,14 @@ public class Usuarios {
 
 	public void setFechaCambio(Date fechaCambio) {
 		this.fechaCambio = fechaCambio;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public List<Rol> getRoles() {

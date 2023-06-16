@@ -21,7 +21,7 @@ public class ResetToken {
 	@Column(nullable = false, unique = true)
 	private String token;
 	
-	@OneToOne(targetEntity = Usuario.class, fetch = FetchType.EAGER)
+	@OneToOne(targetEntity = Usuarios.class, fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false, name = "id_usuario")
 	private Usuarios user;
 

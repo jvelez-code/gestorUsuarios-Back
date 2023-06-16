@@ -14,6 +14,16 @@ public interface ILlamadaEntranteRepo extends IGenericContactRepo< LlamadaEntran
 			+ "SELECT  MAX(ID) FROM queue_log ql WHERE agent = :nroDocumento AND event='CONNECT'))", nativeQuery = true)
 	LlamadaEntrante buscarIdAsterisk(@Param("nroDocumento") String nroDocumento);
 	
+	@Query(value="SELECT  callid  FROM queue_log ql WHERE id in ("
+			+ "SELECT  MAX(ID) FROM queue_log ql WHERE agent = :nroDocumento )", nativeQuery = true)
+	String LlamadaAsterisk(@Param("nroDocumento") String nroDocumento);
+	
+	@Query(value="SELECT event FROM queue_log "
+			+ "WHERE agent = :nroDocumento "
+			+ "AND  event not in ('ADDMEMBER','REMOVEMEMBER','RINGNOANSWER') "
+			+ "ORDER BY time DESC  LIMIT 1", nativeQuery = true)
+	String validarAsterisk(@Param("nroDocumento") String nroDocumento);
+	
 	
 	
 	
