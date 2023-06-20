@@ -2,6 +2,8 @@ package com.jaimetorres;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Date;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,11 +23,15 @@ class GestorUsuariosBackApplicationTests {
 
 	@Test
 	void verificarClave() {
+		Date fechacambio= new Date (12345678800000L);
+		
+		
 		Usuarios us = new Usuarios();
-		us.setIdUsuario(51);
 		us.setUsername("jaime1");
 		us.setPassword(bcrypt.encode("123"));				
 		us.setEnabled(true);
+		us.setEmail("pruebas@cosm.co");
+		us.setFechaCambio(fechacambio);
 		
 		Usuarios retorno = repo.save(us);
 		
