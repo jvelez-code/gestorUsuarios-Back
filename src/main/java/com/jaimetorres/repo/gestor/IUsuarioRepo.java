@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jaimetorres.model.gestor.Usuario;
+import com.jaimetorres.model.gestor.Usuarios;
 
 
 public interface IUsuarioRepo extends IGenericRepo<Usuario, Integer> {
@@ -23,6 +24,10 @@ public interface IUsuarioRepo extends IGenericRepo<Usuario, Integer> {
 	@Modifying
 	@Query(value="DELETE FROM oauth_access_token oat where user_name = :loginAgente ", nativeQuery = true)
 	void cerrarSesion(@Param("loginAgente") String loginAgente);
+	
+	@Query("FROM Usuarios u  WHERE u.username= :loginAgente")
+	Usuarios buscarUsuarios(@Param("loginAgente") String loginAgente);
+	
 	
 	
 }

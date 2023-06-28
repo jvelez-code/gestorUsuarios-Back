@@ -85,16 +85,14 @@ public class LlamadaEntranteController {
 		
 		@PostMapping("/buscarLlamada")
 		public ResponseEntity<Boolean> buscarLlamada(@RequestBody FiltroEntranteDTO filtro) throws Exception{
-			    Boolean logueo;	
-		    	String evento = service.validarAsterisk(filtro);		    	
-				if (evento.equals("CONNECT")) {
+			    
+				Boolean logueo= false;				    
+		    	String evento = service.validarAsterisk(filtro);
+		    	if (evento != null && evento.equals("CONNECT")) {
+					
 					logueo=true;
-				}
-				else {
-					logueo=false;
-				}
-			
-					return new ResponseEntity<Boolean>(logueo, HttpStatus.OK);
+		        }
+				return new ResponseEntity<Boolean>(logueo, HttpStatus.OK);
 		}
 		
 		

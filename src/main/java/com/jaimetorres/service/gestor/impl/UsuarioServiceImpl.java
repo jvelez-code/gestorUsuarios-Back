@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.model.gestor.Usuario;
+import com.jaimetorres.model.gestor.Usuarios;
 import com.jaimetorres.repo.gestor.*;
 import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 import com.jaimetorres.service.gestor.IUsuarioService;
@@ -35,6 +36,11 @@ public class UsuarioServiceImpl extends CRUDImpl<Usuario, Integer> implements IU
 	public void cerrarSesion(FiltroEntranteDTO filtro) {
 		repo.cerrarSesion(filtro.getLoginAgente());
 		System.out.print("Hola mundo");
+	}
+
+	@Override
+	public Usuarios buscarLogin(FiltroEntranteDTO filtro) {
+		return repo.buscarUsuarios(filtro.getLoginAgente());
 	}
 	
 	

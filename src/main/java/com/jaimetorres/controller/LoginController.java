@@ -41,19 +41,17 @@ public class LoginController {
 	public ResponseEntity<Integer> enviarCorreo(@RequestBody String correo) throws Exception {
 		int rpta = 0;
 		
-		System.out.println(correo +" llego");
 		Usuarios us = service.verificarNombreUsuario(correo);
 		if(us != null && us.getIdUsuario() > 0) {
 			ResetToken token = new ResetToken();
 			token.setToken(UUID.randomUUID().toString());
 			token.setUser(us);
 			token.setExpiracion(10);
-			System.out.print(token.getUser().getIdUsuario() + "Holasss");
 			tokenService.guardar(token);
 			
 			Mail mail = new Mail();
 			mail.setFrom("ASOPAGOS");
-			mail.setTo(us.getUsername());
+			mail.setTo(us.getEmail());
 			mail.setSubject("RESTABLECER CONTRASEÑA GESTOR");
 			
 			Map<String, Object> model = new HashMap<>();

@@ -19,8 +19,8 @@ public class LoginServiceImpl implements ILoginService{
 	private ILoginRepo repo;
 
 	@Override
-	public Usuarios verificarNombreUsuario(String usuario) {
-		return repo.verificarNombreUsuario(usuario);
+	public Usuarios verificarNombreUsuario(String email) {
+		return repo.verificarNombreUsuario(email);
 	}
 
 	@Override

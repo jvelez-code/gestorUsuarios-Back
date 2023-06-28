@@ -21,6 +21,7 @@ import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.AgenteCampana;
 import com.jaimetorres.model.gestor.Usuario;
+import com.jaimetorres.model.gestor.Usuarios;
 import com.jaimetorres.service.gestor.IAgenteCampanaService;
 import com.jaimetorres.service.gestor.IUsuarioService;
 
@@ -90,6 +91,12 @@ public class UsuarioController {
 		AgenteDTO obj = serviceAg.buscarCampana(filtro);
 		
 		return new ResponseEntity<AgenteDTO>(obj, HttpStatus.OK);
+	}
+	
+	@PostMapping("/buscarLogin")
+	public ResponseEntity<Usuarios> buscarLogin(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		Usuarios obj = service.buscarLogin(filtro);		
+		return new ResponseEntity<Usuarios>(obj, HttpStatus.OK);
 	}
 	
 	@PostMapping("/cerrar")

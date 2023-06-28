@@ -11,8 +11,8 @@ import com.jaimetorres.model.gestor.Usuarios;
 
 public interface ILoginRepo extends IGenericRepo<Usuarios, Integer>{
 
-	@Query("FROM Usuarios us where us.username =:usuario")
-	Usuarios verificarNombreUsuario(@Param("usuario")String usuario);
+	@Query("FROM Usuarios us where us.email =:email")
+	Usuarios verificarNombreUsuario(@Param("email")String email);
 	
 	@Transactional
 	@Modifying

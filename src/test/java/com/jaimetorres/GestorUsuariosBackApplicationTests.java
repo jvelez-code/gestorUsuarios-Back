@@ -27,10 +27,10 @@ class GestorUsuariosBackApplicationTests {
 		
 		
 		Usuarios us = new Usuarios();
-		us.setUsername("jaime1");
+	us.setUsername("jaime5");
 		us.setPassword(bcrypt.encode("123"));				
 		us.setEnabled(true);
-		us.setEmail("pruebas@cosm.co");
+		us.setEmail("pruebas5@cosm.co");
 		us.setFechaCambio(fechacambio);
 		
 		Usuarios retorno = repo.save(us);
