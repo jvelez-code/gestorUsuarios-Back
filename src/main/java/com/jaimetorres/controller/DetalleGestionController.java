@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.jaimetorres.dto.CantidadGestionDto;
 import com.jaimetorres.dto.FiltroContactoDTO;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
@@ -35,9 +36,7 @@ public class DetalleGestionController {
 	@Autowired
 	private IDetalleGestionService service;
 	
-	@Autowired
-	private ModelMapper modelMapper;
-	
+		
 	//ResponseEntity Para capturar excepciones
 	@GetMapping
 	public ResponseEntity<List<DetalleGestion>> listar() throws Exception{
@@ -104,9 +103,6 @@ public class DetalleGestionController {
 	public ResponseEntity<List<Gestion>> listarPorIdPrueba(@RequestBody FiltroEntranteDTO filtro) throws Exception{
 
 		List<Gestion> obj=service.buscarHisto(filtro);
-
-		//FiltroDetalleGestionDTO postResponse = modelMapper.map(obj, FiltroDetalleGestionDTO.class);
-		//postResponse = (List<Gestion>) modelMapper.map(obj, Gestion.class);
 		return new ResponseEntity<List<Gestion>>(obj, HttpStatus.OK);
 	}
 
@@ -117,6 +113,12 @@ public class DetalleGestionController {
 		return new ResponseEntity<List<FiltroDetalleGestionDTO>>(menus, HttpStatus.OK);
 	}
 
+	@PostMapping("/catidadGestion")
+	public ResponseEntity<List<CantidadGestionDto>> catidadGestion(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		List<CantidadGestionDto> cant = new ArrayList<>();
+		cant = service.cantidadGestion(filtro);
+		return new ResponseEntity<List<CantidadGestionDto>>(cant, HttpStatus.OK);
+	}
 		
 		
 		}

@@ -45,7 +45,8 @@ public class Usuarios {
 	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario"), inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "idRol"))
 	private List<Rol> roles;
 	
-
+	@Column(name = "intentos" ,columnDefinition = "integer default 0")
+	private Integer failed;
 	
 
 	public Integer getIdUsuario() {
@@ -104,6 +105,15 @@ public class Usuarios {
 		this.roles = roles;
 	}
 
+	public Integer getFailed() {
+		return failed;
+	}
+
+	public void setFailed(Integer failed) {
+		this.failed = failed;
+	}
+
+	
 	
 
 }

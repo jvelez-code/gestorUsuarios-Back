@@ -1,5 +1,6 @@
 package com.jaimetorres.service.gestor.impl;
 
+import java.math.BigInteger;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.jaimetorres.dto.CantidadGestionDto;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
 import com.jaimetorres.model.gestor.DetalleGestion;
@@ -57,6 +59,19 @@ public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer>
 	public List<Gestion> buscarHisto(FiltroEntranteDTO filtro) {
 		// TODO Auto-generated method stub
 		return repo.buscar(filtro.getIdCliente());
+	}
+
+	@Override
+	public List<CantidadGestionDto> cantidadGestion(FiltroEntranteDTO filtro) {
+		List<CantidadGestionDto> detalle = new ArrayList<>();
+		repo.cantidadGestion(filtro.getLoginAgente()).forEach(x -> {
+			CantidadGestionDto m = new CantidadGestionDto();
+			m.setUsuario(String.valueOf(x[0]));
+			m.setEfectiva(String.valueOf(x[1]));
+			m.setCantidad(String.valueOf(x[2]));
+			detalle.add(m);
+		});
+		return detalle;
 	}
 	
 		
