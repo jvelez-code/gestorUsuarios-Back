@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.jaimetorres.dto.CantidadGestionDto;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.tmoGestionDto;
 import com.jaimetorres.model.gestor.DetalleGestion;
 import com.jaimetorres.model.gestor.Gestion;
 import com.jaimetorres.model.gestor.Menu;
@@ -72,6 +73,11 @@ public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer>
 			detalle.add(m);
 		});
 		return detalle;
+	}
+
+	@Override
+	public List<tmoGestionDto> tmoGestion(FiltroEntranteDTO filtro) {
+		return repo.tmoGestion(filtro.getLoginAgente());
 	}
 	
 		

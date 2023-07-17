@@ -20,6 +20,7 @@ import com.jaimetorres.dto.CantidadGestionDto;
 import com.jaimetorres.dto.FiltroContactoDTO;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.tmoGestionDto;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.Contacto;
@@ -118,6 +119,13 @@ public class DetalleGestionController {
 		List<CantidadGestionDto> cant = new ArrayList<>();
 		cant = service.cantidadGestion(filtro);
 		return new ResponseEntity<List<CantidadGestionDto>>(cant, HttpStatus.OK);
+	}
+	
+	@PostMapping("/tmoGestion")
+	public ResponseEntity<List<tmoGestionDto>> tmoGestion(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		List<tmoGestionDto> cant = new ArrayList<>();
+		cant = service.tmoGestion(filtro);
+		return new ResponseEntity<List<tmoGestionDto>>(cant, HttpStatus.OK);
 	}
 		
 		

@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.jaimetorres.dto.CantidadGestionDto;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
+import com.jaimetorres.dto.tmoGestionDto;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.DetalleGestion;
 import com.jaimetorres.model.gestor.Gestion;
@@ -41,5 +42,27 @@ public interface IDetalleGestionRepo extends IGenericRepo<DetalleGestion, Intege
 			+ "GROUP BY u.usuario, eg.es_efectiva  "
 			+ "ORDER  BY efectiva", nativeQuery = true )
 	List<Object[]> cantidadGestion(@Param("loginAgente") String loginAgente);
+	
+	@Query(value="SELECT "
+			+ "c.agent AS agent, "
+			+ "login_Agente AS agente, "
+			+ "sum(to_timestamp (t.time,'yyyy/mm/dd HH24:MI:ss')::time-to_timestamp (c.time,'yyyy/mm/dd HH24:MI:ss')::time) AS duracionLlamadas, "
+			+ "count(*) as cantidadGrabaciones, "
+			+ "SUBSTRING((sum(to_timestamp (t.time,'yyyy/mm/dd HH24:MI:ss')::time-to_timestamp (c.time,'yyyy/mm/dd HH24:MI:ss')::time)/count(*))::TEXT,0,9) AS segundos "
+			+ "FROM ( "
+			+ "SELECT time,callid,agent,event "
+			+ "FROM grabaciones_pila, queue_log "
+			+ "WHERE uniqueid=callid AND id_agente=agent AND date(fecha_grabacion)=(select current_date) "
+			+ "AND id_agente='1023026686' AND event='CONNECT'  "
+			+ "AND tipo_de_llamada='Entrante') AS c "
+			+ "INNER JOIN ( "
+			+ "SELECT time,callid,agent,event "
+			+ "FROM grabaciones_pila, queue_log "
+			+ "WHERE uniqueid=callid and event IN ('COMPLETEAGENT','COMPLETECALLER','BLINDTRANSFER','ATTENDEDTRANSFER')) AS t ON c.callid=t.callid AND c.agent=t.agent "
+			+ "INNER JOIN (SELECT DISTINCT(nro_documento), login_Agente "
+			+ "FROM ask_estado_extension  WHERE activo=true GROUP BY  login_Agente,nro_documento) ask ON c.agent=nro_documento "
+			+ "GROUP BY c.agent,login_Agente "
+			+ "ORDER BY c.agent,login_Agente", nativeQuery = true )
+	List<tmoGestionDto> tmoGestion(@Param("loginAgente") String loginAgente);
 
 	}
