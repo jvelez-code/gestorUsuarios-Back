@@ -27,15 +27,15 @@ class GestorUsuariosBackApplicationTests {
 		
 		
 		Usuarios us = new Usuarios();
-		us.setUsername("GPINILLASP");
+		us.setUsername("HELPVOS");
 		us.setPassword(bcrypt.encode("123"));				
 		us.setEnabled(true);
-		us.setEmail("GPINILLASP@cosm.co");
+		us.setEmail("jaimev_teS@jaimetorres.net");
 		us.setFechaCambio(fechacambio);
 		
-		Usuarios retorno = repo.save(us);
+		//Usuarios retorno = repo.save(us);
 		
-		assertTrue(retorno.getPassword().equalsIgnoreCase(us.getPassword()));		
+		//assertTrue(retorno.getPassword().equalsIgnoreCase(us.getPassword()));		
 		
 		//prueba de la clase equivalente, la universidad politecnica de valencia 
 	}

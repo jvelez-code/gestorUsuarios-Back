@@ -37,15 +37,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
                 .antMatchers("/v2/api-docs/**" ).permitAll()
                 .antMatchers("/v3/api-docs/**" ).permitAll()
                 .antMatchers("/tipoDocumentos/**" ).authenticated() 
-                //.antMatchers("/askEstados/**" ).authenticated()
+                .antMatchers("/askEstados/**" ).authenticated()
                 .antMatchers("/askEstadoExtensiones/**" ).authenticated()
                 .antMatchers("/clientes/**" ).authenticated()
                 .antMatchers("/contactos/**" ).authenticated()
                 .antMatchers("/detallegestiones/**" ).authenticated()
                 .antMatchers("/estadoGestiones/**" ).authenticated()
                 .antMatchers("/usuarios/**" ).permitAll()
-                .antMatchers("/tokens/anular/**" ).permitAll()
-                .antMatchers("/tokens/**" ).authenticated();     
+                .antMatchers("/tokens/anular/**" ).permitAll();
+                //.antMatchers("/tokens/**" ).authenticated();     
                 //.antMatchers("/oauth/token/**" ).authenticated();
                 
     }    

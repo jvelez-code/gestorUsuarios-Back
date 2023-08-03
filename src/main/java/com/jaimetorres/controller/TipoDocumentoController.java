@@ -28,7 +28,7 @@ public class TipoDocumentoController {
 	
 	//ResponseEntity Para capturar excepciones
 	//@PreAuthorize("hasAuthority('ADMIN')")
-	@PreAuthorize("@authServiceImpl.tieneAcceso('listarId')")
+	//@PreAuthorize("@authServiceImpl.tieneAcceso('listarId')")
 	@GetMapping
 	public ResponseEntity<List<TipoDocumento>> listar() throws Exception{
 		List<TipoDocumento> lista=service.listar();

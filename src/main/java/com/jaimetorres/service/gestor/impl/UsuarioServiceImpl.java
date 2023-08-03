@@ -35,7 +35,6 @@ public class UsuarioServiceImpl extends CRUDImpl<Usuario, Integer> implements IU
 	@Override
 	public void cerrarSesion(FiltroEntranteDTO filtro) {
 		repo.cerrarSesion(filtro.getLoginAgente());
-		System.out.print("Hola mundo");
 	}
 
 	@Override
