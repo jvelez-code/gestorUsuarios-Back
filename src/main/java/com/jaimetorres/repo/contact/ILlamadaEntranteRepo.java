@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.jaimetorres.dto.LlamadaEntranteDTO;
 import com.jaimetorres.model.contact.LlamadaEntrante;
 
 
@@ -13,6 +14,12 @@ public interface ILlamadaEntranteRepo extends IGenericContactRepo< LlamadaEntran
 			+ "SELECT  callid  FROM queue_log ql WHERE id in ("
 			+ "SELECT  MAX(ID) FROM queue_log ql WHERE agent = :nroDocumento AND event='CONNECT'))", nativeQuery = true)
 	LlamadaEntrante buscarIdAsterisk(@Param("nroDocumento") String nroDocumento);
+	
+	@Query(value="SELECT  id_asterisk ,numero_documento,tipo_doc  "
+			+ "FROM llamada_entrante le,tipo_documento td WHERE le.tipo_documento=td.id  "
+			+ "AND id_asterisk in ( SELECT  callid  FROM queue_log ql WHERE id in "
+			+ "( SELECT  MAX(ID) FROM queue_log ql WHERE agent = :nroDocumento AND event='CONNECT'))", nativeQuery = true)
+	List<Object[]> buscarIdEntrante(@Param("nroDocumento") String nroDocumento);
 	
 	@Query(value="SELECT  callid  FROM queue_log ql WHERE id in ("
 			+ "SELECT  MAX(ID) FROM queue_log ql WHERE agent = :nroDocumento )", nativeQuery = true)

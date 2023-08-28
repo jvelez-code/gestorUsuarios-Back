@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -47,6 +49,14 @@ public class Usuarios {
 	
 	@Column(name = "intentos" ,columnDefinition = "integer default 0")
 	private Integer failed;
+	
+	 @Column(nullable = false)
+	 @Temporal(TemporalType.TIMESTAMP)
+	 private Date fechaCreacion;
+
+	 @Column(nullable = false)
+	 @Temporal(TemporalType.TIMESTAMP)
+	 private Date fechaActualizacion;
 	
 
 	public Integer getIdUsuario() {
@@ -112,7 +122,17 @@ public class Usuarios {
 	public void setFailed(Integer failed) {
 		this.failed = failed;
 	}
+	
+	@PrePersist
+    protected void onCreate() {
+        fechaCreacion = new Date();
+        fechaActualizacion = fechaCreacion;
+    }
 
+	@PreUpdate
+    protected void onUpdate() {
+        fechaActualizacion = new Date();
+    }
 	
 	
 

@@ -28,7 +28,7 @@ public class UsuarioServiceImpl extends CRUDImpl<Usuario, Integer> implements IU
 	}
 
 	@Override
-	public Usuario buscar(FiltroEntranteDTO filtro) {
+	public Usuario[] buscar(FiltroEntranteDTO filtro) {
 		return repo.buscarUsuario(filtro.getLoginAgente());
 	}
 
@@ -41,6 +41,7 @@ public class UsuarioServiceImpl extends CRUDImpl<Usuario, Integer> implements IU
 	public Usuarios buscarLogin(FiltroEntranteDTO filtro) {
 		return repo.buscarUsuarios(filtro.getLoginAgente());
 	}
+
 	
 	
 }

@@ -8,7 +8,7 @@ import com.jaimetorres.model.gestor.Usuarios;
 
 public interface IUsuarioService extends ICRUD<Usuario , Integer >{
 	
-	Usuario buscar(FiltroEntranteDTO filtro);
+	Usuario[] buscar(FiltroEntranteDTO filtro);
 	void cerrarSesion(FiltroEntranteDTO filtro);
 	Usuarios buscarLogin(FiltroEntranteDTO filtro);
 }

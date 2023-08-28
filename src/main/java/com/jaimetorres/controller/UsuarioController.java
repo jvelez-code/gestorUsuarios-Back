@@ -79,9 +79,9 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/buscar")
-	public ResponseEntity<Usuario> buscarUsuario(@RequestBody FiltroEntranteDTO filtro) throws Exception{
-		Usuario obj = service.buscar(filtro);
-		return new ResponseEntity<Usuario>(obj, HttpStatus.OK);
+	public ResponseEntity<Usuario[]> buscarUsuario(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		Usuario[] obj = service.buscar(filtro);
+		return new ResponseEntity<Usuario[]>(obj, HttpStatus.OK);
 	}
 	
 	@PostMapping("/buscarExt")

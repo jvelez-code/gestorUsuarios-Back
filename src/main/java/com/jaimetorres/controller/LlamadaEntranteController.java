@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.LlamadaEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.contact.LlamadaEntrante;
 import com.jaimetorres.model.gestor.Cliente;
@@ -93,6 +95,12 @@ public class LlamadaEntranteController {
 					logueo=true;
 		        }
 				return new ResponseEntity<Boolean>(logueo, HttpStatus.OK);
+		}
+		
+		@PostMapping("/llamadaEntrante")
+		public ResponseEntity<List<LlamadaEntranteDTO>> buscarIdAsterisk(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+			List<LlamadaEntranteDTO> obj = service.entranteSinRegistro(filtro);
+			return new ResponseEntity<List<LlamadaEntranteDTO>>(obj, HttpStatus.OK);
 		}
 		
 		

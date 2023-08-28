@@ -53,7 +53,8 @@ public class Usuario implements Serializable{
 //	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 //    private List<DetalleHorario> detalleHorarioList;
 	
-	@OneToMany(mappedBy =  "usuario", cascade = { CascadeType.ALL }, orphanRemoval = true)
+	//@OneToMany(mappedBy =  "usuario", cascade = { CascadeType.ALL }, orphanRemoval = true)
+	@OneToMany(mappedBy =  "usuario", cascade = { CascadeType.ALL })
 	private List<AgenteCampana> agenteCampanaList;
 
 	public Integer getIdUsuario() {

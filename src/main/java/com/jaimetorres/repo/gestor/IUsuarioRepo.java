@@ -17,8 +17,7 @@ public interface IUsuarioRepo extends IGenericRepo<Usuario, Integer> {
 
 
 	@Query("FROM Usuario u  WHERE u.usuario= :loginAgente")
-	Usuario buscarUsuario(@Param("loginAgente") String loginAgente);
-	
+	Usuario[] buscarUsuario(@Param("loginAgente") String loginAgente);	
 	
 	@Transactional
 	@Modifying
