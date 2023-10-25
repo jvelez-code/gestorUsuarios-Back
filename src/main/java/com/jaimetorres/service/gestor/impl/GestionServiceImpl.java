@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.model.gestor.Gestion;
 import com.jaimetorres.repo.gestor.*;
 import com.jaimetorres.service.contact.impl.CRUDContactImpl;
@@ -28,19 +28,19 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 	
 	
 	@Override
-	public List<Gestion> buscar(FiltroEntranteDTO filtro) {
+	public List<Gestion> buscar(ParametrosDTO filtro) {
 		System.out.print("Mundo");
 		return null;
 	}
 
 	@Override
-	public List<Gestion> buscarA(FiltroEntranteDTO filtro) {
+	public List<Gestion> buscarA(ParametrosDTO filtro) {
 		System.out.print("Hola");
 		return repo.buscarA(filtro.getIdCliente());
 	}
 
 	@Override
-	public Gestion buscarM(FiltroEntranteDTO filtro) {
+	public Gestion buscarM(ParametrosDTO filtro) {
 		return repo.buscarM(filtro.getIdCliente());
 	}
 

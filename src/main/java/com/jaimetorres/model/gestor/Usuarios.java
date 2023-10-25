@@ -26,19 +26,16 @@ public class Usuarios {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idUsuario;
-
-	@Column(name = "nombre", nullable = false, unique = true)
-	private String username;
-
-	@Column(name = "clave", nullable = false)
-	private String password;
-
+	
 	@Column(name = "estado", nullable = false)
 	private boolean enabled;
 	
 	@Column(name = "fecha_cambio")
 	@Temporal(TemporalType.TIMESTAMP)	
 	private Date fechaCambio;
+
+	@Column(name = "clave", nullable = false)
+	private String password;
 	
 	@Column(name = "correo" , nullable = false, unique = true)
 	private String email;
@@ -47,16 +44,21 @@ public class Usuarios {
 	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario"), inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "idRol"))
 	private List<Rol> roles;
 	
+	@Column(name = "nombre", nullable = false, unique = true)
+	private String username;
+	
 	@Column(name = "intentos" ,columnDefinition = "integer default 0")
 	private Integer failed;
 	
+	
+	 @Column(nullable = false)
+	 @Temporal(TemporalType.TIMESTAMP)
+	 private Date fechaActualizacion;
+	 
 	 @Column(nullable = false)
 	 @Temporal(TemporalType.TIMESTAMP)
 	 private Date fechaCreacion;
 
-	 @Column(nullable = false)
-	 @Temporal(TemporalType.TIMESTAMP)
-	 private Date fechaActualizacion;
 	
 
 	public Integer getIdUsuario() {
@@ -133,6 +135,23 @@ public class Usuarios {
     protected void onUpdate() {
         fechaActualizacion = new Date();
     }
+
+	public Date getFechaActualizacion() {
+		return fechaActualizacion;
+	}
+
+	public void setFechaActualizacion(Date fechaActualizacion) {
+		this.fechaActualizacion = fechaActualizacion;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+	
 	
 	
 

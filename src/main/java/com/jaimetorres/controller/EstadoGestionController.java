@@ -12,7 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
+import com.jaimetorres.dto.estadoComercialDto;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.EstadoGestion;
@@ -69,7 +70,7 @@ public class EstadoGestionController {
 		
 		//@RequestBody json a objeto  java
 		@PostMapping("/buscar")
-		public ResponseEntity<List<EstadoGestion>> buscar(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<List<EstadoGestion>> buscar(@RequestBody ParametrosDTO filtro) throws Exception{
 					
 					List<EstadoGestion> estadoGestion = new ArrayList<>();
 					estadoGestion = service.buscar(filtro);
@@ -78,13 +79,24 @@ public class EstadoGestionController {
 		}
 		
 		@PostMapping("/buscarEstado")
-		public ResponseEntity<List<EstadoGestion>> buscarEstadoH(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<List<EstadoGestion>> buscarEstadoH(@RequestBody ParametrosDTO filtro) throws Exception{
 					
 					List<EstadoGestion> estadoGestion = new ArrayList<>();
 					estadoGestion = service.buscarEstadoH(filtro);
 					
 					return new ResponseEntity<List<EstadoGestion>>(estadoGestion, HttpStatus.OK);
 		}
+		
+		
+		@PostMapping("/gestionComercial")
+		public ResponseEntity<List<estadoComercialDto>> gestionComercial(@RequestBody ParametrosDTO filtro) throws Exception{
+					
+					List<estadoComercialDto> estadoComercial = new ArrayList<>();
+					estadoComercial = service.gestionComercial(filtro);
+					
+					return new ResponseEntity<List<estadoComercialDto>>(estadoComercial, HttpStatus.OK);
+		}
+		
 		
 		
 }

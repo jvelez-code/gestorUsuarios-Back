@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.Gestion;
 import com.jaimetorres.service.gestor.IGestionService;
@@ -93,7 +93,7 @@ public class GestionController {
 		
 		//@RequestBody json a objeto  java
 		@PostMapping("/buscar")
-		public ResponseEntity<Gestion> buscarA(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<Gestion> buscarA(@RequestBody ParametrosDTO filtro) throws Exception{
 			
 			Gestion gestion= service.buscarM(filtro);
 			//FiltroDetalleGestionDTO postResponse = modelMapper.map(gestion, FiltroDetalleGestionDTO.class);
@@ -102,7 +102,7 @@ public class GestionController {
 		}
 		
 		
-//		public ResponseEntity<FiltroDetalleGestionDTO> listarPorIdPrueba(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+//		public ResponseEntity<FiltroDetalleGestionDTO> listarPorIdPrueba(@RequestBody ParametrosDTO filtro) throws Exception{
 //	
 //	
 //			DetalleGestion obj=service.buscar(filtro);

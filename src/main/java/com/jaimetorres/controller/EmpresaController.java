@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.contact.LlamadaEntrante;
 import com.jaimetorres.model.gestor.Contacto;
@@ -71,7 +71,7 @@ public class EmpresaController {
 	}
 	
 	@PostMapping("/modificar")
-	public ResponseEntity<Void> listarPorId(@RequestBody FiltroEntranteDTO filtro) throws Exception {
+	public ResponseEntity<Void> listarPorId(@RequestBody ParametrosDTO filtro) throws Exception {
 		service.modificar(filtro);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}

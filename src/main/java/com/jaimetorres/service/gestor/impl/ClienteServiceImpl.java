@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.repo.gestor.IClienteRepo;
 import com.jaimetorres.repo.gestor.IGenericRepo;
@@ -26,19 +26,19 @@ public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IC
 	}
 	
 	@Override
-	public Cliente buscar(FiltroEntranteDTO filtro) {
+	public Cliente buscar(ParametrosDTO filtro) {
 		return repo.buscar(filtro.getTipoDoc(),filtro.getNroDocumento());
 		
 	}
 
 	@Override
-	public List<Cliente> buscarByCliente(FiltroEntranteDTO filtro) {
+	public List<Cliente> buscarByCliente(ParametrosDTO filtro) {
 		System.out.println("hola Cliente");
 		return repo.buscarByCliente(filtro.getIdCliente());
 	}
 
 	@Override
-	public List<Cliente> buscarByClientes(FiltroEntranteDTO filtro) {
+	public List<Cliente> buscarByClientes(ParametrosDTO filtro) {
 		return repo.buscarByClientes(filtro.getIdCliente());
 	}
 

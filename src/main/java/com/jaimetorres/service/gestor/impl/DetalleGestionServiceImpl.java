@@ -15,9 +15,10 @@ import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.CantidadGestionDto;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.dto.tmoGestionDto;
 import com.jaimetorres.model.gestor.DetalleGestion;
+import com.jaimetorres.model.gestor.EstadoGestion;
 import com.jaimetorres.model.gestor.Gestion;
 import com.jaimetorres.model.gestor.Menu;
 import com.jaimetorres.repo.gestor.*;
@@ -36,7 +37,7 @@ public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer>
 	}
 
 	@Override
-	public List<FiltroDetalleGestionDTO> buscarM(FiltroEntranteDTO filtro) {
+	public List<FiltroDetalleGestionDTO> buscarM(ParametrosDTO filtro) {
 		
 		List<FiltroDetalleGestionDTO> detalle = new ArrayList<>();
 		repo.buscarM(filtro.getIdCliente()).forEach(x -> {
@@ -57,13 +58,13 @@ public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer>
 	}
 
 	@Override
-	public List<Gestion> buscarHisto(FiltroEntranteDTO filtro) {
+	public List<Gestion> buscarHisto(ParametrosDTO filtro) {
 		// TODO Auto-generated method stub
 		return repo.buscar(filtro.getIdCliente());
 	}
 
 	@Override
-	public List<CantidadGestionDto> cantidadGestion(FiltroEntranteDTO filtro) {
+	public List<CantidadGestionDto> cantidadGestion(ParametrosDTO filtro) {
 		List<CantidadGestionDto> detalle = new ArrayList<>();
 		repo.cantidadGestion(filtro.getLoginAgente()).forEach(x -> {
 			CantidadGestionDto m = new CantidadGestionDto();
@@ -76,9 +77,11 @@ public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer>
 	}
 
 	@Override
-	public List<tmoGestionDto> tmoGestion(FiltroEntranteDTO filtro) {
+	public List<tmoGestionDto> tmoGestion(ParametrosDTO filtro) {
 		return repo.tmoGestion(filtro.getLoginAgente());
 	}
+
+	
 	
 		
 	

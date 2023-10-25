@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "detalle_gestion_comercial")
 public class DetalleGestionComercial implements Serializable {
@@ -17,17 +19,14 @@ public class DetalleGestionComercial implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DetalleGestionComercial.sequence")	
 	@Column(name = "id_detalle_gestion_comercial")
 	private Integer idDetalleGestionComercial;
-	
+
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_gestion")
 	private Gestion gestion;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "id_detalle_gestion")
-//	private DetalleGestion detalleGestion;
-	
 	@Column(name = "id_detalle_gestion")
-	private String detalleGestion;
+	private Integer detalleGestion;
 	
 	@Column(name = "fecha_gestion")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -81,11 +80,11 @@ public class DetalleGestionComercial implements Serializable {
 		this.gestion = gestion;
 	}
 
-	public String getDetalleGestion() {
+	public Integer getDetalleGestion() {
 		return detalleGestion;
 	}
 
-	public void setDetalleGestion(String detalleGestion) {
+	public void setDetalleGestion(Integer detalleGestion) {
 		this.detalleGestion = detalleGestion;
 	}
 
@@ -175,12 +174,12 @@ public class DetalleGestionComercial implements Serializable {
 
 	public void setNomArchivo(String nomArchivo) {
 		this.nomArchivo = nomArchivo;
-	}
+	}	
+ 
+	
+	
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
+
+
 
 }

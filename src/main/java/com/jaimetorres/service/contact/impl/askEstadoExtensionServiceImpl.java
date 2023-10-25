@@ -3,7 +3,7 @@ package com.jaimetorres.service.contact.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.dto.FiltroEstadoDTO;
 import com.jaimetorres.model.contact.AskEstadoExtension;
 import com.jaimetorres.repo.contact.IGenericContactRepo;
@@ -23,12 +23,12 @@ public class askEstadoExtensionServiceImpl extends CRUDContactImpl<AskEstadoExte
 	}
 
 	@Override
-	public AskEstadoExtension buscar(FiltroEntranteDTO filtro) {
+	public AskEstadoExtension buscar(ParametrosDTO filtro) {
 		return repo.buscar(filtro.getNroDocumento());
 	}
 
 	@Override
-	public AskEstadoExtension buscarAgente(FiltroEntranteDTO filtro) {
+	public AskEstadoExtension buscarAgente(ParametrosDTO filtro) {
 		return repo.buscarAgente(filtro.getLoginAgente());
 	}
 

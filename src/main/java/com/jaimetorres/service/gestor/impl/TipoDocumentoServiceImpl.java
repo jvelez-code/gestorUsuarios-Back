@@ -1,18 +1,17 @@
 package com.jaimetorres.service.gestor.impl;
 
-import java.util.List;
-import java.util.Optional;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jaimetorres.model.gestor.Gestion;
+
+
 import com.jaimetorres.model.gestor.TipoDocumento;
 import com.jaimetorres.repo.gestor.*;
-import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 import com.jaimetorres.service.gestor.ITipoDocumentoService;
+
+
 @Service
 public class TipoDocumentoServiceImpl extends CRUDImpl<TipoDocumento, Integer> implements ITipoDocumentoService {
 

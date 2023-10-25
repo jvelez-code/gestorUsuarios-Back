@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.dto.FiltroEstadoDTO;
 import com.jaimetorres.dto.LlamadaEntranteDTO;
 import com.jaimetorres.model.contact.LlamadaEntrante;
@@ -29,12 +29,12 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 	}
 
 	@Override
-	public LlamadaEntrante buscarIdAsterisk(FiltroEntranteDTO filtro) {
+	public LlamadaEntrante buscarIdAsterisk(ParametrosDTO filtro) {
 		return repo.buscarIdAsterisk(filtro.getNroDocumento());
 	}
 	
 	@Override
-	public List<LlamadaEntranteDTO> entranteSinRegistro(FiltroEntranteDTO filtro) {
+	public List<LlamadaEntranteDTO> entranteSinRegistro(ParametrosDTO filtro) {
 		
 		List<LlamadaEntranteDTO> detalle = new ArrayList<>();
 		
@@ -50,7 +50,7 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 	}
 
 	@Override
-	public String validarAsterisk(FiltroEntranteDTO filtro) {
+	public String validarAsterisk(ParametrosDTO filtro) {
 		return repo.validarAsterisk(filtro.getNroDocumento());
 	}
 

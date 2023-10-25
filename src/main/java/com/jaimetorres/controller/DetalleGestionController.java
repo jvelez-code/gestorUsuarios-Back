@@ -19,7 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.jaimetorres.dto.CantidadGestionDto;
 import com.jaimetorres.dto.FiltroContactoDTO;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.dto.tmoGestionDto;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.Cliente;
@@ -101,28 +101,28 @@ public class DetalleGestionController {
 
 	//		//@RequestBody json a objeto  java
 	@PostMapping("/buscar")
-	public ResponseEntity<List<Gestion>> listarPorIdPrueba(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+	public ResponseEntity<List<Gestion>> listarPorIdPrueba(@RequestBody ParametrosDTO filtro) throws Exception{
 
 		List<Gestion> obj=service.buscarHisto(filtro);
 		return new ResponseEntity<List<Gestion>>(obj, HttpStatus.OK);
 	}
 
 	@PostMapping("/buscarCliente")
-	public ResponseEntity<List<FiltroDetalleGestionDTO>> buscarClienteId(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+	public ResponseEntity<List<FiltroDetalleGestionDTO>> buscarClienteId(@RequestBody ParametrosDTO filtro) throws Exception{
 		List<FiltroDetalleGestionDTO> menus = new ArrayList<>();
 		menus = service.buscarM(filtro);
 		return new ResponseEntity<List<FiltroDetalleGestionDTO>>(menus, HttpStatus.OK);
 	}
 
 	@PostMapping("/catidadGestion")
-	public ResponseEntity<List<CantidadGestionDto>> catidadGestion(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+	public ResponseEntity<List<CantidadGestionDto>> catidadGestion(@RequestBody ParametrosDTO filtro) throws Exception{
 		List<CantidadGestionDto> cant = new ArrayList<>();
 		cant = service.cantidadGestion(filtro);
 		return new ResponseEntity<List<CantidadGestionDto>>(cant, HttpStatus.OK);
 	}
 	
 	@PostMapping("/tmoGestion")
-	public ResponseEntity<List<tmoGestionDto>> tmoGestion(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+	public ResponseEntity<List<tmoGestionDto>> tmoGestion(@RequestBody ParametrosDTO filtro) throws Exception{
 		List<tmoGestionDto> cant = new ArrayList<>();
 		cant = service.tmoGestion(filtro);
 		return new ResponseEntity<List<tmoGestionDto>>(cant, HttpStatus.OK);

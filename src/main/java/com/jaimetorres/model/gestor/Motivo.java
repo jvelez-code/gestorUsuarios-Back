@@ -15,7 +15,20 @@ public class Motivo implements Serializable {
 	private Integer idMotivo;
 	
 	@Column(name = "nombre")
-	private String nombre;
+	private String nombre;	
+
+	public Motivo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Motivo(Integer idMotivo, String nombre) {
+		super();
+		this.idMotivo = idMotivo;
+		this.nombre = nombre;
+	}
+
+
 
 	public Integer getIdMotivo() {
 		return idMotivo;
@@ -32,12 +45,10 @@ public class Motivo implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
 	
-
+	
+	
+	
 
 }

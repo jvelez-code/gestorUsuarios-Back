@@ -2,7 +2,7 @@ package com.jaimetorres.service.gestor;
 
 import java.util.List;
 
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.TipoDocumento;
 

@@ -25,7 +25,7 @@ public class TipoDocumentoController {
 
 	@Autowired
 	private ITipoDocumentoService service;
-	
+
 	//ResponseEntity Para capturar excepciones
 	//@PreAuthorize("hasAuthority('ADMIN')")
 	//@PreAuthorize("@authServiceImpl.tieneAcceso('listarId')")
@@ -34,59 +34,59 @@ public class TipoDocumentoController {
 		List<TipoDocumento> lista=service.listar();
 		return new ResponseEntity<List<TipoDocumento>>(lista, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/{id}")
 	public TipoDocumento listarPorId(@PathVariable("id") Integer id) throws Exception{
 		return service.listarPorId(id);
 	}
-	
-//	@GetMapping("/hateoas/{id}")
-//	public EntityModel<TipoDocumento> listarPorIdHateoas(@PathVariable("id") Integer id) throws Exception{
-//		TipoDocumento obj=service.listarPorId(id);
-//		
-//		if(obj==null) {
-//			throw new ModeloNotFoundException("ID NO ENCONTRADO: " +id);
-//		}
-//		
-//		
-//		
-//		//localhost:8080/TipoDocumento/{id}
-//		EntityModel<TipoDocumento> recurso=EntityModel.of(obj);
-//		WebMvcLinkBuilder linkTo= linkTo(methodOn(this.getClass()).listarPorId(id));
-//		
-//		//return new ResponseEntity<TipoDocumento>(obj, HttpStatus.OK);
-//		
-//		recurso.add(linkTo.withRel("TipoDocumento-recurso"));
-//		return recurso;
-//	}
-	
+
+	//	@GetMapping("/hateoas/{id}")
+	//	public EntityModel<TipoDocumento> listarPorIdHateoas(@PathVariable("id") Integer id) throws Exception{
+	//		TipoDocumento obj=service.listarPorId(id);
+	//		
+	//		if(obj==null) {
+	//			throw new ModeloNotFoundException("ID NO ENCONTRADO: " +id);
+	//		}
+	//		
+	//		
+	//		
+	//		//localhost:8080/TipoDocumento/{id}
+	//		EntityModel<TipoDocumento> recurso=EntityModel.of(obj);
+	//		WebMvcLinkBuilder linkTo= linkTo(methodOn(this.getClass()).listarPorId(id));
+	//		
+	//		//return new ResponseEntity<TipoDocumento>(obj, HttpStatus.OK);
+	//		
+	//		recurso.add(linkTo.withRel("TipoDocumento-recurso"));
+	//		return recurso;
+	//	}
+
 	//@RequestBody json a objeto  java
-		@PostMapping
-		public ResponseEntity<TipoDocumento> registrar(@Valid @RequestBody TipoDocumento TipoDocumento) throws Exception{
-			TipoDocumento obj=service.registrar(TipoDocumento);
-			
-			//localhost:8080/pacientes/7
-			URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-			return new ResponseEntity<TipoDocumento>(obj, HttpStatus.CREATED);
+	@PostMapping
+	public ResponseEntity<TipoDocumento> registrar(@Valid @RequestBody TipoDocumento TipoDocumento) throws Exception{
+		TipoDocumento obj=service.registrar(TipoDocumento);
+
+		//localhost:8080/pacientes/7
+		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return new ResponseEntity<TipoDocumento>(obj, HttpStatus.CREATED);
+	}
+
+
+	@PutMapping
+	public ResponseEntity<TipoDocumento> modificar(@Valid @RequestBody TipoDocumento TipoDocumento) throws Exception{
+		TipoDocumento obj=service.modificar(TipoDocumento);
+		return new ResponseEntity<TipoDocumento>(obj, HttpStatus.OK);
+	}
+
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
+		TipoDocumento obj=service.listarPorId(id);
+		if(obj==null) {
+			throw new ModeloNotFoundException("ID NO ENCONTRADO: " +id);
 		}
-		
-		
-		@PutMapping
-		public ResponseEntity<TipoDocumento> modificar(@Valid @RequestBody TipoDocumento TipoDocumento) throws Exception{
-			TipoDocumento obj=service.modificar(TipoDocumento);
-			return new ResponseEntity<TipoDocumento>(obj, HttpStatus.OK);
-		}
-		
-		
-		@DeleteMapping("/{id}")
-		public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
-			TipoDocumento obj=service.listarPorId(id);
-			if(obj==null) {
-				throw new ModeloNotFoundException("ID NO ENCONTRADO: " +id);
-			}
-			service.eliminar(id);		
-			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-		}
-		
-	
+		service.eliminar(id);		
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+
+
 }

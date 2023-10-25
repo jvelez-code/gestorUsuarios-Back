@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroContactoDTO;
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.model.gestor.TipoDocumento;
 import com.jaimetorres.repo.gestor.IContactoRepo;
@@ -29,7 +29,7 @@ public class ContactoServiceImpl extends CRUDImpl<Contacto, Integer> implements 
 	}	
 
 	@Override
-	public Integer buscarMax(FiltroEntranteDTO filtro) {
+	public Integer buscarMax(ParametrosDTO filtro) {
 		
 		return repo.buscarMax(filtro.getIdCliente());
 	}

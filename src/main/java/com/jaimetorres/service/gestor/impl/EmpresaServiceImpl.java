@@ -3,7 +3,7 @@ package com.jaimetorres.service.gestor.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.model.gestor.Empresa;
 import com.jaimetorres.repo.gestor.IEmpresaRepo;
 import com.jaimetorres.repo.gestor.IGenericRepo;
@@ -22,7 +22,7 @@ public class EmpresaServiceImpl extends CRUDImpl<Empresa, Integer> implements IE
 	}
 
 	@Override
-	public void modificar(FiltroEntranteDTO filtro) {
+	public void modificar(ParametrosDTO filtro) {
 		repo.modificar(filtro.getIdEmpresa(), filtro.getLoginAgente());		
 	}
 	

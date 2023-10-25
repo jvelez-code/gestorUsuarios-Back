@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.dto.FiltroEstadoDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.contact.AskEstadoExtension;
@@ -75,7 +75,7 @@ public class AskEstadoExtensionController {
 		
 		//@RequestBody json a objeto  java
 		@PostMapping("/buscar")
-		public ResponseEntity<AskEstadoExtension> buscar(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<AskEstadoExtension> buscar(@RequestBody ParametrosDTO filtro) throws Exception{
 
 			AskEstadoExtension askEstadoExtension = new AskEstadoExtension();
 			askEstadoExtension = service.buscar(filtro);
@@ -84,7 +84,7 @@ public class AskEstadoExtensionController {
 		}
 
 		@PostMapping("/buscaraAgente")
-		public ResponseEntity<AskEstadoExtension> buscarAgente(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<AskEstadoExtension> buscarAgente(@RequestBody ParametrosDTO filtro) throws Exception{
 
 			AskEstadoExtension askEstadoExtension = new AskEstadoExtension();
 			askEstadoExtension = service.buscarAgente(filtro);

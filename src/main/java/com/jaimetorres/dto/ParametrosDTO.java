@@ -1,8 +1,9 @@
 package com.jaimetorres.dto;
 
+import java.util.Date;
 
 //Captura las variables del front para gestion Entrante
-public class FiltroEntranteDTO {
+public class ParametrosDTO {
 	
 	private String tipo;
 	private String tipoDoc;
@@ -13,9 +14,11 @@ public class FiltroEntranteDTO {
 	private Integer idTipoCampana;
 	private Integer idEstadoPadre;
 	private Integer tipoLlamada;
+	private String fechaInicial;
+	private String fechaFinal;
 	
 	
-	public FiltroEntranteDTO() {
+	public ParametrosDTO() {
 	}
 
 	
@@ -39,21 +42,17 @@ public class FiltroEntranteDTO {
 		return loginAgente;
 	}
 
-
 	public void setLoginAgente(String loginAgente) {
 		this.loginAgente = loginAgente;
 	}
-
 
 	public String getNroDocumento() {
 		return nroDocumento;
 	}
 
-
 	public void setNroDocumento(String nroDocumento) {
 		this.nroDocumento = nroDocumento;
 	}
-
 
 	public Integer getIdCliente() {
 		return idCliente;
@@ -88,6 +87,22 @@ public class FiltroEntranteDTO {
 
 	public void setTipoLlamada(Integer tipoLlamada) {
 		this.tipoLlamada = tipoLlamada;
+	}
+
+	public String getFechaInicial() {
+		return fechaInicial;
+	}
+
+	public void setFechaInicial(String fechaInicial) {
+		this.fechaInicial = fechaInicial;
+	}
+
+	public String getFechaFinal() {
+		return fechaFinal;
+	}
+
+	public void setFechaFinal(String fechaFinal) {
+		this.fechaFinal = fechaFinal;
 	}
 	
 	

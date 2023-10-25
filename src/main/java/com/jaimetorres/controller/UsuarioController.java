@@ -17,7 +17,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jaimetorres.dto.AgenteDTO;
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.AgenteCampana;
 import com.jaimetorres.model.gestor.Usuario;
@@ -79,13 +79,13 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/buscar")
-	public ResponseEntity<Usuario[]> buscarUsuario(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+	public ResponseEntity<Usuario[]> buscarUsuario(@RequestBody ParametrosDTO filtro) throws Exception{
 		Usuario[] obj = service.buscar(filtro);
 		return new ResponseEntity<Usuario[]>(obj, HttpStatus.OK);
 	}
 	
 	@PostMapping("/buscarExt")
-	public ResponseEntity<AgenteDTO> buscarUsuarioExt(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+	public ResponseEntity<AgenteDTO> buscarUsuarioExt(@RequestBody ParametrosDTO filtro) throws Exception{
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String ip = request.getRemoteAddr();
 		AgenteDTO obj = serviceAg.buscarCampana(filtro);
@@ -94,13 +94,13 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/buscarLogin")
-	public ResponseEntity<Usuarios> buscarLogin(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+	public ResponseEntity<Usuarios> buscarLogin(@RequestBody ParametrosDTO filtro) throws Exception{
 		Usuarios obj = service.buscarLogin(filtro);		
 		return new ResponseEntity<Usuarios>(obj, HttpStatus.OK);
 	}
 	
 	@PostMapping("/cerrar")
-	public ResponseEntity<Void> cerrarSesion(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+	public ResponseEntity<Void> cerrarSesion(@RequestBody ParametrosDTO filtro) throws Exception{
 		
 		service.cerrarSesion(filtro);
 		

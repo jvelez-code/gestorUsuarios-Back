@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.dto.LlamadaEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.contact.LlamadaEntrante;
@@ -72,7 +72,7 @@ public class LlamadaEntranteController {
 		}
 		
 		@PostMapping("/buscarAsterisk")
-		public ResponseEntity<Boolean> buscarAsterisk(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<Boolean> buscarAsterisk(@RequestBody ParametrosDTO filtro) throws Exception{
 			    Boolean logueo;	
 		    	String evento = service.validarAsterisk(filtro);		    	
 				if (evento.equals("AGENTLOGOFF")) {
@@ -86,7 +86,7 @@ public class LlamadaEntranteController {
 		}
 		
 		@PostMapping("/buscarLlamada")
-		public ResponseEntity<Boolean> buscarLlamada(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<Boolean> buscarLlamada(@RequestBody ParametrosDTO filtro) throws Exception{
 			    
 				Boolean logueo= false;				    
 		    	String evento = service.validarAsterisk(filtro);
@@ -98,7 +98,7 @@ public class LlamadaEntranteController {
 		}
 		
 		@PostMapping("/llamadaEntrante")
-		public ResponseEntity<List<LlamadaEntranteDTO>> buscarIdAsterisk(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<List<LlamadaEntranteDTO>> buscarIdAsterisk(@RequestBody ParametrosDTO filtro) throws Exception{
 			List<LlamadaEntranteDTO> obj = service.entranteSinRegistro(filtro);
 			return new ResponseEntity<List<LlamadaEntranteDTO>>(obj, HttpStatus.OK);
 		}

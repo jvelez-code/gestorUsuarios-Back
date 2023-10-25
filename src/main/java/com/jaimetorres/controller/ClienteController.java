@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.contact.LlamadaEntrante;
 import com.jaimetorres.model.gestor.Cliente;
@@ -93,14 +93,14 @@ public class ClienteController {
 		
 		//@RequestBody json a objeto  java
 		@PostMapping("/buscar")
-		public ResponseEntity<Cliente> buscar(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<Cliente> buscar(@RequestBody ParametrosDTO filtro) throws Exception{
 			Cliente cliente = service.buscar(filtro);			
 			return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 		}
 		
 		//@RequestBody json a objeto  java
 		@GetMapping("/buscar")
-		public ResponseEntity<List<Cliente>> buscarp(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<List<Cliente>> buscarp(@RequestBody ParametrosDTO filtro) throws Exception{
 					
 					List<Cliente> cliente = new ArrayList<>();
 					cliente = service.buscarByCliente(filtro);
@@ -109,7 +109,7 @@ public class ClienteController {
 		}
 		
 		@PostMapping("/buscarId")
-		public ResponseEntity<List<Cliente>> buscarId(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<List<Cliente>> buscarId(@RequestBody ParametrosDTO filtro) throws Exception{
 			
 			List<Cliente> cliente = new ArrayList<>();
 			cliente = service.buscarByClientes(filtro);
@@ -118,7 +118,7 @@ public class ClienteController {
 		
 
 		@PostMapping("/buscarAsterisk")
-		public ResponseEntity<Cliente> buscarIdAsterisk(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+		public ResponseEntity<Cliente> buscarIdAsterisk(@RequestBody ParametrosDTO filtro) throws Exception{
 			LlamadaEntrante obj = serviceLlama.buscarIdAsterisk(filtro);
 			Cliente cli = service.buscarIdAsterisk(obj.getTipo_documento(), obj.getNumero_documento());
 			return new ResponseEntity<Cliente>(cli, HttpStatus.OK);

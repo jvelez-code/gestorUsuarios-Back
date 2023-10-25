@@ -1,5 +1,6 @@
 package com.jaimetorres.service.gestor.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,7 +8,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.FiltroDetalleGestionDTO;
+import com.jaimetorres.dto.ParametrosDTO;
+import com.jaimetorres.dto.estadoComercialDto;
 import com.jaimetorres.model.gestor.DetalleGestion;
 import com.jaimetorres.model.gestor.EstadoGestion;
 import com.jaimetorres.repo.gestor.*;
@@ -25,16 +28,29 @@ public class EstadoGestionServiceImpl extends CRUDImpl<EstadoGestion, Integer> i
 	}
 	
 	@Override
-	public List<EstadoGestion> buscar(FiltroEntranteDTO filtro) {
+	public List<EstadoGestion> buscar(ParametrosDTO filtro) {
 		
 		return repo.buscarEstadoP(filtro.getIdEmpresa(),  filtro.getTipoLlamada());
 		
 	}
 
 	@Override
-	public List<EstadoGestion> buscarEstadoH(FiltroEntranteDTO filtro) {
-		System.out.print("Hola mundo");
+	public List<EstadoGestion> buscarEstadoH(ParametrosDTO filtro) {
 		return repo.buscarEstadoH(filtro.getIdEstadoPadre());
+	}
+
+	@Override
+	public List<estadoComercialDto> gestionComercial(ParametrosDTO filtro) {
+		//return repo.estadoComercial(filtro.getIdEmpresa());
+		List<estadoComercialDto> gestionComercial= new ArrayList<>();
+		repo.estadoComercial(filtro.getIdEmpresa()).forEach(x -> {
+			estadoComercialDto m = new estadoComercialDto();
+			m.setIdEstadoGestion((Integer) x[0]);
+			m.setNombre(String.valueOf(x[1]));
+			gestionComercial.add(m);
+		});
+		
+		return gestionComercial;
 	}
 
 

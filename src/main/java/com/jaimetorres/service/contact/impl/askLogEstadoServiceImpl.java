@@ -3,7 +3,7 @@ package com.jaimetorres.service.contact.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.dto.FiltroEstadoDTO;
 import com.jaimetorres.model.contact.AskEstado;
 import com.jaimetorres.model.contact.AskEstadoExtension;

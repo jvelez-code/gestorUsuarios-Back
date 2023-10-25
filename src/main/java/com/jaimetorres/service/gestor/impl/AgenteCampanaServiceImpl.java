@@ -12,7 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.AgenteDTO;
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.model.gestor.AgenteCampana;
 import com.jaimetorres.repo.gestor.*;
 import com.jaimetorres.service.contact.impl.CRUDContactImpl;
@@ -30,7 +30,7 @@ public class AgenteCampanaServiceImpl extends CRUDImpl<AgenteCampana, Integer> i
 	}
 
 	@Override
-	public AgenteDTO buscarCampana(FiltroEntranteDTO filtro) {
+	public AgenteDTO buscarCampana(ParametrosDTO filtro) {
 		try {
 		AgenteDTO agente = new AgenteDTO();
 		AgenteCampana ag= repo.buscarAgenteCampanaE(filtro.getLoginAgente());

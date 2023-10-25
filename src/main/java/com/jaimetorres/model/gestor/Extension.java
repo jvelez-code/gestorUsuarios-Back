@@ -40,9 +40,9 @@ public class Extension implements Serializable {
 	@Column
 	private String disponible;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "extension")
-    private List<DetalleHorario> detalleHorarioList;
-	
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "extension")
+//    private List<DetalleHorario> detalleHorarioList;
+//	
 	@Transient
 	private String labelDuracion;
 	@Transient
@@ -118,13 +118,13 @@ public class Extension implements Serializable {
 		this.disponible = disponible;
 	}
 
-	public List<DetalleHorario> getDetalleHorarioList() {
-		return detalleHorarioList;
-	}
-
-	public void setDetalleHorarioList(List<DetalleHorario> detalleHorarioList) {
-		this.detalleHorarioList = detalleHorarioList;
-	}
+//	public List<DetalleHorario> getDetalleHorarioList() {
+//		return detalleHorarioList;
+//	}
+//
+//	public void setDetalleHorarioList(List<DetalleHorario> detalleHorarioList) {
+//		this.detalleHorarioList = detalleHorarioList;
+//	}
 
 	public String getLabelDuracion() {
 		return labelDuracion;

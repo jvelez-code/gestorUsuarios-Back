@@ -12,11 +12,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.jaimetorres.model.gestor.TipoDocumento;
 import com.jaimetorres.model.gestor.Usuarios;
+import com.jaimetorres.repo.gestor.IGenericRepo;
 import com.jaimetorres.repo.gestor.IUsuariosRepo;
+import com.jaimetorres.service.gestor.IUsuarioMigraService;
 
 @Service
-public class UsuariosServiceImpl implements UserDetailsService {
+public class UsuariosServiceImpl extends CRUDImpl<Usuarios, Integer> implements UserDetailsService, IUsuarioMigraService {
 	
 	@Autowired
 	private IUsuariosRepo repo;	
@@ -39,6 +42,11 @@ public class UsuariosServiceImpl implements UserDetailsService {
 		UserDetails ud = new User(usuarios.getUsername(), usuarios.getPassword(), roles);
 		
 		return ud;
+	}
+
+	@Override
+	protected IGenericRepo<Usuarios, Integer> getRepo() {
+		return repo;
 	}
 
 

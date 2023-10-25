@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jaimetorres.dto.FiltroContactoDTO;
-import com.jaimetorres.dto.FiltroEntranteDTO;
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.Contacto;
@@ -76,7 +76,7 @@ public class ContactoController {
 	}
 
 	@PostMapping("/buscar")
-	public ResponseEntity<Contacto> listarPorId(@RequestBody FiltroEntranteDTO filtro) throws Exception{
+	public ResponseEntity<Contacto> listarPorId(@RequestBody ParametrosDTO filtro) throws Exception{
 		Integer idContactoMax=service.buscarMax(filtro);
 		Contacto lista=service.buscar(idContactoMax);
 		return new ResponseEntity<Contacto>(lista, HttpStatus.OK);

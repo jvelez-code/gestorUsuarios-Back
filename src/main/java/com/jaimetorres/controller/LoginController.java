@@ -39,7 +39,7 @@ public class LoginController {
 	
 	@PostMapping(value = "/enviarCorreo", consumes = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<Integer> enviarCorreo(@RequestBody String correo) throws Exception {
-		int rpta = 0;
+		int rpta = 0; 
 		
 		Usuarios us = service.verificarNombreUsuario(correo);
 		if(us != null && us.getIdUsuario() > 0) {
@@ -60,7 +60,6 @@ public class LoginController {
 			model.put("user", token.getUser().getUsername());
 			model.put("resetUrl", url);
 			mail.setModel(model);
-			
 			emailUtil.enviarMail(mail);
 			
 			rpta = 1;			
