@@ -79,7 +79,6 @@ public class DetalleGestionComercialController {
 	@PostMapping("/gestionComercial")
 	public ResponseEntity<List<GestionComercialDto>> buscarClienteId(@RequestBody ParametrosDTO filtro) throws Exception{
 		List<GestionComercialDto> gestion = new ArrayList<>();
-		System.out.printf(filtro.getFechaFinal(),filtro.getFechaInicial(),"holas Mundo");
 		gestion = service.buscarGC(filtro);
 		return new ResponseEntity<List<GestionComercialDto>>(gestion, HttpStatus.OK);
 	}

@@ -49,8 +49,18 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 	public Gestion registrarTransaccional(Gestion gestion) throws Exception {
 		
 		gestion.getListaDetalleGestion().forEach(det ->det.setGestion(gestion));
-		
 		gestion.getListaContacto().forEach(det ->det.setGestion(gestion));
+		//gestion.getListDetalleGestionComercial().forEach(det -> det.setGestion(gestion));
+		
+		return repo.save(gestion);		
+	}
+	
+	@Override
+	public Gestion registrarTransaccionalComercial(Gestion gestion) throws Exception {
+		
+		gestion.getListaDetalleGestion().forEach(det ->det.setGestion(gestion));		
+		gestion.getListaContacto().forEach(det ->det.setGestion(gestion));		
+		gestion.getListaDetalleGestionComercial().forEach(det -> det.setGestion(gestion));
 		
 		return repo.save(gestion);		
 	}
@@ -59,5 +69,4 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 
 
 }
-
 

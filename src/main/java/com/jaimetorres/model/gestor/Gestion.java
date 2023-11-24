@@ -61,22 +61,20 @@ public class Gestion implements Serializable {
 	@OneToMany(mappedBy = "gestion", cascade = { CascadeType.ALL }, orphanRemoval = true)	
 	private List<Contacto> listaContacto;
 	
+	@OneToMany(fetch = FetchType.EAGER)
+	//@OneToMany(mappedBy = "gestion")
+	@OrderBy("nroDocumento")	
+	private List<Empleado> listaEmpleado;
+	
 	@OneToMany(mappedBy = "gestion", cascade = { CascadeType.ALL }, orphanRemoval = true )	
 	private List<DetalleGestion> listaDetalleGestion;
 	
+	@OneToMany(mappedBy = "gestion", cascade = { CascadeType.ALL }, orphanRemoval = true)	
+	private List<DetalleGestionComercial> listaDetalleGestionComercial;
 	
-//	@OneToMany(fetch = FetchType.EAGER)
-//	//@OneToMany(mappedBy = "gestion")
-//	@OrderBy("nroDocumento")	
-//	private List<Empleado> listaEmpleado;
-//	
-//
-//	@OneToMany(mappedBy = "gestion", cascade = { CascadeType.ALL }, orphanRemoval = true)	
-//	private List<DetalleGestionComercial> listDetalleGestionComercial;
-//	
-//	@OneToMany(mappedBy = "gestion")	
-//	private List<DataIAGestion> listaDataIAGestion;
-//	
+	@OneToMany(mappedBy = "gestion")	
+	private List<DataIAGestion> listaDataIAGestion;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_archivo_exclusion")
 	private Archivo archivoExclusion;
@@ -102,7 +100,7 @@ public class Gestion implements Serializable {
 	public Gestion(Integer idGestion, Archivo archivo, Campana campana, Cliente cliente, Boolean flagGestionSucursal,
 			EstadoGestion estadoGestion, Usuario agente, Date fechaGestion, BigInteger valorCotizacion,
 			String usuarioAct, String ipAct, List<Contacto> listaContacto, List<Empleado> listaEmpleado,
-			List<DetalleGestion> listaDetalleGestion, List<DetalleGestionComercial> listDetalleGestionComercial,
+			List<DetalleGestion> listaDetalleGestion, List<DetalleGestionComercial> listaDetalleGestionComercial,
 			List<DataIAGestion> listaDataIAGestion, Archivo archivoExclusion, Date fechaAgenda, Integer idGestionPadre,
 			Date fechaHoraSis, String callid) {
 		super();
@@ -118,10 +116,10 @@ public class Gestion implements Serializable {
 		this.usuarioAct = usuarioAct;
 		this.ipAct = ipAct;
 		this.listaContacto = listaContacto;
+		this.listaEmpleado = listaEmpleado;
 		this.listaDetalleGestion = listaDetalleGestion;
-//		this.listaEmpleado = listaEmpleado;		
-//		this.listDetalleGestionComercial = listDetalleGestionComercial;
-//		this.listaDataIAGestion = listaDataIAGestion;
+		this.listaDetalleGestionComercial = listaDetalleGestionComercial;
+		this.listaDataIAGestion = listaDataIAGestion;
 		this.archivoExclusion = archivoExclusion;
 		this.fechaAgenda = fechaAgenda;
 		this.idGestionPadre = idGestionPadre;
@@ -236,12 +234,44 @@ public class Gestion implements Serializable {
 		this.listaContacto = listaContacto;
 	}
 
+	public List<Empleado> getListaEmpleado() {
+		return listaEmpleado;
+	}
+
+	public void setListaEmpleado(List<Empleado> listaEmpleado) {
+		this.listaEmpleado = listaEmpleado;
+	}
+
 	public List<DetalleGestion> getListaDetalleGestion() {
 		return listaDetalleGestion;
 	}
 
 	public void setListaDetalleGestion(List<DetalleGestion> listaDetalleGestion) {
 		this.listaDetalleGestion = listaDetalleGestion;
+	}
+
+	
+
+	public List<DetalleGestionComercial> getListaDetalleGestionComercial() {
+		return listaDetalleGestionComercial;
+	}
+
+
+
+
+	public void setListaDetalleGestionComercial(List<DetalleGestionComercial> listaDetalleGestionComercial) {
+		this.listaDetalleGestionComercial = listaDetalleGestionComercial;
+	}
+
+
+
+
+	public List<DataIAGestion> getListaDataIAGestion() {
+		return listaDataIAGestion;
+	}
+
+	public void setListaDataIAGestion(List<DataIAGestion> listaDataIAGestion) {
+		this.listaDataIAGestion = listaDataIAGestion;
 	}
 
 	public Archivo getArchivoExclusion() {

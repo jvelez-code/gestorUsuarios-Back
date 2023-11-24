@@ -33,7 +33,6 @@ public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IC
 
 	@Override
 	public List<Cliente> buscarByCliente(ParametrosDTO filtro) {
-		System.out.println("hola Cliente");
 		return repo.buscarByCliente(filtro.getIdCliente());
 	}
 

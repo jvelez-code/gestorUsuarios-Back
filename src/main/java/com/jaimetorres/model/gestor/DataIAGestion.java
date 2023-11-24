@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -26,9 +29,11 @@ public class DataIAGestion implements Serializable {
 	@Column(name = "id_data_ia_gestion")
 	private Integer idDataIAGestion;
 	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "id_gestion")
+	@JoinColumn(name = "id_gestion", nullable = false, foreignKey = @ForeignKey(name = "fk_contacto_gestion") )
 	private Gestion gestion;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "id_ia_gestion")

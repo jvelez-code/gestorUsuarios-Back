@@ -31,7 +31,7 @@ public class GestionComercialDto {
 	private Integer idEstadoGestion;
 	private Integer idMotivo;
 	private Integer idZonaDivipola;
-	private Integer ciclodeVida;
+	private String ciclodeVida;
 	private boolean activar;
 	
 	
@@ -311,12 +311,12 @@ public class GestionComercialDto {
 	}
 
 
-	public Integer getCiclodeVida() {
+	public String getCiclodeVida() {
 		return ciclodeVida;
 	}
 
 
-	public void setCiclodeVida(Integer ciclodeVida) {
+	public void setCiclodeVida(String ciclodeVida) {
 		this.ciclodeVida = ciclodeVida;
 	}
 

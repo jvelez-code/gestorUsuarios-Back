@@ -1,16 +1,19 @@
 package com.jaimetorres.repo.gestor;
 
 
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import com.jaimetorres.model.gestor.CicloDeVida;
 
 
 public interface ICicloDeVidaRepo extends IGenericRepo<CicloDeVida, Integer> {
 	
-//	@Query("FROM Cliente c WHERE c.CicloDeVida.tipoDoc= :tipoDoc AND c.nroDocumento= :nroDocumento")
-//	List<Cliente> buscar(@Param("tipoDoc") String tipoDoc,@Param("nroDocumento") String nroDocumento);
-//	
-//	
-//	@Query("FROM Cliente c WHERE c.fecha BETWEEN :fechaCliente AND :fechaSgte")
-//	List<Cliente> buscarFecha(@Param("fechaCliente") LocalDateTime fechaCliente,@Param("fechaSgte") LocalDateTime fechaSgte);
-
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE detalle_gestion_comercial dgc SET ciclo_vida = :cicloVida WHERE id_detalle_gestion_comercial = :idDetalleComer", nativeQuery = true)
+	void modificar(@Param("idDetalleComer") Integer idDetalleComer, @Param("cicloVida") Integer cicloVida);
 }

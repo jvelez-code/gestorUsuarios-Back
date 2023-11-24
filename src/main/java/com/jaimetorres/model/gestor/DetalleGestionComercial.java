@@ -20,10 +20,11 @@ public class DetalleGestionComercial implements Serializable {
 	@Column(name = "id_detalle_gestion_comercial")
 	private Integer idDetalleGestionComercial;
 
-	//@JsonIgnore
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "id_gestion")
+	@JoinColumn(name = "id_gestion", nullable = false, foreignKey = @ForeignKey(name = "fk_contacto_gestion") )
 	private Gestion gestion;
+	
 	
 	@Column(name = "id_detalle_gestion")
 	private Integer detalleGestion;
@@ -55,8 +56,10 @@ public class DetalleGestionComercial implements Serializable {
 	@Column(name = "reg_obtenidos")
 	private String regObtenidos;
 	
-	@Column(name = "ciclo_vida")
-	private Integer cicloVida;
+	//@Column(name = "ciclo_vida")
+	@ManyToOne
+	@JoinColumn(name = "ciclo_vida")
+	private CicloDeVida cicloVida;
 	
 	@Column(name = "activar")
 	private boolean activarMod;
@@ -152,11 +155,11 @@ public class DetalleGestionComercial implements Serializable {
 		this.regObtenidos = regObtenidos;
 	}
 
-	public Integer getCicloVida() {
+	public CicloDeVida getCicloVida() {
 		return cicloVida;
 	}
 
-	public void setCicloVida(Integer cicloVida) {
+	public void setCicloVida(CicloDeVida cicloVida) {
 		this.cicloVida = cicloVida;
 	}
 

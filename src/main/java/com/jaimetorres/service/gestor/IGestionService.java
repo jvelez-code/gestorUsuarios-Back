@@ -9,6 +9,7 @@ import com.jaimetorres.model.gestor.Gestion;
 public interface IGestionService extends ICRUD<Gestion , Integer >{
 	
 	Gestion registrarTransaccional(Gestion gestion) throws Exception;
+	Gestion registrarTransaccionalComercial(Gestion gestion) throws Exception;
 	
 	List<Gestion> buscar(ParametrosDTO filtro);
 	

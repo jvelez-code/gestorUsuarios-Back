@@ -2,6 +2,8 @@ package com.jaimetorres.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 //Captura las variables del front para gestion Entrante
 public class ParametrosDTO {
 	
@@ -14,8 +16,13 @@ public class ParametrosDTO {
 	private Integer idTipoCampana;
 	private Integer idEstadoPadre;
 	private Integer tipoLlamada;
-	private String fechaInicial;
-	private String fechaFinal;
+	private Integer idDetalleComer;
+	private Integer cicloVida;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date fechaInicial;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date fechaFinal;
 	
 	
 	public ParametrosDTO() {
@@ -89,22 +96,39 @@ public class ParametrosDTO {
 		this.tipoLlamada = tipoLlamada;
 	}
 
-	public String getFechaInicial() {
+	public Integer getIdDetalleComer() {
+		return idDetalleComer;
+	}
+
+	public void setIdDetalleComer(Integer idDetalleComer) {
+		this.idDetalleComer = idDetalleComer;
+	}
+
+	public Integer getCicloVida() {
+		return cicloVida;
+	}
+
+	public void setCicloVida(Integer cicloVida) {
+		this.cicloVida = cicloVida;
+	}
+
+	public Date getFechaInicial() {
 		return fechaInicial;
 	}
 
-	public void setFechaInicial(String fechaInicial) {
+	public void setFechaInicial(Date fechaInicial) {
 		this.fechaInicial = fechaInicial;
 	}
 
-	public String getFechaFinal() {
+	public Date getFechaFinal() {
 		return fechaFinal;
 	}
 
-	public void setFechaFinal(String fechaFinal) {
+	public void setFechaFinal(Date fechaFinal) {
 		this.fechaFinal = fechaFinal;
 	}
-	
+
+
 	
 	
 	

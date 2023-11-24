@@ -98,6 +98,7 @@ public class ClienteController {
 			return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 		}
 		
+		
 		//@RequestBody json a objeto  java
 		@GetMapping("/buscar")
 		public ResponseEntity<List<Cliente>> buscarp(@RequestBody ParametrosDTO filtro) throws Exception{

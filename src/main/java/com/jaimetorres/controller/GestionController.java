@@ -73,6 +73,14 @@ public class GestionController {
 			return new ResponseEntity<Gestion>(obj, HttpStatus.CREATED);
 		}
 		
+		@PostMapping("/comercial")
+		public ResponseEntity<Gestion> registrarComercial(@Valid @RequestBody Gestion Gestion) throws Exception{
+			Gestion obj=service.registrarTransaccionalComercial(Gestion);
+			
+			URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdGestion()).toUri();
+			return new ResponseEntity<Gestion>(obj, HttpStatus.CREATED);
+		}
+		
 		
 		@PutMapping
 		public ResponseEntity<Gestion> modificar(@Valid @RequestBody Gestion Gestion) throws Exception{
@@ -102,7 +110,7 @@ public class GestionController {
 		}
 		
 		
-//		public ResponseEntity<FiltroDetalleGestionDTO> listarPorIdPrueba(@RequestBody ParametrosDTO filtro) throws Exception{
+//		public ResponseEntity<FiltroDetalleGestionDTO> listarPorIdPrueba(@RequestBody FiltroEntranteDTO filtro) throws Exception{
 //	
 //	
 //			DetalleGestion obj=service.buscar(filtro);

@@ -13,7 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.CicloDeVida;
 import com.jaimetorres.service.gestor.ICicloDeVidaService;
@@ -69,5 +69,10 @@ public class CicloDeVidaController {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 
+	@PostMapping("/modificar")
+	public ResponseEntity<Void> actualizaCiclos(@RequestBody ParametrosDTO filtro) throws Exception {
+		service.actualizaCiclo(filtro);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
 
 }

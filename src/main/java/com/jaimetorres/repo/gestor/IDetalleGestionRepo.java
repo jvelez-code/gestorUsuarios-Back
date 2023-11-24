@@ -36,7 +36,7 @@ public interface IDetalleGestionRepo extends IGenericRepo<DetalleGestion, Intege
 	
 	@Query(value="SELECT u.usuario, case when eg.es_efectiva = true then 'efectiva' else 'noEfectiva' end as efectiva,  "
 			+ "count(eg.es_efectiva) as cantidad  "
-			+ "FROM detalle_gestion dg , estado_gestion eg, usuario u   "
+			+ "FROM gestion dg , estado_gestion eg, usuario u   "
 			+ "WHERE dg.id_estado_gestion=eg.id_estado_gestion AND  dg.id_agente=u.id_usuario  "
 			+ "AND  u.usuario= :loginAgente AND date(fecha_gestion)=(select current_date)  "
 			+ "GROUP BY u.usuario, eg.es_efectiva  "

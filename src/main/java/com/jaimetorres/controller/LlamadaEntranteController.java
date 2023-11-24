@@ -104,6 +104,13 @@ public class LlamadaEntranteController {
 		}
 		
 		
+		@PostMapping("/LlamadasEntrantes")
+		public ResponseEntity<String> buscarTmoUsuario(@RequestBody ParametrosDTO filtro) throws Exception{
+			String obj = service.validarTmo(filtro);
+			return new ResponseEntity<String>(obj, HttpStatus.OK);
+		}
+		
+		
 
 	
 }

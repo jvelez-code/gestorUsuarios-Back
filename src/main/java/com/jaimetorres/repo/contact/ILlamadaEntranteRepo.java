@@ -31,6 +31,17 @@ public interface ILlamadaEntranteRepo extends IGenericContactRepo< LlamadaEntran
 			+ "ORDER BY time DESC  LIMIT 1", nativeQuery = true)
 	String validarAsterisk(@Param("nroDocumento") String nroDocumento);
 	
+	@Query(value="SELECT CAST((SUM(date_trunc('second',(cast(t.time as time)))- \n"
+			+ "	date_trunc('second',cast(c.time as time)))/count(*)) AS TIME )\n"
+			+ "		 FROM ( SELECT time,callid,agent,event FROM grabaciones_pila, queue_log \n"
+			+ "	    WHERE uniqueid=callid AND id_agente=agent AND date(fecha_grabacion)='2023-11-21'\n"
+			+ "   		 and event='CONNECT' AND id_agente=:nroDocumento AND tipo_de_llamada='Entrante') AS c \n"
+			+ "	    INNER JOIN (SELECT time,callid,agent,event \n"
+			+ "	    FROM queue_log WHERE event IN ('COMPLETEAGENT','COMPLETECALLER','BLINDTRANSFER','ATTENDEDTRANSFER')) \n"
+			+ "	    AS t ON c.callid=t.callid \n"
+			+ "	   AND c.agent=t.agent", nativeQuery = true)
+	String validarTMO(@Param("nroDocumento") String nroDocumento);
+	
 	
 	
 	

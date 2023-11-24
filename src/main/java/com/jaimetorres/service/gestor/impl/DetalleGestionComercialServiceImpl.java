@@ -64,18 +64,14 @@ public class DetalleGestionComercialServiceImpl extends CRUDImpl<DetalleGestionC
 			m.setIdAgente((Integer) x[19]);
 		    m.setIdCliente((Integer) x[20]);
 			m.setGestionRealizada(String.valueOf(x[21]));
-			m.setCiclodeVida((Integer) x[22]);
-			m.setActivar((boolean) x[23]);
-			
-			
-			
-		
-			
-			
+			m.setCiclodeVida(String.valueOf(x[22]));
+			m.setActivar((boolean) x[23]);			
 			detalle.add(m);
 		});
 		return detalle;
 	}
+
+	
 
 
 	
