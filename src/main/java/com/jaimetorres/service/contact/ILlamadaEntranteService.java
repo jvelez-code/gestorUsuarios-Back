@@ -1,5 +1,6 @@
 package com.jaimetorres.service.contact;
 
+import java.util.Date;
 import java.util.List;
 
 import com.jaimetorres.dto.ParametrosDTO;
@@ -13,6 +14,6 @@ public interface ILlamadaEntranteService extends ICRUDContact<LlamadaEntrante, I
 	LlamadaEntrante buscarIdAsterisk (ParametrosDTO filtro);
 	List<LlamadaEntranteDTO> entranteSinRegistro (ParametrosDTO filtro);
 	String validarAsterisk (ParametrosDTO filtro);
-	String validarTmo (ParametrosDTO filtro);
+	Date validarTmo (ParametrosDTO filtro);
 
 }

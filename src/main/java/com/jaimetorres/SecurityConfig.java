@@ -59,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		return super.authenticationManager();
 	}
 		
+	//La que me permite el logueo
 	@Autowired	
 	public void configure(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(userDetailsService).passwordEncoder(bcrypt);

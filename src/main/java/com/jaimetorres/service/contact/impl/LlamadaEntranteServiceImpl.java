@@ -2,6 +2,7 @@ package com.jaimetorres.service.contact.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 	
 	
 	@Override
-	public String validarTmo(ParametrosDTO filtro) {
+	public Date validarTmo(ParametrosDTO filtro) {
 		return repo.validarTMO(filtro.getNroDocumento());
 	}
 

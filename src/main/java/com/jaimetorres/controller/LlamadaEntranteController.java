@@ -2,6 +2,7 @@ package com.jaimetorres.controller;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -104,10 +105,10 @@ public class LlamadaEntranteController {
 		}
 		
 		
-		@PostMapping("/LlamadasEntrantes")
-		public ResponseEntity<String> buscarTmoUsuario(@RequestBody ParametrosDTO filtro) throws Exception{
-			String obj = service.validarTmo(filtro);
-			return new ResponseEntity<String>(obj, HttpStatus.OK);
+		@PostMapping("/buscarTmoUsuario")
+		public ResponseEntity<Date> buscarTmoUsuario(@RequestBody ParametrosDTO filtro) throws Exception{
+			Date obj = service.validarTmo(filtro);
+			return new ResponseEntity<Date>(obj, HttpStatus.OK);
 		}
 		
 		

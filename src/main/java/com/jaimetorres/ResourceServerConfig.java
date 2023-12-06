@@ -38,12 +38,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
                 .antMatchers("/v3/api-docs/**" ).permitAll()
                 //.antMatchers("/tipoDocumentos/**" ).authenticated() 
                 .antMatchers("/askEstados/**" ).authenticated()
+                .antMatchers("/LlamadasEntrantes/**" ).authenticated()                
                 .antMatchers("/askEstadoExtensiones/**" ).authenticated()
                 .antMatchers("/clientes/**" ).authenticated()
                 .antMatchers("/contactos/**" ).authenticated()
                 .antMatchers("/detallegestiones/**" ).authenticated()
                 .antMatchers("/estadoGestiones/**" ).authenticated()
                 .antMatchers("/usuarios/**" ).permitAll()
+                .antMatchers("/productividad/**" ).authenticated()
                 .antMatchers("/tokens/anular/**" ).permitAll();
                 //.antMatchers("/tokens/**" ).authenticated();     
                 //.antMatchers("/oauth/token/**" ).authenticated();

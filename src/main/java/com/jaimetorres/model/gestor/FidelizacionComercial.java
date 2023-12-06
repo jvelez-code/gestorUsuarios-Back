@@ -19,7 +19,7 @@ public class FidelizacionComercial implements Serializable {
 	@Column(name = "id_fidelizacion")
 	private Integer idFidelizacion;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_detalle_gestion_comercial", nullable = false, foreignKey = @ForeignKey(name = "fk_detalle_gestion_comercial"))
 	//@Column(name = "id_detalle_gestion_comercial")
