@@ -1,6 +1,8 @@
 package com.jaimetorres.service.gestor.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -9,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import com.jaimetorres.dto.DivipolaDto;
 import com.jaimetorres.dto.ParametrosDTO;
+import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.model.gestor.Gestion;
 import com.jaimetorres.repo.gestor.*;
 import com.jaimetorres.service.contact.impl.CRUDContactImpl;
@@ -29,13 +33,11 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 	
 	@Override
 	public List<Gestion> buscar(ParametrosDTO filtro) {
-		System.out.print("Mundo");
 		return null;
 	}
 
 	@Override
 	public List<Gestion> buscarA(ParametrosDTO filtro) {
-		System.out.print("Hola");
 		return repo.buscarA(filtro.getIdCliente());
 	}
 
@@ -50,7 +52,7 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 		
 		gestion.getListaDetalleGestion().forEach(det ->det.setGestion(gestion));
 		gestion.getListaContacto().forEach(det ->det.setGestion(gestion));
-		//gestion.getListDetalleGestionComercial().forEach(det -> det.setGestion(gestion));
+		
 		
 		return repo.save(gestion);		
 	}
@@ -66,7 +68,38 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 	}
 
 
+	@Override
+	public void actualizarGestion(Integer id, Gestion gestion) {
+			repo.actualizarGestion(gestion.getIdGestion(), gestion.getAgente().getIdUsuario());
+			
+        
+	}
 
 
-}
+	@Override
+	public Integer gestionSaliente(ParametrosDTO filtro) {
+		return repo.buscarIdGestion(filtro.getCampanaSal());
+	}
+
+
+	@Override
+	public void cambioEstadoGestion(Integer idgestion) {
+		repo.cambioEstado(idgestion);		
+	}
+
+
+	@Override
+	public ParametrosDTO buscarGestioSaliente(Integer idGestion) {		
+			Map<String, Object> result = repo.gestionSal(idGestion);
+		    ParametrosDTO parametrosDTO = new ParametrosDTO();
+		    parametrosDTO.setIdGestion((Integer) result.get("idGestion"));
+		    parametrosDTO.setIdCliente((Integer) result.get("idCliente"));
+		    return parametrosDTO;
+		}
+	
+	
+	}
+
+
+
 

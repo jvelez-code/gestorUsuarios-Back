@@ -82,5 +82,12 @@ public class DetalleGestionComercialController {
 		gestion = service.buscarGC(filtro);
 		return new ResponseEntity<List<GestionComercialDto>>(gestion, HttpStatus.OK);
 	}
+	
+	@PostMapping("/comercialUsuario")
+	public ResponseEntity<List<DetalleGestionComercial>> comercialUsuario(@RequestBody ParametrosDTO filtro) throws Exception{
+		List<DetalleGestionComercial> gestion = new ArrayList<>();
+		gestion = service.buscarUsuarios(filtro);
+		return new ResponseEntity<List<DetalleGestionComercial>>(gestion, HttpStatus.OK);
+	}
 
 			}

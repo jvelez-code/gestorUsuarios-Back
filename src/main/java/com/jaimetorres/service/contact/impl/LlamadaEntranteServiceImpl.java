@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.ParametrosDTO;
+import com.jaimetorres.dto.TmoGestionUsuarioDto;
 import com.jaimetorres.dto.FiltroEstadoDTO;
 import com.jaimetorres.dto.LlamadaEntranteDTO;
 import com.jaimetorres.model.contact.LlamadaEntrante;
@@ -40,7 +41,7 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 		List<LlamadaEntranteDTO> detalle = new ArrayList<>();
 		
 		repo.buscarIdEntrante(filtro.getNroDocumento()).forEach(x -> {
-			LlamadaEntranteDTO m = new LlamadaEntranteDTO();
+			LlamadaEntranteDTO m = new LlamadaEntranteDTO(null, null, null, null);
 			m.setId_asterisk(String.valueOf(x[0]));
 			m.setNumero_documento(String.valueOf(x[1]));
 			m.setTipo_doc(String.valueOf(x[2]));			
@@ -52,13 +53,29 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 
 	@Override
 	public String validarAsterisk(ParametrosDTO filtro) {
-		return repo.validarAsterisk(filtro.getNroDocumento());
+				
+		String resultado = repo.validarAsterisk(filtro.getNroDocumento(), filtro.getTipoDoc());
+	    
+	    if (resultado == null) {
+	        // No se encontraron datos
+	        System.out.println("No se encontraron datos para validar.");
+	    } else {
+	        // Se encontraron datos
+	        System.out.println("Datos encontrados: " + resultado);
+	    }
+	    
+	    return resultado;
 	}
 	
 	
 	@Override
-	public Date validarTmo(ParametrosDTO filtro) {
-		return repo.validarTMO(filtro.getNroDocumento());
+	public TmoGestionUsuarioDto validarTmo(ParametrosDTO filtro) {
+		
+		Object[] result = repo.validarTMO(filtro.getNroDocumento());
+		TmoGestionUsuarioDto dto = new TmoGestionUsuarioDto((String) result[0]);
+		return dto;
+
+		
 	}
 
 	

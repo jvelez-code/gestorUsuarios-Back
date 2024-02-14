@@ -63,8 +63,8 @@ public class ContactoController {
 		Contacto obj=service.modificar(Contacto);
 		return new ResponseEntity<Contacto>(obj, HttpStatus.OK);
 	}
-
-
+	
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
 		Contacto obj=service.listarPorId(id);
@@ -90,5 +90,19 @@ public class ContactoController {
 		FiltroContactoDTO postResponse = modelMapper.map(post, FiltroContactoDTO.class);
 		return ResponseEntity.ok().body(postResponse);
 	}
+		
+	@PostMapping("/buscarId")
+	public ResponseEntity<Contacto> contactoId(@RequestBody ParametrosDTO filtro) throws Exception{
+		
+		Contacto obj=service.gestionSaliente(filtro);			
+		return new ResponseEntity<Contacto>(obj, HttpStatus.OK);
+	}
+
+	
+	@PatchMapping("/{id}")
+    public ResponseEntity<Contacto> actualizarContacto(@PathVariable Integer id, @Valid @RequestBody Contacto contacto) throws Exception {
+		Contacto obj= service.actualizarContacto(id, contacto);
+        return new ResponseEntity<Contacto>(obj, HttpStatus.OK);
+    }
 
 }

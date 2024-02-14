@@ -6,16 +6,14 @@ public class LlamadaEntranteDTO {
 	private String id_asterisk;
 	private String numero_documento;
 	private String tipo_doc;
+	private String tmoUsuario;
 	
-	public LlamadaEntranteDTO(String id_asterisk, String numero_documento, String tipo_doc) {
+	public LlamadaEntranteDTO(String id_asterisk, String numero_documento, String tipo_doc, String tmoUsuario) {
 		super();
 		this.id_asterisk = id_asterisk;
 		this.numero_documento = numero_documento;
 		this.tipo_doc = tipo_doc;
-	}
-
-	public LlamadaEntranteDTO() {
-		// TODO Auto-generated constructor stub
+		this.tmoUsuario = tmoUsuario;
 	}
 
 	public String getId_asterisk() {
@@ -41,8 +39,14 @@ public class LlamadaEntranteDTO {
 	public void setTipo_doc(String tipo_doc) {
 		this.tipo_doc = tipo_doc;
 	}
+
+	public String getTmoUsuario() {
+		return tmoUsuario;
+	}
+
+	public void setTmoUsuario(String tmoUsuario) {
+		this.tmoUsuario = tmoUsuario;
+	}
 	
-	
-	
-	
+		
 		}

@@ -76,16 +76,5 @@ public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer>
 		return detalle;
 	}
 
-	@Override
-	public List<tmoGestionDto> tmoGestion(ParametrosDTO filtro) {
-		return repo.tmoGestion(filtro.getLoginAgente());
-	}
-
-	
-	
-		
-	
-
-
 	
 }

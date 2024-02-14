@@ -19,7 +19,7 @@ public class LlamadaEntrante implements Serializable {
 	private String idExtension;
 	
 	@Column(name = "ruta_entrante", nullable = false)
-	private Integer ruta_entrante;
+	private String ruta_entrante;
 	
 	@Column(name = "fecha_hora", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)	
@@ -42,13 +42,13 @@ public class LlamadaEntrante implements Serializable {
 	private Integer clase_cliente;
 	
 	@Column(name = "numero_origen", nullable = false)
-	private Integer numero_origen;
+	private String numero_origen;
 	
 	@Column(name = "desea_devolucion", nullable = false)
 	private boolean desea_devolucion;
 		
 	@Column(name = "numero_devolucion", nullable = false)
-	private Integer numero_devolucion;
+	private String numero_devolucion;
 	
 	@Column(name = "id_detalle_gestion", nullable = false)
 	private Integer id_detalle_gestion;
@@ -81,9 +81,9 @@ public class LlamadaEntrante implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)	
 	private Date intento3;
 
-	public LlamadaEntrante(Integer idLlamadaEntrante, String idExtension, Integer ruta_entrante, Date fecha_hora,
+	public LlamadaEntrante(Integer idLlamadaEntrante, String idExtension, String ruta_entrante, Date fecha_hora,
 			Date fecha_hora_asterisk, Integer tipo_documento, String numero_documento, Integer tipo_cliente,
-			Integer clase_cliente, Integer numero_origen, boolean desea_devolucion, Integer numero_devolucion,
+			Integer clase_cliente, String numero_origen, boolean desea_devolucion, String numero_devolucion,
 			Integer id_detalle_gestion, Integer numero_de_intentos_fallidos, Integer id_agente, Date fecha_devolucion,
 			Integer opcion_entrante, String empresa, Date intento1, Date intento2, Date intento3) {
 		super();
@@ -131,11 +131,11 @@ public class LlamadaEntrante implements Serializable {
 		this.idExtension = idExtension;
 	}
 
-	public Integer getRuta_entrante() {
+	public String getRuta_entrante() {
 		return ruta_entrante;
 	}
 
-	public void setRuta_entrante(Integer ruta_entrante) {
+	public void setRuta_entrante(String ruta_entrante) {
 		this.ruta_entrante = ruta_entrante;
 	}
 
@@ -187,11 +187,11 @@ public class LlamadaEntrante implements Serializable {
 		this.clase_cliente = clase_cliente;
 	}
 
-	public Integer getNumero_origen() {
+	public String getNumero_origen() {
 		return numero_origen;
 	}
 
-	public void setNumero_origen(Integer numero_origen) {
+	public void setNumero_origen(String numero_origen) {
 		this.numero_origen = numero_origen;
 	}
 
@@ -203,11 +203,11 @@ public class LlamadaEntrante implements Serializable {
 		this.desea_devolucion = desea_devolucion;
 	}
 
-	public Integer getNumero_devolucion() {
+	public String getNumero_devolucion() {
 		return numero_devolucion;
 	}
 
-	public void setNumero_devolucion(Integer numero_devolucion) {
+	public void setNumero_devolucion(String numero_devolucion) {
 		this.numero_devolucion = numero_devolucion;
 	}
 

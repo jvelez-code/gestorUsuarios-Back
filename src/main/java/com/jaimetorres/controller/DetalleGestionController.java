@@ -50,35 +50,24 @@ public class DetalleGestionController {
 		return service.listarPorId(id);
 	}
 	
-//	@GetMapping("/hateoas/{id}")
-//	public EntityModel<DetalleGestion> listarPorIdHateoas(@PathVariable("id") Integer id) throws Exception{
-//		DetalleGestion obj=service.listarPorId(id);
-//		
-//		if(obj==null) {
-//			throw new ModeloNotFoundException("ID NO ENCONTRADO: " +id);
-//		}
-//		
-//		
-//		
-//		//localhost:8080/DetalleGestion/{id}
-//		EntityModel<DetalleGestion> recurso=EntityModel.of(obj);
-//		WebMvcLinkBuilder linkTo= linkTo(methodOn(this.getClass()).listarPorId(id));
-//		
-//		//return new ResponseEntity<DetalleGestion>(obj, HttpStatus.OK);
-//		
-//		recurso.add(linkTo.withRel("DetalleGestion-recurso"));
-//		return recurso;
-//	}
-	
 	//@RequestBody json a objeto  java
 	@PostMapping
-	public ResponseEntity<DetalleGestion> registrar(@Valid @RequestBody DetalleGestion DetalleGestion) throws Exception{
-		DetalleGestion obj=service.registrar(DetalleGestion);
+	public ResponseEntity<DetalleGestion> registrar(@Valid @RequestBody DetalleGestion detalleGestion) throws Exception{
+		System.out.println(detalleGestion.getGestion().getIdGestion() + "asa123");
+		DetalleGestion obj=service.registrar(detalleGestion);
 
 		//localhost:8080/pacientes/7
 		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdDetalleGestion()).toUri();
 		return new ResponseEntity<DetalleGestion>(obj, HttpStatus.CREATED);
 	}
+	
+	@PostMapping("/saliente")
+	public ResponseEntity<Void> registrars(@Valid @RequestBody DetalleGestion detalleGestion) throws Exception{
+		System.out.println(detalleGestion.getGestion().getIdGestion() + "asa123");
+		service.registrar(detalleGestion);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+
 
 
 	@PutMapping
@@ -121,12 +110,5 @@ public class DetalleGestionController {
 		return new ResponseEntity<List<CantidadGestionDto>>(cant, HttpStatus.OK);
 	}
 	
-	@PostMapping("/tmoGestion")
-	public ResponseEntity<List<tmoGestionDto>> tmoGestion(@RequestBody ParametrosDTO filtro) throws Exception{
-		List<tmoGestionDto> cant = new ArrayList<>();
-		cant = service.tmoGestion(filtro);
-		return new ResponseEntity<List<tmoGestionDto>>(cant, HttpStatus.OK);
-	}
 		
-		
-		}
+}

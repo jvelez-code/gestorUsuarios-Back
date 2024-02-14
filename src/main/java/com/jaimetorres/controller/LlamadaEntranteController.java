@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.ParametrosDTO;
+import com.jaimetorres.dto.TmoGestionUsuarioDto;
 import com.jaimetorres.dto.LlamadaEntranteDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.contact.LlamadaEntrante;
@@ -105,10 +106,10 @@ public class LlamadaEntranteController {
 		}
 		
 		
-		@PostMapping("/buscarTmoUsuario")
-		public ResponseEntity<Date> buscarTmoUsuario(@RequestBody ParametrosDTO filtro) throws Exception{
-			Date obj = service.validarTmo(filtro);
-			return new ResponseEntity<Date>(obj, HttpStatus.OK);
+		@PostMapping("/tmoUsuario")
+		public ResponseEntity<TmoGestionUsuarioDto> tmoUsuario(@RequestBody ParametrosDTO filtro) throws Exception{
+			TmoGestionUsuarioDto obj = service.validarTmo(filtro);
+			return new ResponseEntity<TmoGestionUsuarioDto>(obj, HttpStatus.OK);
 		}
 		
 		

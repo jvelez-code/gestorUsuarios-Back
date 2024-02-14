@@ -23,7 +23,7 @@ public interface IDetalleGestionRepo extends IGenericRepo<DetalleGestion, Intege
 	
 
 	
-	@Query(value="SELECT  g.fecha_gestion as fecha,u.usuario as usuario ,g.id_campana as campana ,eg.nombre as tipo, "
+	@Query(value="SELECT  g.fecha_gestion as fecha,concat(u.primer_nombre,'-',u.primer_apellido) as usuario ,g.id_campana as campana ,eg.nombre as tipo, "
 			+ "egs.nombre as subtipo,dg.observacion as observacion ,dg.num_real_marcado as numero "
 			+ "from gestion g ,detalle_gestion dg , usuario u , estado_gestion eg , estado_gestion egs "
 			+ "WHERE g.id_gestion =dg.id_gestion  AND g.id_agente =u.id_usuario AND dg.id_estado_gestion=egs.id_estado_gestion  "
@@ -43,26 +43,5 @@ public interface IDetalleGestionRepo extends IGenericRepo<DetalleGestion, Intege
 			+ "ORDER  BY efectiva", nativeQuery = true )
 	List<Object[]> cantidadGestion(@Param("loginAgente") String loginAgente);
 	
-	@Query(value="SELECT "
-			+ "c.agent AS agent, "
-			+ "login_Agente AS agente, "
-			+ "sum(to_timestamp (t.time,'yyyy/mm/dd HH24:MI:ss')::time-to_timestamp (c.time,'yyyy/mm/dd HH24:MI:ss')::time) AS duracionLlamadas, "
-			+ "count(*) as cantidadGrabaciones, "
-			+ "SUBSTRING((sum(to_timestamp (t.time,'yyyy/mm/dd HH24:MI:ss')::time-to_timestamp (c.time,'yyyy/mm/dd HH24:MI:ss')::time)/count(*))::TEXT,0,9) AS segundos "
-			+ "FROM ( "
-			+ "SELECT time,callid,agent,event "
-			+ "FROM grabaciones_pila, queue_log "
-			+ "WHERE uniqueid=callid AND id_agente=agent AND date(fecha_grabacion)=(select current_date) "
-			+ "AND id_agente='1023026686' AND event='CONNECT'  "
-			+ "AND tipo_de_llamada='Entrante') AS c "
-			+ "INNER JOIN ( "
-			+ "SELECT time,callid,agent,event "
-			+ "FROM grabaciones_pila, queue_log "
-			+ "WHERE uniqueid=callid and event IN ('COMPLETEAGENT','COMPLETECALLER','BLINDTRANSFER','ATTENDEDTRANSFER')) AS t ON c.callid=t.callid AND c.agent=t.agent "
-			+ "INNER JOIN (SELECT DISTINCT(nro_documento), login_Agente "
-			+ "FROM ask_estado_extension  WHERE activo=true GROUP BY  login_Agente,nro_documento) ask ON c.agent=nro_documento "
-			+ "GROUP BY c.agent,login_Agente "
-			+ "ORDER BY c.agent,login_Agente", nativeQuery = true )
-	List<tmoGestionDto> tmoGestion(@Param("loginAgente") String loginAgente);
 
 	}

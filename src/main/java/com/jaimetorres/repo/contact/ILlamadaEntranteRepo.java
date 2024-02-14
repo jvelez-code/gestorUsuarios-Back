@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.jaimetorres.dto.LlamadaEntranteDTO;
+import com.jaimetorres.dto.TmoGestionUsuarioDto;
 import com.jaimetorres.model.contact.LlamadaEntrante;
 
 
@@ -27,23 +28,28 @@ public interface ILlamadaEntranteRepo extends IGenericContactRepo< LlamadaEntran
 	String LlamadaAsterisk(@Param("nroDocumento") String nroDocumento);
 
 	@Query(value="SELECT event FROM queue_log "
-			+ "WHERE agent = :nroDocumento "
+			+ "WHERE time >= :tipoDoc AND agent = :nroDocumento "
 			+ "AND  event not in ('ADDMEMBER','REMOVEMEMBER','RINGNOANSWER') "
 			+ "ORDER BY time DESC  LIMIT 1", nativeQuery = true)
-	String validarAsterisk(@Param("nroDocumento") String nroDocumento);
-
-	@Query(value="SELECT CAST((SUM(date_trunc('second',(cast(t.time as time)))- "
-			+ "	date_trunc('second',cast(c.time as time)))/count(*)) AS TIME ) "
-			+ " FROM ( SELECT time,callid,agent,event FROM grabaciones_pila, queue_log "
-			+ "	WHERE uniqueid=callid AND id_agente=agent AND date(fecha_grabacion)='2023-11-21' "
-			+ " and event='CONNECT' AND id_agente=:nroDocumento AND tipo_de_llamada='Entrante') AS c  "
-			+ "	INNER JOIN (SELECT time,callid,agent,event  "
-			+ " FROM queue_log WHERE event IN ('COMPLETEAGENT','COMPLETECALLER','BLINDTRANSFER','ATTENDEDTRANSFER')) "
-			+ " AS t ON c.callid=t.callid  "
-			+ "	AND c.agent=t.agent", nativeQuery = true)
-	Date validarTMO(@Param("nroDocumento") String nroDocumento);
-
-
+	String validarAsterisk(@Param("tipoDoc") String tipoDoc,@Param("nroDocumento") String nroDocumento);
+	
+	@Query(value="SELECT 	--c.agent,\n"
+			+ "COALESCE(to_char(justify_interval(SUM(TO_TIMESTAMP(t.time, 'YYYY/MM/DD HH24:MI:SS') - TO_TIMESTAMP(c.time, 'YYYY/MM/DD HH24:MI:SS')) / COUNT(*)), 'HH24:MI:SS'), '00:00:00') AS tmoAgente \n"
+			+ "--(sum(to_timestamp (t.time,'yyyy/mm/dd HH24:MI:ss')-to_timestamp (c.time,'yyyy/mm/dd HH24:MI:ss'))/count(*)) AS segundos \n"
+			+ "FROM ( \n"
+			+ "SELECT id,time,callid,agent,event \n"
+			+ "FROM grabaciones_pila, queue_log \n"
+			+ "WHERE uniqueid=callid AND id_agente=agent AND date(fecha_grabacion)=(select current_date) \n"
+			+ "AND id_agente = :nroDocumento AND event='CONNECT'  \n"
+			+ "AND tipo_de_llamada='Entrante') AS c \n"
+			+ "INNER JOIN ( \n"
+			+ "SELECT id,time,callid,agent,event \n"
+			+ "FROM grabaciones_pila, queue_log \n"
+			+ "WHERE uniqueid=callid and event IN ('COMPLETEAGENT','COMPLETECALLER','BLINDTRANSFER','ATTENDEDTRANSFER')) AS t ON c.callid=t.callid AND c.agent=t.agent \n"
+			+ "INNER JOIN (SELECT DISTINCT(nro_documento), login_Agente \n"
+			+ "FROM ask_estado_extension  WHERE activo=true \n"
+			+ "GROUP BY login_Agente,nro_documento) ask ON c.agent=nro_documento \n", nativeQuery = true)
+	Object[] validarTMO(@Param("nroDocumento") String nroDocumento);
 
 
 }

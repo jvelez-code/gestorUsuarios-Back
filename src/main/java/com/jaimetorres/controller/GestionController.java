@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
+import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.model.gestor.Gestion;
 import com.jaimetorres.service.gestor.IGestionService;
 
@@ -103,22 +104,26 @@ public class GestionController {
 		@PostMapping("/buscar")
 		public ResponseEntity<Gestion> buscarA(@RequestBody ParametrosDTO filtro) throws Exception{
 			
-			Gestion gestion= service.buscarM(filtro);
-			//FiltroDetalleGestionDTO postResponse = modelMapper.map(gestion, FiltroDetalleGestionDTO.class);
-			
+			Gestion gestion= service.buscarM(filtro);			
 			return new ResponseEntity<Gestion>(gestion, HttpStatus.OK);
 		}
 		
+				
+		@PostMapping("/saliente")
+		public ResponseEntity<ParametrosDTO> registrarSaliente(@RequestBody ParametrosDTO filtro) throws Exception{
+			Integer idges=service.gestionSaliente(filtro);
+			service.cambioEstadoGestion(idges);
+			ParametrosDTO obj= service.buscarGestioSaliente(idges);
+			
+			URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdGestion()).toUri();
+			return new ResponseEntity<ParametrosDTO>(obj, HttpStatus.CREATED);
+		}
 		
-//		public ResponseEntity<FiltroDetalleGestionDTO> listarPorIdPrueba(@RequestBody FiltroEntranteDTO filtro) throws Exception{
-//	
-//	
-//			DetalleGestion obj=service.buscar(filtro);
-//			
-//			FiltroDetalleGestionDTO postResponse = modelMapper.map(obj, FiltroDetalleGestionDTO.class); 
-//			return new ResponseEntity<FiltroDetalleGestionDTO>(postResponse, HttpStatus.OK);
-//		}
 		
-		
+		@PatchMapping("/{id}")
+	    public ResponseEntity<Void> actualizarContacto(@PathVariable Integer id, @Valid @RequestBody Gestion gestion) {
+			service.actualizarGestion(id, gestion);
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	    }
 
 }
