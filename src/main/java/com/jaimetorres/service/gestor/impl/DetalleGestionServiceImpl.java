@@ -76,5 +76,12 @@ public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer>
 		return detalle;
 	}
 
+	@Override
+	public void guardarSaliente(DetalleGestion filtro) {
+		repo.guardarSaliente(filtro.getUsuario().getIdUsuario(), filtro.getEstadoGestion().getIdEstadoGestion(), filtro.getObservacion(), 
+							 filtro.getUsuarioAct());
+		
+	}
+
 	
 }

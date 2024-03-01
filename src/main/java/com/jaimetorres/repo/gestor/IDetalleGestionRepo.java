@@ -3,19 +3,12 @@ package com.jaimetorres.repo.gestor;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import com.jaimetorres.dto.CantidadGestionDto;
-import com.jaimetorres.dto.FiltroDetalleGestionDTO;
-import com.jaimetorres.dto.tmoGestionDto;
-import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.DetalleGestion;
 import com.jaimetorres.model.gestor.Gestion;
-import com.jaimetorres.model.gestor.Menu;
 
 
 public interface IDetalleGestionRepo extends IGenericRepo<DetalleGestion, Integer> {
@@ -42,6 +35,16 @@ public interface IDetalleGestionRepo extends IGenericRepo<DetalleGestion, Intege
 			+ "GROUP BY u.usuario, eg.es_efectiva  "
 			+ "ORDER  BY efectiva", nativeQuery = true )
 	List<Object[]> cantidadGestion(@Param("loginAgente") String loginAgente);
+	
+	//SECRETARIA VIRTUAL
+	
+	@Transactional
+	@Modifying	
+	@Query(value="INSERT INTO  detalle_gestion (id_gestion, fecha_gestion, observacion, id_agente, id_estado_gestion, usuario_act, ip_act, extension, num_real_marcado) "
+			+ " VALUES ('15411448',now(),:observacion,:idAgente, :idEstadoGestion, :usuarioAct,'127.17.0.1','8907','3504321330')", nativeQuery = true)
+    void guardarSaliente(@Param("idAgente") Integer idAgente, @Param("idEstadoGestion") Integer idEstadoGestion, @Param("observacion") String observacion,
+    		@Param("usuarioAct") String usuarioAct);
+	
 	
 
 	}

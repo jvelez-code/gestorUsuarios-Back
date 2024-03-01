@@ -2,6 +2,10 @@ package com.jaimetorres.repo.contact;
 
 import java.util.Date;
 import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -50,6 +54,23 @@ public interface ILlamadaEntranteRepo extends IGenericContactRepo< LlamadaEntran
 			+ "FROM ask_estado_extension  WHERE activo=true \n"
 			+ "GROUP BY login_Agente,nro_documento) ask ON c.agent=nro_documento \n", nativeQuery = true)
 	Object[] validarTMO(@Param("nroDocumento") String nroDocumento);
+		
+	//SECRETARIA VIRTUAL
+	
+	@Query(value="SELECT * FROM llamada_entrante "
+			+ " WHERE DATE(fecha_hora_asterisk) BETWEEN  current_date - integer '8' AND current_date "
+			+ " AND empresa = :empresa and desea_devolucion  IS TRUE  "
+			+ "	AND id_agente IS NULL AND numero_de_intentos_fallidos < 3  "
+			+ "	AND id_detalle_gestion IS NULL "
+			+ "	ORDER BY fecha_hora_asterisk  DESC LIMIT 1", nativeQuery = true)
+	LlamadaEntrante secretariaVirtual(@Param("empresa") String empresa);
+	
+	@Transactional
+	@Modifying	
+	@Query(value="UPDATE llamada_entrante SET id_agente= :idAgente ,id_detalle_gestion='0' WHERE id_llamada_entrante = :idLlamadaEntrante ", nativeQuery = true)
+    void cambioEstadoSecVirt(@Param("idAgente") Integer idAgente, @Param("idLlamadaEntrante") Integer idLlamadaEntrante);
+	
+	
 
 
 }

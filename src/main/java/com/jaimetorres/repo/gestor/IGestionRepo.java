@@ -24,7 +24,13 @@ public interface IGestionRepo extends IGenericRepo<Gestion, Integer> {
 	@Query(value="SELECT * FROM gestion WHERE id_cliente= :nroCliente ", nativeQuery = true)
 	List<Gestion> buscarA(@Param("nroCliente") Integer nroCliente);
 	
-	//Saliente
+	//Gestion Comercial
+	@Transactional
+	@Modifying	
+	@Query(value="UPDATE detalle_gestion_comercial SET id_detalle_gestion = :idDetalleGestion WHERE id_gestion = :idGestion ", nativeQuery = true)
+    void actualizarComercial(@Param("idGestion") Integer idGestion, @Param("idDetalleGestion") Integer idDetalleGestion);
+	
+	//Gestion Saliente
 	@Query(value="SELECT id_gestion FROM gestion g WHERE id_campana= :campanaSal AND id_estado_gestion ='7' ORDER BY id_gestion LIMIT 1", nativeQuery = true)
     Integer buscarIdGestion(@Param("campanaSal") Integer campanaSal);
 	

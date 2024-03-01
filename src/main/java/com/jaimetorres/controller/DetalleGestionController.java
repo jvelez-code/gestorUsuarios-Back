@@ -61,15 +61,7 @@ public class DetalleGestionController {
 		return new ResponseEntity<DetalleGestion>(obj, HttpStatus.CREATED);
 	}
 	
-	@PostMapping("/saliente")
-	public ResponseEntity<Void> registrars(@Valid @RequestBody DetalleGestion detalleGestion) throws Exception{
-		System.out.println(detalleGestion.getGestion().getIdGestion() + "asa123");
-		service.registrar(detalleGestion);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-	}
-
-
-
+	
 	@PutMapping
 	public ResponseEntity<DetalleGestion> modificar(@Valid @RequestBody DetalleGestion DetalleGestion) throws Exception{
 		DetalleGestion obj=service.modificar(DetalleGestion);
@@ -108,6 +100,12 @@ public class DetalleGestionController {
 		List<CantidadGestionDto> cant = new ArrayList<>();
 		cant = service.cantidadGestion(filtro);
 		return new ResponseEntity<List<CantidadGestionDto>>(cant, HttpStatus.OK);
+	}
+	
+	@PostMapping("/gestionSaliente")
+	public ResponseEntity <Void> secretariaVirtuales(@RequestBody DetalleGestion filtro) throws Exception{
+		service.guardarSaliente(filtro);
+		return new ResponseEntity <Void> (HttpStatus.OK);
 	}
 	
 		

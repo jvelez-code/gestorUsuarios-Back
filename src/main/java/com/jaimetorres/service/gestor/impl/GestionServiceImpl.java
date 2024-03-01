@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.jaimetorres.dto.DivipolaDto;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.model.gestor.Contacto;
+import com.jaimetorres.model.gestor.DetalleGestion;
 import com.jaimetorres.model.gestor.Gestion;
 import com.jaimetorres.repo.gestor.*;
 import com.jaimetorres.service.contact.impl.CRUDContactImpl;
@@ -67,6 +68,12 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 		return repo.save(gestion);		
 	}
 
+	@Override
+	public void actuaGestionComer(Integer idGestion, DetalleGestion idDetalle ) {
+		repo.actualizarComercial(idGestion, idDetalle.getIdDetalleGestion());
+		
+	}
+	
 
 	@Override
 	public void actualizarGestion(Integer id, Gestion gestion) {
@@ -96,6 +103,8 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 		    parametrosDTO.setIdCliente((Integer) result.get("idCliente"));
 		    return parametrosDTO;
 		}
+
+
 	
 	
 	}

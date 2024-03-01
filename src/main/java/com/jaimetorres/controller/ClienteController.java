@@ -121,7 +121,7 @@ public class ClienteController {
 		@PostMapping("/buscarAsterisk")
 		public ResponseEntity<Cliente> buscarIdAsterisk(@RequestBody ParametrosDTO filtro) throws Exception{
 			LlamadaEntrante obj = serviceLlama.buscarIdAsterisk(filtro);
-			Cliente cli = service.buscarIdAsterisk(obj.getTipo_documento(), obj.getNumero_documento());
+			Cliente cli = service.buscarIdAsterisk(obj.getTipoDocumento().getId(), obj.getNumero_documento());
 			return new ResponseEntity<Cliente>(cli, HttpStatus.OK);
 		}
 		

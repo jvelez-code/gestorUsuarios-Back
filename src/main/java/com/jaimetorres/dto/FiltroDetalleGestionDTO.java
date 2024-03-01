@@ -1,17 +1,9 @@
 package com.jaimetorres.dto;
 
-import java.util.Date;
-
-import javax.annotation.sql.DataSourceDefinition;
-
-import com.jaimetorres.model.gestor.Campana;
-import com.jaimetorres.model.gestor.Cliente;
-import com.jaimetorres.model.gestor.Gestion;
-
 
 public class FiltroDetalleGestionDTO {
-	
-	
+
+
 	private String fecha;
 	private String usuario;
 	private String campana;
@@ -19,9 +11,25 @@ public class FiltroDetalleGestionDTO {
 	private String subtipo;
 	private String observacion;
 	private String numero;
-	
+	private Integer idGestion;
+	private Integer idAgente;
+	private Integer idEstadoGestion;
+	private String usuarioAct;
+	private String ipAct;
+	private String extension;
+
+
+	public FiltroDetalleGestionDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
 	public FiltroDetalleGestionDTO(String fecha, String usuario, String campana, String tipo, String subtipo,
-			String observacion, String numero) {
+			String observacion, String numero, Integer idGestion, Integer idAgente, Integer idEstadoGestion,
+			String usuarioAct, String ipAct, String extension) {
 		super();
 		this.fecha = fecha;
 		this.usuario = usuario;
@@ -30,11 +38,17 @@ public class FiltroDetalleGestionDTO {
 		this.subtipo = subtipo;
 		this.observacion = observacion;
 		this.numero = numero;
+		this.idGestion = idGestion;
+		this.idAgente = idAgente;
+		this.idEstadoGestion = idEstadoGestion;
+		this.usuarioAct = usuarioAct;
+		this.ipAct = ipAct;
+		this.extension = extension;
 	}
-	public FiltroDetalleGestionDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+
+
+
+
 	public String getFecha() {
 		return fecha;
 	}
@@ -77,10 +91,94 @@ public class FiltroDetalleGestionDTO {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-	
-	
+
+
+
+
+	public Integer getIdGestion() {
+		return idGestion;
+	}
+
+
+
+
+	public void setIdGestion(Integer idGestion) {
+		this.idGestion = idGestion;
+	}
+
+
+
+
+	public Integer getIdAgente() {
+		return idAgente;
+	}
+
+
+
+
+	public void setIdAgente(Integer idAgente) {
+		this.idAgente = idAgente;
+	}
+
+
+
+
+	public Integer getIdEstadoGestion() {
+		return idEstadoGestion;
+	}
+
+
+
+
+	public void setIdEstadoGestion(Integer idEstadoGestion) {
+		this.idEstadoGestion = idEstadoGestion;
+	}
+
+
+
+
+	public String getUsuarioAct() {
+		return usuarioAct;
+	}
+
+
+
+
+	public void setUsuarioAct(String usuarioAct) {
+		this.usuarioAct = usuarioAct;
+	}
+
+
+
+
+	public String getIpAct() {
+		return ipAct;
+	}
+
+
+
+
+	public void setIpAct(String ipAct) {
+		this.ipAct = ipAct;
+	}
+
+
+
+
+	public String getExtension() {
+		return extension;
+	}
+
+
+
+
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+
+
 
 }
-	
-	
+
+
 

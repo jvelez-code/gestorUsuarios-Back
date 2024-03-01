@@ -41,8 +41,8 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 		List<LlamadaEntranteDTO> detalle = new ArrayList<>();
 		
 		repo.buscarIdEntrante(filtro.getNroDocumento()).forEach(x -> {
-			LlamadaEntranteDTO m = new LlamadaEntranteDTO(null, null, null, null);
-			m.setId_asterisk(String.valueOf(x[0]));
+			LlamadaEntranteDTO m = new LlamadaEntranteDTO();
+			m.setidAsterisk(String.valueOf(x[0]));
 			m.setNumero_documento(String.valueOf(x[1]));
 			m.setTipo_doc(String.valueOf(x[2]));			
 			detalle.add(m);
@@ -57,7 +57,7 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 		String resultado = repo.validarAsterisk(filtro.getNroDocumento(), filtro.getTipoDoc());
 	    
 	    if (resultado == null) {
-	        // No se encontraron datos
+	        resultado="AGENTLOGOFF";
 	        System.out.println("No se encontraron datos para validar.");
 	    } else {
 	        // Se encontraron datos
@@ -73,9 +73,18 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 		
 		Object[] result = repo.validarTMO(filtro.getNroDocumento());
 		TmoGestionUsuarioDto dto = new TmoGestionUsuarioDto((String) result[0]);
-		return dto;
+		return dto;		
+	}
 
+	@Override
+	public LlamadaEntrante buscarSecreVirt(LlamadaEntranteDTO filtro) {
 		
+		return repo.secretariaVirtual(filtro.getEmpresa());
+	}
+
+	@Override
+	public void actualSecreVirt(LlamadaEntranteDTO filtro) {
+		repo.cambioEstadoSecVirt(filtro.getIdAgente(),filtro.getIdLlamadaEntrante());
 	}
 
 	

@@ -17,4 +17,9 @@ public interface ILlamadaEntranteService extends ICRUDContact<LlamadaEntrante, I
 	String validarAsterisk (ParametrosDTO filtro);
 	TmoGestionUsuarioDto validarTmo (ParametrosDTO filtro);
 
+	//Secretaria virtual
+	LlamadaEntrante buscarSecreVirt(LlamadaEntranteDTO filtro);
+	void actualSecreVirt(LlamadaEntranteDTO filtro);
+	
+
 }

@@ -3,25 +3,38 @@ package com.jaimetorres.dto;
 
 public class LlamadaEntranteDTO {
 	
-	private String id_asterisk;
+	private String idAsterisk;
 	private String numero_documento;
 	private String tipo_doc;
 	private String tmoUsuario;
-	
-	public LlamadaEntranteDTO(String id_asterisk, String numero_documento, String tipo_doc, String tmoUsuario) {
+	private String empresa;
+	private Integer idLlamadaEntrante;
+	private Integer idAgente;
+
+	public LlamadaEntranteDTO() {
 		super();
-		this.id_asterisk = id_asterisk;
+		// TODO Auto-generated constructor stub
+	}	
+
+	public LlamadaEntranteDTO(String idAsterisk, String numero_documento, String tipo_doc, String tmoUsuario,
+			String empresa, Integer idLlamadaEntrante, Integer idAgente) {
+		super();
+		this.idAsterisk = idAsterisk;
 		this.numero_documento = numero_documento;
 		this.tipo_doc = tipo_doc;
 		this.tmoUsuario = tmoUsuario;
+		this.empresa = empresa;
+		this.idLlamadaEntrante = idLlamadaEntrante;
+		this.idAgente = idAgente;
 	}
 
-	public String getId_asterisk() {
-		return id_asterisk;
+
+	public String getidAsterisk() {
+		return idAsterisk;
 	}
 
-	public void setId_asterisk(String id_asterisk) {
-		this.id_asterisk = id_asterisk;
+	public void setidAsterisk(String idAsterisk) {
+		this.idAsterisk = idAsterisk;
 	}
 
 	public String getNumero_documento() {
@@ -47,6 +60,32 @@ public class LlamadaEntranteDTO {
 	public void setTmoUsuario(String tmoUsuario) {
 		this.tmoUsuario = tmoUsuario;
 	}
+
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
+
+
+	public Integer getIdLlamadaEntrante() {
+		return idLlamadaEntrante;
+	}
+
+	public void setIdLlamadaEntrante(Integer idLlamadaEntrante) {
+		this.idLlamadaEntrante = idLlamadaEntrante;
+	}
+
+	public Integer getIdAgente() {
+		return idAgente;
+	}
 	
-		
-		}
+	public void setIdAgente(Integer idAgente) {
+		this.idAgente = idAgente;
+	}
+	
+	
+	}

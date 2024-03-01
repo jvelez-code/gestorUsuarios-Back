@@ -77,6 +77,7 @@ public class GestionController {
 		@PostMapping("/comercial")
 		public ResponseEntity<Gestion> registrarComercial(@Valid @RequestBody Gestion Gestion) throws Exception{
 			Gestion obj=service.registrarTransaccionalComercial(Gestion);
+			service.actuaGestionComer(obj.getIdGestion(), obj.getListaDetalleGestion().get(0));
 			
 			URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdGestion()).toUri();
 			return new ResponseEntity<Gestion>(obj, HttpStatus.CREATED);

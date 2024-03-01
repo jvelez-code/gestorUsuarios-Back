@@ -41,7 +41,7 @@ public interface IDetalleGestionComercialRepo extends IGenericRepo<DetalleGestio
 			+ "inner join ciclo_de_vida CV on (cv.id_ciclo = DETGESCOM.ciclo_vida ) "
 			+ "WHERE DETGESCOM.fecha_gestion BETWEEN :fechaInicial AND :fechaFinal  "
 			+ "AND DETGESCOM.id_agente = :idUsuario  "
-			+ "ORDER BY GES.fecha_gestion", nativeQuery = true)
+			+ "ORDER BY GES.fecha_gestion DESC ", nativeQuery = true)
 		List<Object[]> buscarGC(@Param("fechaInicial") Date fechaInicial, @Param("fechaFinal") Date fechaFinal,@Param("idUsuario") Integer idUsuario);
 		
 		@Query("FROM DetalleGestionComercial dc JOIN dc.usuario u WHERE dc.fechaGestion BETWEEN :fechaInicial AND :fechaFinal")

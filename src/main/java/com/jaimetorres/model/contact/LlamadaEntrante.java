@@ -29,8 +29,9 @@ public class LlamadaEntrante implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)	
 	private Date fecha_hora_asterisk;
 	
-	@Column(name = "tipo_documento", nullable = false)
-	private Integer tipo_documento;
+	@ManyToOne
+	@JoinColumn(name = "tipo_documento", referencedColumnName ="id")
+	private tipoDocumento tipoDocumento;
 	
 	@Column(name = "numero_documento", nullable = false)
 	private String numero_documento;
@@ -57,7 +58,7 @@ public class LlamadaEntrante implements Serializable {
 	private Integer numero_de_intentos_fallidos;
 	
 	@Column(name = "id_agente", nullable = false)
-	private Integer id_agente;
+	private Integer idAgente;
 	
 	@Column(name = "fecha_devolucion", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)	
@@ -81,18 +82,21 @@ public class LlamadaEntrante implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)	
 	private Date intento3;
 
+	
+	
+	
+
 	public LlamadaEntrante(Integer idLlamadaEntrante, String idExtension, String ruta_entrante, Date fecha_hora,
-			Date fecha_hora_asterisk, Integer tipo_documento, String numero_documento, Integer tipo_cliente,
-			Integer clase_cliente, String numero_origen, boolean desea_devolucion, String numero_devolucion,
-			Integer id_detalle_gestion, Integer numero_de_intentos_fallidos, Integer id_agente, Date fecha_devolucion,
-			Integer opcion_entrante, String empresa, Date intento1, Date intento2, Date intento3) {
+			Date fecha_hora_asterisk, String numero_documento, Integer tipo_cliente, Integer clase_cliente,
+			String numero_origen, boolean desea_devolucion, String numero_devolucion, Integer id_detalle_gestion,
+			Integer numero_de_intentos_fallidos, Integer idAgente, Date fecha_devolucion, Integer opcion_entrante,
+			String empresa, Date intento1, Date intento2, Date intento3) {
 		super();
 		this.idLlamadaEntrante = idLlamadaEntrante;
 		this.idExtension = idExtension;
 		this.ruta_entrante = ruta_entrante;
 		this.fecha_hora = fecha_hora;
 		this.fecha_hora_asterisk = fecha_hora_asterisk;
-		this.tipo_documento = tipo_documento;
 		this.numero_documento = numero_documento;
 		this.tipo_cliente = tipo_cliente;
 		this.clase_cliente = clase_cliente;
@@ -101,7 +105,7 @@ public class LlamadaEntrante implements Serializable {
 		this.numero_devolucion = numero_devolucion;
 		this.id_detalle_gestion = id_detalle_gestion;
 		this.numero_de_intentos_fallidos = numero_de_intentos_fallidos;
-		this.id_agente = id_agente;
+		this.idAgente = idAgente;
 		this.fecha_devolucion = fecha_devolucion;
 		this.opcion_entrante = opcion_entrante;
 		this.empresa = empresa;
@@ -155,12 +159,21 @@ public class LlamadaEntrante implements Serializable {
 		this.fecha_hora_asterisk = fecha_hora_asterisk;
 	}
 
-	public Integer getTipo_documento() {
-		return tipo_documento;
+	
+	public tipoDocumento getTipoDocumento() {
+		return tipoDocumento;
 	}
 
-	public void setTipo_documento(Integer tipo_documento) {
-		this.tipo_documento = tipo_documento;
+	public void setTipoDocumento(tipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public Integer getIdAgente() {
+		return idAgente;
+	}
+
+	public void setIdAgente(Integer idAgente) {
+		this.idAgente = idAgente;
 	}
 
 	public String getNumero_documento() {
@@ -228,11 +241,11 @@ public class LlamadaEntrante implements Serializable {
 	}
 
 	public Integer getId_agente() {
-		return id_agente;
+		return idAgente;
 	}
 
 	public void setId_agente(Integer id_agente) {
-		this.id_agente = id_agente;
+		this.idAgente = id_agente;
 	}
 
 	public Date getFecha_devolucion() {
