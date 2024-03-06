@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuarios {
@@ -31,7 +33,8 @@ public class Usuarios {
 	private boolean enabled;
 	
 	@Column(name = "fecha_cambio")
-	@Temporal(TemporalType.TIMESTAMP)	
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/New_York")
 	private Date fechaCambio;
 
 	@Column(name = "clave", nullable = false)
@@ -41,7 +44,8 @@ public class Usuarios {
 	private String email;
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario"), inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "idRol"))
+	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario"), 
+	inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "idRol"))
 	private List<Rol> roles;
 	
 	@Column(name = "nombre", nullable = false, unique = true)
@@ -53,10 +57,12 @@ public class Usuarios {
 	
 	 @Column(nullable = false)
 	 @Temporal(TemporalType.TIMESTAMP)
+	 @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/New_York")
 	 private Date fechaActualizacion;
 	 
 	 @Column(nullable = false)
 	 @Temporal(TemporalType.TIMESTAMP)
+	 @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/New_York")
 	 private Date fechaCreacion;
 
 	

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.repo.gestor.IGenericRepo;
 import com.jaimetorres.service.gestor.ICRUD;
 
@@ -21,7 +22,7 @@ protected abstract IGenericRepo<T, ID> getRepo();
 	public T modificar(T obj) throws Exception {
 		return getRepo().save(obj);
 	}
-
+	
 	@Override
 	public List<T> listar() throws Exception {
 		return getRepo().findAll();
@@ -36,5 +37,6 @@ protected abstract IGenericRepo<T, ID> getRepo();
 	public void eliminar(ID id) throws Exception {
 		getRepo().deleteById(id);
 	}
-
+	
+	
 	}

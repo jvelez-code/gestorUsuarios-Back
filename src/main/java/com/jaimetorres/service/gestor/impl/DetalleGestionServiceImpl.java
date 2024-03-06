@@ -77,15 +77,11 @@ public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer>
 	}
 
 	@Override
-	public List<tmoGestionDto> tmoGestion(ParametrosDTO filtro) {
-		return repo.tmoGestion(filtro.getLoginAgente());
-	}
-
-	
-	
+	public void guardarSaliente(DetalleGestion filtro) {
+		repo.guardarSaliente(filtro.getUsuario().getIdUsuario(), filtro.getEstadoGestion().getIdEstadoGestion(), filtro.getObservacion(), 
+							 filtro.getUsuarioAct());
 		
-	
-
+	}
 
 	
 }

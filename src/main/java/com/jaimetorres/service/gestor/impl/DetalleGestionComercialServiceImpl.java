@@ -21,6 +21,7 @@ import com.jaimetorres.dto.tmoGestionDto;
 import com.jaimetorres.model.gestor.DetalleGestionComercial;
 import com.jaimetorres.model.gestor.Gestion;
 import com.jaimetorres.model.gestor.Menu;
+import com.jaimetorres.model.gestor.Usuario;
 import com.jaimetorres.repo.gestor.*;
 import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 import com.jaimetorres.service.gestor.IDetalleGestionComercialService;
@@ -40,7 +41,10 @@ public class DetalleGestionComercialServiceImpl extends CRUDImpl<DetalleGestionC
 	public List<GestionComercialDto> buscarGC(ParametrosDTO filtro) {
 		
 		List<GestionComercialDto> detalle = new ArrayList<>();
-		repo.buscarGC(filtro.getFechaInicial(), filtro.getFechaFinal()).forEach(x -> {
+		System.out.println(filtro.getIdUsuario());
+		System.out.println(filtro.getFechaFinal());
+		System.out.println(filtro.getFechaInicial());
+		repo.buscarGC(filtro.getFechaInicial(), filtro.getFechaFinal(), filtro.getIdUsuario()).forEach(x -> {
 			GestionComercialDto m = new GestionComercialDto();
 			m.setFechaGestionCargue(String.valueOf(x[0]));
 			m.setTipoDocumentoCliente(String.valueOf(x[1]));
@@ -69,6 +73,11 @@ public class DetalleGestionComercialServiceImpl extends CRUDImpl<DetalleGestionC
 			detalle.add(m);
 		});
 		return detalle;
+	}
+
+	@Override
+	public List<DetalleGestionComercial> buscarUsuarios(ParametrosDTO filtro) {
+		return repo.buscarUsuarios(filtro.getFechaInicial(), filtro.getFechaFinal());
 	}
 
 	

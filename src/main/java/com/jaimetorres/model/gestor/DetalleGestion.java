@@ -20,7 +20,7 @@ public class DetalleGestion implements Serializable {
 	private Integer idDetalleGestion;
 	
 	@JsonIgnore
-	@ManyToOne()
+	@OneToOne()
 	@JoinColumn(name = "id_gestion", nullable = false, foreignKey = @ForeignKey(name = "fk_detallegestion_gestion") )
 	private Gestion gestion;
 

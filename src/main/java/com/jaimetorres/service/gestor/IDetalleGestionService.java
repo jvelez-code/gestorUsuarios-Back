@@ -17,6 +17,8 @@ public interface IDetalleGestionService extends ICRUD<DetalleGestion , Integer >
 	List<Gestion> buscarHisto(ParametrosDTO filtro);
 	List<FiltroDetalleGestionDTO> buscarM(ParametrosDTO filtro);
 	List<CantidadGestionDto> cantidadGestion(ParametrosDTO filtro);
-	List<tmoGestionDto> tmoGestion(ParametrosDTO filtro);
+	//GESTION SALIENTE
+	void guardarSaliente(DetalleGestion filtro);
+	
 }
 

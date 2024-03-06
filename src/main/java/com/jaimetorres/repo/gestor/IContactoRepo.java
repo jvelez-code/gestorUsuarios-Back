@@ -21,6 +21,12 @@ public interface IContactoRepo extends IGenericRepo<Contacto, Integer> {
 	@Query(" FROM Contacto c WHERE c.idContacto= :idContactoMax ")
 	Contacto buscar(@Param("idContactoMax") Integer idContactoMax );
 	
+	//Saliente
+	@Query(" FROM Contacto c WHERE c.gestion.idGestion= :idGestion ")
+	Contacto buscarIdCont(@Param("idGestion") Integer idGestion );
+	
+	
+	
 	
 //	
 //	

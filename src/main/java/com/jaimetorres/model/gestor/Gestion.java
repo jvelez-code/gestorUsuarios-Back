@@ -72,6 +72,7 @@ public class Gestion implements Serializable {
 	@OneToMany(mappedBy = "gestion", cascade = { CascadeType.ALL }, orphanRemoval = true)	
 	private List<DetalleGestionComercial> listaDetalleGestionComercial;
 	
+	
 	@OneToMany(mappedBy = "gestion")	
 	private List<DataIAGestion> listaDataIAGestion;
 	
