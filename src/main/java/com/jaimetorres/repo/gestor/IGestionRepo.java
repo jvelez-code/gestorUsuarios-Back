@@ -31,7 +31,7 @@ public interface IGestionRepo extends IGenericRepo<Gestion, Integer> {
     void actualizarComercial(@Param("idGestion") Integer idGestion, @Param("idDetalleGestion") Integer idDetalleGestion);
 	
 	//Gestion Saliente
-	@Query(value="SELECT id_gestion FROM gestion g WHERE id_campana= :campanaSal AND id_estado_gestion ='7' ORDER BY id_gestion LIMIT 1", nativeQuery = true)
+	@Query(value="SELECT id_gestion FROM gestion g WHERE id_campana= :campanaSal AND id_estado_gestion ='7' LIMIT 1", nativeQuery = true)
     Integer buscarIdGestion(@Param("campanaSal") Integer campanaSal);
 	
 	@Transactional
@@ -41,9 +41,10 @@ public interface IGestionRepo extends IGenericRepo<Gestion, Integer> {
 	
 	@Transactional
 	@Modifying	
-	@Query(value="UPDATE  gestion SET id_estado_gestion ='983', id_agente = :idUsuario, fecha_gestion =now(), usuario_act ='HELPVOZ13', "
-			+ "ip_act ='127.0.1.1' WHERE id_gestion = :idGestion ", nativeQuery = true)
-	void actualizarGestion(@Param("idGestion") Integer idGestion, @Param("idUsuario") Integer idUsuario);
+	@Query(value="UPDATE  gestion SET id_estado_gestion = :idEstadoGestion, id_agente = :idUsuario, fecha_gestion =now(), "
+			+ "usuario_act = :usuarioact , ip_act = :ipAct WHERE id_gestion = :idGestion ", nativeQuery = true)
+	void actualizarGestion(@Param("idEstadoGestion") Integer idEstadoGestion, @Param("idGestion") Integer idGestion, 
+			@Param("idUsuario") Integer idUsuario, @Param("usuarioact") String usuarioact, @Param("ipAct") String ipAct);
 	
 
 	@Query(value="SELECT id_gestion AS idGestion, id_cliente AS idCliente FROM gestion WHERE id_gestion= :idGestion", nativeQuery = true)

@@ -1,5 +1,6 @@
 package com.jaimetorres.service.gestor.impl;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.model.gestor.TipoDocumento;
 import com.jaimetorres.model.gestor.Usuarios;
 import com.jaimetorres.repo.gestor.IGenericRepo;
@@ -47,6 +49,12 @@ public class UsuariosServiceImpl extends CRUDImpl<Usuarios, Integer> implements 
 	@Override
 	protected IGenericRepo<Usuarios, Integer> getRepo() {
 		return repo;
+	}
+
+	@Override
+	public void ultimoLoginS(ParametrosDTO filtro) {
+		repo.ultimoLoginR(filtro.getLoginAgente(),filtro.getUltimoLogin());
+		
 	}
 
 

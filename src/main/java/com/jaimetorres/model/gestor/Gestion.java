@@ -61,21 +61,21 @@ public class Gestion implements Serializable {
 	@OneToMany(mappedBy = "gestion", cascade = { CascadeType.ALL }, orphanRemoval = true)	
 	private List<Contacto> listaContacto;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	//@OneToMany(mappedBy = "gestion")
-	@OrderBy("nroDocumento")	
-	private List<Empleado> listaEmpleado;
+//	@OneToMany(fetch = FetchType.EAGER)
+//	//@OneToMany(mappedBy = "gestion")
+//	@OrderBy("nroDocumento")	
+//	private List<Empleado> listaEmpleado;
 	
 	@OneToMany(mappedBy = "gestion", cascade = { CascadeType.ALL }, orphanRemoval = true )	
 	private List<DetalleGestion> listaDetalleGestion;
 	
 	@OneToMany(mappedBy = "gestion", cascade = { CascadeType.ALL }, orphanRemoval = true)	
 	private List<DetalleGestionComercial> listaDetalleGestionComercial;
-	
-	
-	@OneToMany(mappedBy = "gestion")	
-	private List<DataIAGestion> listaDataIAGestion;
-	
+//	
+//	
+//	@OneToMany(mappedBy = "gestion")	
+//	private List<DataIAGestion> listaDataIAGestion;
+//	
 	@ManyToOne
 	@JoinColumn(name = "id_archivo_exclusion")
 	private Archivo archivoExclusion;
@@ -117,10 +117,10 @@ public class Gestion implements Serializable {
 		this.usuarioAct = usuarioAct;
 		this.ipAct = ipAct;
 		this.listaContacto = listaContacto;
-		this.listaEmpleado = listaEmpleado;
+//		this.listaEmpleado = listaEmpleado;
 		this.listaDetalleGestion = listaDetalleGestion;
 		this.listaDetalleGestionComercial = listaDetalleGestionComercial;
-		this.listaDataIAGestion = listaDataIAGestion;
+//		this.listaDataIAGestion = listaDataIAGestion;
 		this.archivoExclusion = archivoExclusion;
 		this.fechaAgenda = fechaAgenda;
 		this.idGestionPadre = idGestionPadre;
@@ -231,49 +231,49 @@ public class Gestion implements Serializable {
 		return listaContacto;
 	}
 
-	public void setListaContacto(List<Contacto> listaContacto) {
-		this.listaContacto = listaContacto;
-	}
-
-	public List<Empleado> getListaEmpleado() {
-		return listaEmpleado;
-	}
-
-	public void setListaEmpleado(List<Empleado> listaEmpleado) {
-		this.listaEmpleado = listaEmpleado;
-	}
-
+//	public void setListaContacto(List<Contacto> listaContacto) {
+//		this.listaContacto = listaContacto;
+//	}
+//
+//	public List<Empleado> getListaEmpleado() {
+//		return listaEmpleado;
+//	}
+//
+//	public void setListaEmpleado(List<Empleado> listaEmpleado) {
+//		this.listaEmpleado = listaEmpleado;
+//	}
+//
 	public List<DetalleGestion> getListaDetalleGestion() {
 		return listaDetalleGestion;
 	}
-
-	public void setListaDetalleGestion(List<DetalleGestion> listaDetalleGestion) {
-		this.listaDetalleGestion = listaDetalleGestion;
-	}
-
-	
-
+//
+//	public void setListaDetalleGestion(List<DetalleGestion> listaDetalleGestion) {
+//		this.listaDetalleGestion = listaDetalleGestion;
+//	}
+//
+//	
+//
 	public List<DetalleGestionComercial> getListaDetalleGestionComercial() {
 		return listaDetalleGestionComercial;
 	}
-
-
-
-
-	public void setListaDetalleGestionComercial(List<DetalleGestionComercial> listaDetalleGestionComercial) {
-		this.listaDetalleGestionComercial = listaDetalleGestionComercial;
-	}
-
-
-
-
-	public List<DataIAGestion> getListaDataIAGestion() {
-		return listaDataIAGestion;
-	}
-
-	public void setListaDataIAGestion(List<DataIAGestion> listaDataIAGestion) {
-		this.listaDataIAGestion = listaDataIAGestion;
-	}
+//
+//
+//
+//
+//	public void setListaDetalleGestionComercial(List<DetalleGestionComercial> listaDetalleGestionComercial) {
+//		this.listaDetalleGestionComercial = listaDetalleGestionComercial;
+//	}
+//
+//
+//
+//
+//	public List<DataIAGestion> getListaDataIAGestion() {
+//		return listaDataIAGestion;
+//	}
+//
+//	public void setListaDataIAGestion(List<DataIAGestion> listaDataIAGestion) {
+//		this.listaDataIAGestion = listaDataIAGestion;
+//	}
 
 	public Archivo getArchivoExclusion() {
 		return archivoExclusion;

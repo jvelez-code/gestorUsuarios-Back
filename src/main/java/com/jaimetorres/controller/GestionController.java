@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
@@ -113,8 +114,12 @@ public class GestionController {
 		@PostMapping("/saliente")
 		public ResponseEntity<ParametrosDTO> registrarSaliente(@RequestBody ParametrosDTO filtro) throws Exception{
 			Integer idges=service.gestionSaliente(filtro);
-			service.cambioEstadoGestion(idges);
-			ParametrosDTO obj= service.buscarGestioSaliente(idges);
+			ParametrosDTO obj = new ParametrosDTO();
+			
+			if (idges>0) {
+				service.cambioEstadoGestion(idges);
+				obj= service.buscarGestioSaliente(idges);
+			}
 			
 			URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdGestion()).toUri();
 			return new ResponseEntity<ParametrosDTO>(obj, HttpStatus.CREATED);
@@ -122,7 +127,9 @@ public class GestionController {
 		
 		
 		@PatchMapping("/{id}")
-	    public ResponseEntity<Void> actualizarContacto(@PathVariable Integer id, @Valid @RequestBody Gestion gestion) {
+	    public ResponseEntity<Void> actualizarContacto(HttpServletRequest request,@PathVariable Integer id, @Valid @RequestBody Gestion gestion) {
+			String clientIp = service.getClientIp(request);
+			gestion.setIpAct(clientIp);
 			service.actualizarGestion(id, gestion);
 			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	    }

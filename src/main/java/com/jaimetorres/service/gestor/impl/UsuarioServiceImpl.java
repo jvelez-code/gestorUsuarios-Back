@@ -42,6 +42,12 @@ public class UsuarioServiceImpl extends CRUDImpl<Usuario, Integer> implements IU
 		return repo.buscarUsuarios(filtro.getLoginAgente());
 	}
 
+	@Override
+	public void intentoFallido(ParametrosDTO filtro) {
+		repo.intentos(filtro.getLoginAgente());
+		
+	}
+
 	
 	
 }

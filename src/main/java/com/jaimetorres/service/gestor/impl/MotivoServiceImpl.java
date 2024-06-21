@@ -19,6 +19,8 @@ public class MotivoServiceImpl extends CRUDImpl<Motivo, Integer> implements IMot
 	@Override
 	protected IGenericRepo<Motivo, Integer> getRepo(){
 		return repo;
-	}}
+	}
+	
+}
 
 

@@ -73,6 +73,13 @@ public class UsuariosController {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 	
+	@PostMapping("/ultimoLogin")
+	public ResponseEntity<Void> ultimoLogin(@RequestBody ParametrosDTO filtro) throws Exception {	
+		System.out.println(filtro.getUltimoLogin() +"FECHA");
+		System.out.println(filtro.getLoginAgente() +"LOGIN");
+		service.ultimoLoginS(filtro);		
+		return new ResponseEntity<Void>( HttpStatus.OK);
+	}
 	
 
 }

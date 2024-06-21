@@ -1,5 +1,6 @@
 package com.jaimetorres.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,12 +21,17 @@ public class ParametrosDTO {
 	private Integer idDetalleComer;
 	private Integer cicloVida;
 	private Integer campanaSal;
-	private Integer idGestion;
-	
+	private Integer idGestion;	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date fechaInicial;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date fechaFinal;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime ultimoLogin;
+	//CRM
+	private Integer idCrmDetalle;
+	private Integer idCrmCaso;
+	private Integer idCrmEstado;
 	
 	
 	public ParametrosDTO() {
@@ -189,6 +195,46 @@ public class ParametrosDTO {
 		this.idGestion = idGestion;
 	}
 
-	
-	
+
+	public Integer getIdCrmDetalle() {
+		return idCrmDetalle;
+	}
+
+
+	public void setIdCrmDetalle(Integer idCrmDetalle) {
+		this.idCrmDetalle = idCrmDetalle;
+	}
+
+
+	public Integer getIdCrmCaso() {
+		return idCrmCaso;
+	}
+
+
+	public void setIdCrmCaso(Integer idCrmCaso) {
+		this.idCrmCaso = idCrmCaso;
+	}
+
+
+	public LocalDateTime getUltimoLogin() {
+		return ultimoLogin;
+	}
+
+
+	public void setUltimoLogin(LocalDateTime ultimoLogin) {
+		this.ultimoLogin = ultimoLogin;
+	}
+
+
+	public Integer getIdCrmEstado() {
+		return idCrmEstado;
+	}
+
+
+	public void setIdCrmEstado(Integer idCrmEstado) {
+		this.idCrmEstado = idCrmEstado;
+	}
+
+    
+
 	}

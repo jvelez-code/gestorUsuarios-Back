@@ -11,4 +11,7 @@ public interface IUsuarioService extends ICRUD<Usuario , Integer >{
 	Usuario[] buscar(ParametrosDTO filtro);
 	void cerrarSesion(ParametrosDTO filtro);
 	Usuarios buscarLogin(ParametrosDTO filtro);
+	
+	//INTENTOS FALLIDOS
+	void intentoFallido(ParametrosDTO filtro);
 }

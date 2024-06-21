@@ -27,6 +27,11 @@ public interface IUsuarioRepo extends IGenericRepo<Usuario, Integer> {
 	@Query("FROM Usuarios u  WHERE u.username= :loginAgente")
 	Usuarios buscarUsuarios(@Param("loginAgente") String loginAgente);
 	
+	@Transactional
+	@Modifying
+	@Query(value="UPDATE usuarios SET intentos = intentos + 1 WHERE nombre = :loginAgente ", nativeQuery = true)
+	void intentos(@Param("loginAgente") String loginAgente);
+	
 	
 	
 }

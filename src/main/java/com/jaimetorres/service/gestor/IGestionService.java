@@ -2,6 +2,8 @@ package com.jaimetorres.service.gestor;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.model.gestor.DetalleGestion;
@@ -26,4 +28,6 @@ public interface IGestionService extends ICRUD<Gestion , Integer >{
 	void cambioEstadoGestion(Integer idGestion);
 	ParametrosDTO buscarGestioSaliente(Integer idgestion);
 	void actualizarGestion(Integer id, Gestion gestion);
+	
+	String getClientIp(HttpServletRequest request);
 }

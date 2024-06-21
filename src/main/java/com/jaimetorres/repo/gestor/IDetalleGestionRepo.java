@@ -29,7 +29,7 @@ public interface IDetalleGestionRepo extends IGenericRepo<DetalleGestion, Intege
 	
 	@Query(value="SELECT u.usuario, case when eg.es_efectiva = true then 'efectiva' else 'noEfectiva' end as efectiva,  "
 			+ "count(eg.es_efectiva) as cantidad  "
-			+ "FROM gestion dg , estado_gestion eg, usuario u   "
+			+ "FROM detalle_gestion dg , estado_gestion eg, usuario u   "
 			+ "WHERE dg.id_estado_gestion=eg.id_estado_gestion AND  dg.id_agente=u.id_usuario  "
 			+ "AND  u.usuario= :loginAgente AND date(fecha_gestion)=(select current_date)  "
 			+ "GROUP BY u.usuario, eg.es_efectiva  "
@@ -41,9 +41,10 @@ public interface IDetalleGestionRepo extends IGenericRepo<DetalleGestion, Intege
 	@Transactional
 	@Modifying	
 	@Query(value="INSERT INTO  detalle_gestion (id_gestion, fecha_gestion, observacion, id_agente, id_estado_gestion, usuario_act, ip_act, extension, num_real_marcado) "
-			+ " VALUES ('15411448',now(),:observacion,:idAgente, :idEstadoGestion, :usuarioAct,'127.17.0.1','8907','3504321330')", nativeQuery = true)
-    void guardarSaliente(@Param("idAgente") Integer idAgente, @Param("idEstadoGestion") Integer idEstadoGestion, @Param("observacion") String observacion,
-    		@Param("usuarioAct") String usuarioAct);
+			+ " VALUES (:idGestion, now(), :observacion, :idAgente, :idEstadoGestion, :usuarioAct,'127.17.0.1', :extension, :numeroReal)", nativeQuery = true)
+    void guardarSaliente(@Param("idGestion") Integer idGestion, @Param("idAgente") Integer idAgente,
+    					@Param("idEstadoGestion") Integer idEstadoGestion,@Param("extension") String extension,
+    					@Param("observacion") String observacion, @Param("usuarioAct") String usuarioAct, @Param("numeroReal") String numeroReal);
 	
 	
 

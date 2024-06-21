@@ -100,10 +100,14 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/cerrar")
-	public ResponseEntity<Void> cerrarSesion(@RequestBody ParametrosDTO filtro) throws Exception{
-		
-		service.cerrarSesion(filtro);
-		
+	public ResponseEntity<Void> cerrarSesion(@RequestBody ParametrosDTO filtro) throws Exception {		
+		service.cerrarSesion(filtro);		
+		return new ResponseEntity<Void>( HttpStatus.OK);
+	}
+	
+	@PostMapping("/intento")
+	public ResponseEntity<Void> intentoFallido(@RequestBody ParametrosDTO filtro) throws Exception {		
+		service.intentoFallido(filtro);		
 		return new ResponseEntity<Void>( HttpStatus.OK);
 	}
 

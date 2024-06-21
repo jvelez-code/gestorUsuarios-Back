@@ -1,5 +1,6 @@
 package com.jaimetorres.model.gestor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -65,7 +66,8 @@ public class Usuarios {
 	 @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/New_York")
 	 private Date fechaCreacion;
 
-	
+	 @Column(name = "ultimo_log")
+	 private LocalDateTime ultimoLog;
 
 	public Integer getIdUsuario() {
 		return idUsuario;
@@ -157,8 +159,16 @@ public class Usuarios {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
+
+	public LocalDateTime getUltimoLog() {
+		return ultimoLog;
+	}
+
+	public void setUltimoLog(LocalDateTime ultimoLog) {
+		this.ultimoLog = ultimoLog;
+	}
+
 	
-	
-	
+		
 
 }

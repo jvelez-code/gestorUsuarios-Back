@@ -32,10 +32,10 @@ public interface ILlamadaEntranteRepo extends IGenericContactRepo< LlamadaEntran
 	String LlamadaAsterisk(@Param("nroDocumento") String nroDocumento);
 
 	@Query(value="SELECT event FROM queue_log "
-			+ "WHERE time >= :tipoDoc AND agent = :nroDocumento "
+			+ "WHERE time >= '2024-04-04 01:01:01' AND agent = :nroDocumento "
 			+ "AND  event not in ('ADDMEMBER','REMOVEMEMBER','RINGNOANSWER') "
 			+ "ORDER BY time DESC  LIMIT 1", nativeQuery = true)
-	String validarAsterisk(@Param("tipoDoc") String tipoDoc,@Param("nroDocumento") String nroDocumento);
+	String validarAsterisk(@Param("nroDocumento") String nroDocumento);
 	
 	@Query(value="SELECT 	--c.agent,\n"
 			+ "COALESCE(to_char(justify_interval(SUM(TO_TIMESTAMP(t.time, 'YYYY/MM/DD HH24:MI:SS') - TO_TIMESTAMP(c.time, 'YYYY/MM/DD HH24:MI:SS')) / COUNT(*)), 'HH24:MI:SS'), '00:00:00') AS tmoAgente \n"

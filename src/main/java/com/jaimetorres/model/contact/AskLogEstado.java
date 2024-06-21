@@ -2,12 +2,18 @@ package com.jaimetorres.model.contact;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.jaimetorres.model.gestor.Cliente;
 
 @Entity
 @Table(name = "ask_log_estados")
@@ -28,8 +34,9 @@ public class AskLogEstado {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaHoraFinEstado;
 	
-	@Column(name = "estado", nullable = false)
-	private int estado;
+	@ManyToOne
+	@JoinColumn(name = "estado", referencedColumnName = "id_estado", foreignKey =  @ForeignKey(name = "fk_ask_estado_extension_estado"))
+	private AskEstado askEstado;
 
 	public Integer getIdLogEstado() {
 		return idLogEstado;
@@ -63,13 +70,15 @@ public class AskLogEstado {
 		this.fechaHoraFinEstado = fechaHoraFinEstado;
 	}
 
-	public int getEstado() {
-		return estado;
+	public AskEstado getAskEstado() {
+		return askEstado;
 	}
 
-	public void setEstado(int estado) {
-		this.estado = estado;
+	public void setAskEstado(AskEstado askEstado) {
+		this.askEstado = askEstado;
 	}
+
+	
 	
 	
 

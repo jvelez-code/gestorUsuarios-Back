@@ -54,15 +54,11 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 	@Override
 	public String validarAsterisk(ParametrosDTO filtro) {
 				
-		String resultado = repo.validarAsterisk(filtro.getNroDocumento(), filtro.getTipoDoc());
-	    
+		String resultado = repo.validarAsterisk(filtro.getNroDocumento());
 	    if (resultado == null) {
 	        resultado="AGENTLOGOFF";
 	        System.out.println("No se encontraron datos para validar.");
-	    } else {
-	        // Se encontraron datos
-	        System.out.println("Datos encontrados: " + resultado);
-	    }
+	    } 
 	    
 	    return resultado;
 	}

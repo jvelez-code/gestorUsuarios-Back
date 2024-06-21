@@ -55,7 +55,8 @@ public class LoginController {
 			mail.setSubject("RESTABLECER CONTRASEÑA GESTOR");
 			
 			Map<String, Object> model = new HashMap<>();
-			String url = "http://127.0.0.1:4200/recuperar/" + token.getToken();
+			String url = "https://gestorcoordinador.enlace-apb.com/gestorfront/#/recuperar/" + token.getToken();
+			//String url = "https://10.1.1.159/gestorfront/#/recuperar/" + token.getToken();
 			//String url = "http://10.10.11.198:8082/recuperar/" + token.getToken();
 			model.put("user", token.getUser().getUsername());
 			model.put("resetUrl", url);

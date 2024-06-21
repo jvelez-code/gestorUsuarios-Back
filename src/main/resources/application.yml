@@ -1,23 +1,39 @@
-spring:
-  mail:
-    default-encoding: UTF-8
-    host: mail.jaimetorres.net
-#    username: gestorclientes@jaimetorres.net  
-#    password: G3st0r3*
-    username: jaimev_tec@jaimetorres.net 
-    password: Master12*
-    port: 25
-    properties:
-      mail:
-        ssl:
-          enable: true
-        smtp:
-          auth: true
-          starttls:
-            enable: true       
-            required: true     
-    protocol: smtp
-    test-connection: false
+ spring:
+   mail:
+     default-encoding: UTF-8
+     host: mail.jaimetorres.net
+     port: 25
+     username: gestorclientes@jaimetorres.net  
+     password: G3st0r3*
+     properties:
+       mail:
+         ssl:
+           enable: true
+         smtp:
+           auth: true
+           starttls:
+             enable: true       
+             required: true     
+     protocol: smtp
+     test-connection: false
+
+    
+    
+#  spring:
+#   mail:
+#    default-encoding: UTF-8
+#    host: smtp.gmail.com
+#    port: 587
+#    username: j
+#    password: bwxj fbzs mbdn kwvj
+#    protocol: smtp
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+
     
 #server:
   #ssl:

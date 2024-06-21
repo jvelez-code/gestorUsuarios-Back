@@ -22,7 +22,7 @@ protected abstract IGenericRepo<T, ID> getRepo();
 	public T modificar(T obj) throws Exception {
 		return getRepo().save(obj);
 	}
-	
+		
 	@Override
 	public List<T> listar() throws Exception {
 		return getRepo().findAll();

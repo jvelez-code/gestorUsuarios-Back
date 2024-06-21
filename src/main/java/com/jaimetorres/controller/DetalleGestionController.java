@@ -102,9 +102,9 @@ public class DetalleGestionController {
 		return new ResponseEntity<List<CantidadGestionDto>>(cant, HttpStatus.OK);
 	}
 	
-	@PostMapping("/gestionSaliente")
-	public ResponseEntity <Void> secretariaVirtuales(@RequestBody DetalleGestion filtro) throws Exception{
-		service.guardarSaliente(filtro);
+	@PostMapping("/gestionSaliente/{id}")
+	public ResponseEntity <Void> secretariaVirtuales(@PathVariable("id") Integer id,@RequestBody DetalleGestion filtro) throws Exception {
+		service.guardarSaliente(filtro, id);
 		return new ResponseEntity <Void> (HttpStatus.OK);
 	}
 	

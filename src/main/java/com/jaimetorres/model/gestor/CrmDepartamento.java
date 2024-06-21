@@ -1,0 +1,43 @@
+package com.jaimetorres.model.gestor;
+
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "crm_departamento")
+public class CrmDepartamento implements Serializable {
+	
+	private static final long serialVersionUID = 9059483652758359255L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id_departamento")
+	private Integer IdDepartamento;	
+
+    @Column(name = "nombre_departamento", length = 32, nullable = false)
+	private String nombreDepartamento;
+
+	public Integer getIdDepartamento() {
+		return IdDepartamento;
+	}
+
+	public void setIdDepartamento(Integer idDepartamento) {
+		IdDepartamento = idDepartamento;
+	}
+
+	public String getNombreDepartamento() {
+		return nombreDepartamento;
+	}
+
+	public void setNombreDepartamento(String nombreDepartamento) {
+		this.nombreDepartamento = nombreDepartamento;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+      
+    
+	}

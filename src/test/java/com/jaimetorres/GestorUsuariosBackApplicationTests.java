@@ -25,14 +25,14 @@ class GestorUsuariosBackApplicationTests {
 	void verificarClave() {
 		Date fechacambio= new Date (12345678800000L);
 		
-		
-		Usuarios us = new Usuarios();
-		us.setUsername("HELPVOS");
-		us.setPassword(bcrypt.encode("123"));				
-		us.setEnabled(true);
-		us.setEmail("jaimev_teS@jaimetorres.net");
-		us.setFechaCambio(fechacambio);
-		
+//		
+//		Usuarios us = new Usuarios();
+//		us.setUsername("HELPVOS");
+//		us.setPassword(bcrypt.encode("123"));				
+//		us.setEnabled(true);
+//		us.setEmail("jaimev_teS@jaimetorres.net");
+//		us.setFechaCambio(fechacambio);
+//		
 		//Usuarios retorno = repo.save(us);
 		
 		//assertTrue(retorno.getPassword().equalsIgnoreCase(us.getPassword()));		
