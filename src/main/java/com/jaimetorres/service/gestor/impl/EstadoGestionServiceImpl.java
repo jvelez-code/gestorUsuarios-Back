@@ -53,6 +53,11 @@ public class EstadoGestionServiceImpl extends CRUDImpl<EstadoGestion, Integer> i
 		return gestionComercial;
 	}
 
+	@Override
+	public List<EstadoGestion> buscarSecretaria(ParametrosDTO filtro) {
+		return repo.buscarSecretaria(filtro.getIdEmpresa());
+	}
+
 
 
 

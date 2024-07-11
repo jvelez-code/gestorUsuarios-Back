@@ -15,17 +15,17 @@ public class CrmNivel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id_nivel")
-	private Integer IdNivel;	
+	private Integer idNivel;	
 
     @Column(name = "nombre_nivel", length = 32, nullable = false)
 	private String nombreNivel;
 
 	public Integer getIdNivel() {
-		return IdNivel;
+		return idNivel;
 	}
 
 	public void setIdNivel(Integer idNivel) {
-		IdNivel = idNivel;
+		this.idNivel = idNivel;
 	}
 
 	public String getNombreNivel() {
@@ -36,9 +36,7 @@ public class CrmNivel implements Serializable {
 		this.nombreNivel = nombreNivel;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 
     
 

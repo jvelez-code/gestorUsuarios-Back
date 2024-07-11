@@ -13,7 +13,7 @@ import com.jaimetorres.model.gestor.CrmDetalle;
 public interface ICrmDetalleRepo extends IGenericRepo < CrmDetalle, Integer> {
 	
 
-	@Query("FROM CrmDetalle d JOIN d.crmCasos c WHERE c.idCaso= :IdCrmCaso ")
+	@Query("FROM CrmDetalle d JOIN d.crmCasos c WHERE c.idCaso= :IdCrmCaso ORDER BY d.fechaDetalle DESC")
 	List<CrmDetalle> buscarDetalleR(@Param("IdCrmCaso") Integer IdCrmCaso );
 	
 }

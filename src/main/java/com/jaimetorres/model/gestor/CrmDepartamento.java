@@ -13,18 +13,18 @@ public class CrmDepartamento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id_departamento")
-	private Integer IdDepartamento;	
+	@Column(name = "id_departamento")
+	private Integer idDepartamento;	
 
     @Column(name = "nombre_departamento", length = 32, nullable = false)
 	private String nombreDepartamento;
 
 	public Integer getIdDepartamento() {
-		return IdDepartamento;
+		return idDepartamento;
 	}
 
 	public void setIdDepartamento(Integer idDepartamento) {
-		IdDepartamento = idDepartamento;
+		this.idDepartamento = idDepartamento;
 	}
 
 	public String getNombreDepartamento() {
@@ -35,9 +35,8 @@ public class CrmDepartamento implements Serializable {
 		this.nombreDepartamento = nombreDepartamento;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+
+
       
     
 	}

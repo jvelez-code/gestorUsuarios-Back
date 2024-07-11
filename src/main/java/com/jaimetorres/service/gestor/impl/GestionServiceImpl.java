@@ -92,7 +92,7 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 
 
 	@Override
-	public Integer gestionSaliente(ParametrosDTO filtro) {
+	public synchronized Integer gestionSaliente(ParametrosDTO filtro) {
 		//return repo.buscarIdGestion(filtro.getCampanaSal());
 		Integer idGestion = repo.buscarIdGestion(filtro.getCampanaSal());
 	    if (idGestion == null) {

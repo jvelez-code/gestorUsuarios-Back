@@ -73,8 +73,7 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 	}
 
 	@Override
-	public LlamadaEntrante buscarSecreVirt(LlamadaEntranteDTO filtro) {
-		
+	public LlamadaEntrante buscarSecreVirt(LlamadaEntranteDTO filtro) {		
 		return repo.secretariaVirtual(filtro.getEmpresa());
 	}
 

@@ -59,8 +59,8 @@ public interface ILlamadaEntranteRepo extends IGenericContactRepo< LlamadaEntran
 	
 	@Query(value="SELECT * FROM llamada_entrante "
 			+ " WHERE DATE(fecha_hora_asterisk) BETWEEN  current_date - integer '8' AND current_date "
-			+ " AND empresa = :empresa and desea_devolucion  IS TRUE  "
-			+ "	AND id_agente IS NULL AND numero_de_intentos_fallidos < 3  "
+			+ " AND empresa = :empresa and id_agente IS NULL "
+			+ "	AND desea_devolucion= TRUE AND numero_de_intentos_fallidos < 3  "
 			+ "	AND id_detalle_gestion IS NULL "
 			+ "	ORDER BY fecha_hora_asterisk  DESC LIMIT 1", nativeQuery = true)
 	LlamadaEntrante secretariaVirtual(@Param("empresa") String empresa);

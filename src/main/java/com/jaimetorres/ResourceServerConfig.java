@@ -44,6 +44,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
                 .antMatchers("/contactos/**" ).authenticated()
                 .antMatchers("/detallegestiones/**" ).authenticated()
                 .antMatchers("/estadoGestiones/**" ).authenticated()
+                .antMatchers("/crmCasos/**" ).authenticated()
                 .antMatchers("/usuarios/**" ).permitAll()
                 .antMatchers("/productividad/**" ).authenticated()
                 .antMatchers("/tokens/anular/**" ).permitAll();

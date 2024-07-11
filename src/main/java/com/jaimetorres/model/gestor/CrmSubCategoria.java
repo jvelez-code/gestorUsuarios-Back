@@ -20,22 +20,22 @@ public class CrmSubCategoria implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id_Subcategoria")
-	private Integer IdSubcategoria;	
+	@Column(name = "id_Subcategoria")
+	private Integer idSubcategoria;	
 
     @Column(name = "nombre_subcategoria", length = 32, nullable = false)
 	private String nombreSubCategoria;
 	
     @ManyToOne
-    @JoinColumn(name = "Id_categoria", referencedColumnName = "Id_categoria", foreignKey = @ForeignKey(name = "crm_subcategoria_categoria_fkey"))
-   	private CrmCategoria IdCategoria;
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria", foreignKey = @ForeignKey(name = "crm_subcategoria_categoria_fkey"))
+   	private CrmCategoria idCategoria;
 
 	public Integer getIdSubcategoria() {
-		return IdSubcategoria;
+		return idSubcategoria;
 	}
 
 	public void setIdSubcategoria(Integer idSubcategoria) {
-		IdSubcategoria = idSubcategoria;
+		this.idSubcategoria = idSubcategoria;
 	}
 
 	public String getNombreSubCategoria() {
@@ -47,15 +47,11 @@ public class CrmSubCategoria implements Serializable {
 	}
 
 	public CrmCategoria getIdCategoria() {
-		return IdCategoria;
+		return idCategoria;
 	}
 
 	public void setIdCategoria(CrmCategoria idCategoria) {
-		IdCategoria = idCategoria;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+		this.idCategoria = idCategoria;
 	}
     
     

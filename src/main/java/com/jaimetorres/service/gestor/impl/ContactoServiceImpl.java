@@ -43,9 +43,7 @@ public class ContactoServiceImpl extends CRUDImpl<Contacto, Integer> implements 
 	public Contacto actualizarContacto(Integer id, Contacto contacto) {
 		    Contacto contac = repo.findById(id).orElse(null);
         if (contac != null) {
-        	System.out.println(id);
-        	System.out.println(contac.getIdContacto());
-        	System.out.println(contac.getNombre());
+        	
             // Actualizar el campo específico del contacto        	
         	contac.setNombre(contacto.getNombre());
         	contac.setCorreoElectronico(contacto.getCorreoElectronico());

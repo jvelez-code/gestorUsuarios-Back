@@ -88,11 +88,11 @@ public class DetalleGestionController {
 		return new ResponseEntity<List<Gestion>>(obj, HttpStatus.OK);
 	}
 
-	@PostMapping("/buscarCliente")
-	public ResponseEntity<List<FiltroDetalleGestionDTO>> buscarClienteId(@RequestBody ParametrosDTO filtro) throws Exception{
-		List<FiltroDetalleGestionDTO> menus = new ArrayList<>();
-		menus = service.buscarM(filtro);
-		return new ResponseEntity<List<FiltroDetalleGestionDTO>>(menus, HttpStatus.OK);
+	@PostMapping("/detalleHistorico")
+	public ResponseEntity<List<FiltroDetalleGestionDTO>> detalleHistorico(@RequestBody ParametrosDTO filtro) throws Exception{
+		List<FiltroDetalleGestionDTO> detalle = new ArrayList<>();
+		detalle = service.buscarM(filtro);
+		return new ResponseEntity<List<FiltroDetalleGestionDTO>>(detalle, HttpStatus.OK);
 	}
 
 	@PostMapping("/catidadGestion")

@@ -27,8 +27,6 @@ public class FidelizacionComercialServiceImpl extends CRUDImpl<FidelizacionComer
 
 	@Override
 	public List<FidelizacionComercial> buscarFidelizacionS(ParametrosDTO filtro) {
-		System.out.println(filtro.getFechaInicial());
-		
 		return repo.buscarFidelizacionR(filtro.getFechaInicial(),filtro.getFechaFinal());
 	}
 

@@ -1,7 +1,7 @@
 package com.jaimetorres.model.gestor;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.*;
@@ -24,14 +24,12 @@ public class CrmCasos implements Serializable {
     @Column(name = "nro_realmarcado", length = 32, nullable = false)
 	private String nroRealmarcado;
     
-    @Column(name = "fecha_gestion")
-	@Temporal(TemporalType.TIMESTAMP)	
-	private Date fechaGestion;
+    @Column(name = "fecha_gestion")	
+	private LocalDateTime fechaGestion;
         
     @Column(name = "fecha_vencimiento")
- 	@Temporal(TemporalType.TIMESTAMP)	
- 	private Date fechaVencimiento;
-	
+ 	private LocalDateTime fechaVencimiento;
+    
     @ManyToOne
     @JoinColumn(name = "Id_Tipologia", referencedColumnName = "Id_Tipologia", foreignKey = @ForeignKey(name = "crm_categoria_casos_fkey"))
    	private CrmTipologia crmTipologia;
@@ -41,7 +39,7 @@ public class CrmCasos implements Serializable {
    	private CrmEstado crmEstado;
     
     @ManyToOne
-    @JoinColumn(name = "Id_nivel", referencedColumnName = "Id_nivel", foreignKey = @ForeignKey(name = "crm_nivel_casos_fkey"))
+    @JoinColumn(name = "id_nivel", referencedColumnName = "id_nivel", foreignKey = @ForeignKey(name = "crm_nivel_casos_fkey"))
    	private CrmNivel crmNivel;
     
     @ManyToOne
@@ -52,10 +50,9 @@ public class CrmCasos implements Serializable {
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente", foreignKey = @ForeignKey(name = "crm_cliente_casos_fkey"))
    	private Cliente cliente;   
     
-    @JsonIgnore
-    @OneToMany(mappedBy = "idCaso", cascade = { CascadeType.ALL }, orphanRemoval = true)	
-	private List<CrmCasos> listaDetalle;
-
+    //@JsonIgnore
+    @OneToMany(mappedBy = "crmCasos", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CrmDetalle> listaDetalle;
 
 	public Integer getIdCaso() {
 		return idCaso;
@@ -76,23 +73,22 @@ public class CrmCasos implements Serializable {
 		this.nroRealmarcado = nroRealmarcado;
 	}
 
-
-	public Date getFechaGestion() {
+	public LocalDateTime getFechaGestion() {
 		return fechaGestion;
 	}
 
 
-	public void setFechaGestion(Date fechaGestion) {
+	public void setFechaGestion(LocalDateTime fechaGestion) {
 		this.fechaGestion = fechaGestion;
 	}
 
-	
-	public Date getFechaVencimiento() {
+
+	public LocalDateTime getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
 
-	public void setFechaVencimiento(Date fechaVencimiento) {
+	public void setFechaVencimiento(LocalDateTime fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
@@ -147,20 +143,14 @@ public class CrmCasos implements Serializable {
 	}
 
 
-	public List<CrmCasos> getListaDetalle() {
+	public List<CrmDetalle> getListaDetalle() {
 		return listaDetalle;
 	}
 
 
-	public void setListaDetalle(List<CrmCasos> listaDetalle) {
+	public void setListaDetalle(List<CrmDetalle> listaDetalle) {
 		this.listaDetalle = listaDetalle;
-	}
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-    
+	} 
     
 
 	}

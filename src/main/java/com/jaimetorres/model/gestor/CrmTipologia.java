@@ -21,43 +21,40 @@ public class CrmTipologia implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id_Tipologia")
-	private Integer IdTipologia;	
+	@Column(name = "id_Tipologia")
+	private Integer idTipologia;	
 
     @Column(name = "nombre_Tipologia", length = 32, nullable = false)
 	private String nombreTipologia;
 	
     @ManyToOne
-    @JoinColumn(name = "Id_Subcategoria", referencedColumnName = "Id_Subcategoria", foreignKey = @ForeignKey(name = "crm_tipologia_subcategoria_fkey"))
-   	private CrmSubCategoria IdSubcategoria;
+    @JoinColumn(name = "id_Subcategoria", referencedColumnName = "id_Subcategoria", foreignKey = @ForeignKey(name = "crm_tipologia_subcategoria_fkey"))
+   	private CrmSubCategoria idSubcategoria;
 
 	public Integer getIdTipologia() {
-		return IdTipologia;
+		return idTipologia;
 	}
 
 	public void setIdTipologia(Integer idTipologia) {
-		IdTipologia = idTipologia;
+		this.idTipologia = idTipologia;
 	}
 
-	public String getNombreCategoria() {
+	public String getNombreTipologia() {
 		return nombreTipologia;
 	}
 
-	public void setNombreCategoria(String nombreCategoria) {
-		this.nombreTipologia = nombreCategoria;
+	public void setNombreTipologia(String nombreTipologia) {
+		this.nombreTipologia = nombreTipologia;
 	}
 
 	public CrmSubCategoria getIdSubcategoria() {
-		return IdSubcategoria;
+		return idSubcategoria;
 	}
 
 	public void setIdSubcategoria(CrmSubCategoria idSubcategoria) {
-		IdSubcategoria = idSubcategoria;
+		this.idSubcategoria = idSubcategoria;
 	}
+    
+    
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
-
-	
-}

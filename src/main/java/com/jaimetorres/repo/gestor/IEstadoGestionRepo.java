@@ -37,5 +37,13 @@ public interface IEstadoGestionRepo extends IGenericRepo<EstadoGestion, Integer>
 	List<Object[]> estadoComercial(@Param("idEmpresa") Integer idEmpresa);
 	
 	
+	//Secretaria Virtual
+	@Query("FROM EstadoGestion e WHERE e.tipoLlamada= 2 AND e.empresa.idEmpresa= :idEmpresa AND e.idEstadoGestionPadre is null "
+			+ "AND e.aplicaDG is TRUE ORDER BY e.nombre")
+	List<EstadoGestion> buscarSecretaria(@Param("idEmpresa") Integer idEmpresa);
+	
+	
+	
+	
 
 }

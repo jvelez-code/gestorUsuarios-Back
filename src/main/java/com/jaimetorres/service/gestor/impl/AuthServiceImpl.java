@@ -25,10 +25,7 @@ public class AuthServiceImpl {
 		
 		String metodoRoles[] = metodoRol.split(",");
 		
-		Authentication usuarioLogueado = SecurityContextHolder.getContext().getAuthentication();
-		
-		System.out.println(usuarioLogueado.getName());
-		
+		Authentication usuarioLogueado = SecurityContextHolder.getContext().getAuthentication();		
 		for(GrantedAuthority auth : usuarioLogueado.getAuthorities()) {
 			String rolUser = auth.getAuthority();
 			System.out.println(rolUser);

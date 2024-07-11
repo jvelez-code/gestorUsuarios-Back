@@ -25,6 +25,7 @@ public interface IGestionService extends ICRUD<Gestion , Integer >{
 	
 	// Gestion Saliente
 	Integer gestionSaliente(ParametrosDTO filtro);
+	
 	void cambioEstadoGestion(Integer idGestion);
 	ParametrosDTO buscarGestioSaliente(Integer idgestion);
 	void actualizarGestion(Integer id, Gestion gestion);

@@ -11,7 +11,7 @@ import com.jaimetorres.model.gestor.CrmSubCategoria;
 
 public interface ICrmSubCategoriaRepo extends IGenericRepo < CrmSubCategoria, Integer> {
 	
-	@Query("FROM CrmSubCategoria s JOIN s.IdCategoria c WHERE c.IdCategoria= :id")
+	@Query("FROM CrmSubCategoria s JOIN s.idCategoria c WHERE c.idCategoria= :id")
 	List<CrmSubCategoria> buscarSubcateR(@Param("id") Integer id);
 	
 	

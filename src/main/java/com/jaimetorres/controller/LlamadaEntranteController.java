@@ -113,8 +113,11 @@ public class LlamadaEntranteController {
 		}
 
 		@PostMapping("/llamadaSecretaria")
-		public ResponseEntity<LlamadaEntrante> llamadaSecretarias(@RequestBody LlamadaEntranteDTO filtro) throws Exception{
+		public ResponseEntity<LlamadaEntrante> llamadaSecretaria(@RequestBody LlamadaEntranteDTO filtro) throws Exception{
 			LlamadaEntrante obj = service.buscarSecreVirt(filtro);
+			if (obj == null) {
+		        return null;
+		    }
 			filtro.setIdLlamadaEntrante(obj.getIdLlamadaEntrante());
 			service.actualSecreVirt(filtro);
 			return new ResponseEntity<LlamadaEntrante>(obj, HttpStatus.OK);

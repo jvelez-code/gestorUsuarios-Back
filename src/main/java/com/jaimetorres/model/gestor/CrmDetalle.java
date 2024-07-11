@@ -1,9 +1,12 @@
 package com.jaimetorres.model.gestor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -18,13 +21,13 @@ public class CrmDetalle implements Serializable {
 	@Column(name = "id_detalle")
 	private Integer idDetalle;	   
     
-    @Column(name = "fecha_detalle")
-	@Temporal(TemporalType.TIMESTAMP)	
-	private Date fecha_detalle;
+    @Column(name = "fecha_detalle")	
+	private LocalDateTime fechaDetalle;
     
     @Column(name = "observacion", nullable = false)
    	private String observacion;
     
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_caso", referencedColumnName = "id_caso", foreignKey = @ForeignKey(name = "crm_detalle_casos_fkey"))
    	private CrmCasos crmCasos;
@@ -41,12 +44,12 @@ public class CrmDetalle implements Serializable {
 		this.idDetalle = idDetalle;
 	}
 
-	public Date getFecha_detalle() {
-		return fecha_detalle;
+	public LocalDateTime getFechaDetalle() {
+		return fechaDetalle;
 	}
 
-	public void setFecha_detalle(Date fecha_detalle) {
-		this.fecha_detalle = fecha_detalle;
+	public void setFechaDetalle(LocalDateTime fechaDetalle) {
+		this.fechaDetalle = fechaDetalle;
 	}
 
 	public String getObservacion() {

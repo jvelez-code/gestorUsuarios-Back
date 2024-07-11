@@ -13,5 +13,8 @@ public interface IEstadoGestionService extends ICRUD<EstadoGestion , Integer >{
 	List<EstadoGestion> buscarEstadoH(ParametrosDTO filtro);
 	List<estadoComercialDto> gestionComercial(ParametrosDTO filtro);
 	
+	//Secretaria Virtual
+	List<EstadoGestion> buscarSecretaria(ParametrosDTO filtro);
+	
 	
 }

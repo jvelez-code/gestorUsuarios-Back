@@ -93,9 +93,11 @@ public class ClienteController {
 		
 		//@RequestBody json a objeto  java
 		@PostMapping("/buscar")
-		public ResponseEntity<Cliente> buscar(@RequestBody ParametrosDTO filtro) throws Exception{
-			Cliente cliente = service.buscar(filtro);			
-			return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+		public ResponseEntity<List<Cliente>> buscar(@RequestBody ParametrosDTO filtro) throws Exception {
+			
+			List<Cliente> cliente = new ArrayList<>();
+			cliente = service.buscar(filtro);			
+			return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
 		}
 		
 		
@@ -103,10 +105,9 @@ public class ClienteController {
 		@GetMapping("/buscar")
 		public ResponseEntity<List<Cliente>> buscarp(@RequestBody ParametrosDTO filtro) throws Exception{
 					
-					List<Cliente> cliente = new ArrayList<>();
-					cliente = service.buscarByCliente(filtro);
-					
-					return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
+			List<Cliente> cliente = new ArrayList<>();
+			cliente = service.buscarByCliente(filtro);		
+			return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
 		}
 		
 		@PostMapping("/buscarId")
@@ -121,7 +122,7 @@ public class ClienteController {
 		@PostMapping("/buscarAsterisk")
 		public ResponseEntity<Cliente> buscarIdAsterisk(@RequestBody ParametrosDTO filtro) throws Exception{
 			LlamadaEntrante obj = serviceLlama.buscarIdAsterisk(filtro);
-			Cliente cli = service.buscarIdAsterisk(obj.getTipoDocumento().getId(), obj.getNumero_documento());
+			Cliente cli = service.buscarIdAsterisk(obj.getTipoDocumento().getId(), obj.getNumeroDocumento());
 			return new ResponseEntity<Cliente>(cli, HttpStatus.OK);
 		}
 		

@@ -18,6 +18,9 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "gestorEntityManagerFactory", transactionManagerRef = "gestorTransactionManager", 
@@ -29,13 +32,26 @@ public class GestorConfig {
 	
 	@Bean(name = "gestorDataSource")
 	public DataSource gestorDatasource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setUrl(env.getProperty("gestor.datasource.url"));
-		dataSource.setUsername(env.getProperty("gestor.datasource.username"));
-		dataSource.setPassword(env.getProperty("gestor.datasource.password"));
-		dataSource.setDriverClassName(env.getProperty("gestor.datasource.driver-class-name"));
-		
-		return dataSource;
+//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//		dataSource.setUrl(env.getProperty("gestor.datasource.url"));
+//		dataSource.setUsername(env.getProperty("gestor.datasource.username"));
+//		dataSource.setPassword(env.getProperty("gestor.datasource.password"));
+//		dataSource.setDriverClassName(env.getProperty("gestor.datasource.driver-class-name"));		
+//		return dataSource;
+		  HikariConfig config = new HikariConfig();
+	        config.setJdbcUrl(env.getProperty("gestor.datasource.url"));
+	        config.setUsername(env.getProperty("gestor.datasource.username"));
+	        config.setPassword(env.getProperty("gestor.datasource.password"));
+	        config.setDriverClassName(env.getProperty("gestor.datasource.driver-class-name"));
+	        
+	        // Configuración del pool de conexiones a través de propiedades en application.properties
+	        config.setMaximumPoolSize(Integer.parseInt(env.getProperty("gestor.datasource.hikari.maximum-pool-size")));
+	        config.setMinimumIdle(Integer.parseInt(env.getProperty("gestor.datasource.hikari.minimum-idle")));
+	        config.setIdleTimeout(Long.parseLong(env.getProperty("gestor.datasource.hikari.idle-timeout")));
+	        config.setConnectionTimeout(Long.parseLong(env.getProperty("gestor.datasource.hikari.connection-timeout")));
+	        config.setMaxLifetime(Long.parseLong(env.getProperty("gestor.datasource.hikari.max-lifetime")));
+	        
+	        return new HikariDataSource(config);
 	}
 	
 

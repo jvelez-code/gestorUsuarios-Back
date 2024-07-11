@@ -18,8 +18,8 @@ public class CrmCategoria implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id_categoria")
-	private Integer IdCategoria;	
+	@Column(name = "id_categoria")
+	private Integer idCategoria;	
 
     @Column(name = "nombre_categoria", length = 32, nullable = false)
 	private String nombreCategoria;
@@ -27,12 +27,13 @@ public class CrmCategoria implements Serializable {
 	@Column(name = "dias_vencimiento")
 	private Integer diasVencimiento;
 
+	
 	public Integer getIdCategoria() {
-		return IdCategoria;
+		return idCategoria;
 	}
 
 	public void setIdCategoria(Integer idCategoria) {
-		IdCategoria = idCategoria;
+		this.idCategoria = idCategoria;
 	}
 
 	public String getNombreCategoria() {
@@ -50,10 +51,7 @@ public class CrmCategoria implements Serializable {
 	public void setDiasVencimiento(Integer diasVencimiento) {
 		this.diasVencimiento = diasVencimiento;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	
+	
+
 }

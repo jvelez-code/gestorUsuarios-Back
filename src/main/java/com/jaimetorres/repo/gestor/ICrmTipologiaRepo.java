@@ -11,7 +11,7 @@ import com.jaimetorres.model.gestor.CrmTipologia;
 
 public interface ICrmTipologiaRepo extends IGenericRepo < CrmTipologia, Integer> {
 	
-	@Query("FROM CrmTipologia t JOIN t.IdSubcategoria s WHERE s.IdSubcategoria= :id")
+	@Query("FROM CrmTipologia t JOIN t.idSubcategoria s WHERE s.idSubcategoria= :id")
 	List<CrmTipologia> buscarTipoR(@Param("id") Integer id);
 	
 

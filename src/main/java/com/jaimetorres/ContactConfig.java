@@ -18,6 +18,9 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "contactEntityManagerFactory", transactionManagerRef = "contactTransactionManager", 
@@ -29,13 +32,27 @@ public class ContactConfig {
 	
 	@Bean(name = "contactDataSource")
 	public DataSource contactDatasource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setUrl(env.getProperty("contact.datasource.url"));
-		dataSource.setUsername(env.getProperty("contact.datasource.username"));
-		dataSource.setPassword(env.getProperty("contact.datasource.password"));
-		dataSource.setDriverClassName(env.getProperty("contact.datasource.driver-class-name"));
+//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//		dataSource.setUrl(env.getProperty("contact.datasource.url"));
+//		dataSource.setUsername(env.getProperty("contact.datasource.username"));
+//		dataSource.setPassword(env.getProperty("contact.datasource.password"));
+//		dataSource.setDriverClassName(env.getProperty("contact.datasource.driver-class-name"));		
+//		return dataSource;
 		
-		return dataSource;
+		   HikariConfig config = new HikariConfig();
+	        config.setJdbcUrl(env.getProperty("contact.datasource.url"));
+	        config.setUsername(env.getProperty("contact.datasource.username"));
+	        config.setPassword(env.getProperty("contact.datasource.password"));
+	        config.setDriverClassName(env.getProperty("contact.datasource.driver-class-name"));
+	        
+	        // Configuración del pool de conexiones a través de propiedades en application.properties
+	        config.setMaximumPoolSize(Integer.parseInt(env.getProperty("contact.datasource.hikari.maximum-pool-size")));
+	        config.setMinimumIdle(Integer.parseInt(env.getProperty("contact.datasource.hikari.minimum-idle")));
+	        config.setIdleTimeout(Long.parseLong(env.getProperty("contact.datasource.hikari.idle-timeout")));
+	        config.setConnectionTimeout(Long.parseLong(env.getProperty("contact.datasource.hikari.connection-timeout")));
+	        config.setMaxLifetime(Long.parseLong(env.getProperty("contact.datasource.hikari.max-lifetime")));
+	        
+	        return new HikariDataSource(config);
 	}
 	
 

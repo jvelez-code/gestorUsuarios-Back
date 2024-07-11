@@ -13,10 +13,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.jaimetorres.dto.FiltroCrmCasosDTO;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.CrmCasos;
-import com.jaimetorres.model.gestor.DetalleGestionComercial;
 import com.jaimetorres.service.gestor.ICrmCasosService;
 
 @RestController
@@ -45,9 +45,7 @@ public class CrmCasosController {
 	//@RequestBody json a objeto  java
 	@PostMapping
 	public ResponseEntity<CrmCasos> registrar(@Valid @RequestBody CrmCasos CrmCasos) throws Exception{
-		CrmCasos obj=service.registrar(CrmCasos);
-
-		//localhost:8080/pacientes/7
+		CrmCasos obj=service.registrarTransaccional(CrmCasos);
 		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdCaso()).toUri();
 		return new ResponseEntity<CrmCasos>(obj, HttpStatus.CREATED);
 	}
@@ -71,16 +69,24 @@ public class CrmCasosController {
 	}
 
 	@PostMapping("/casosCliente")
-	public ResponseEntity<List<CrmCasos>> casosCliente(@RequestBody ParametrosDTO filtro) throws Exception{
-		List<CrmCasos> casos = new ArrayList<>();
+	public ResponseEntity<List<FiltroCrmCasosDTO>> casosCliente(@RequestBody ParametrosDTO filtro) throws Exception{
+		List<FiltroCrmCasosDTO> casos = new ArrayList<>();
 		casos = service.buscarCasosS(filtro);
-		return new ResponseEntity<List<CrmCasos>>(casos, HttpStatus.OK);
+		return new ResponseEntity<List<FiltroCrmCasosDTO>>(casos, HttpStatus.OK);
 	}
 	
 	@GetMapping("/casosEstado")
-	public ResponseEntity<List<CrmCasos>> casosEstado() throws Exception{
-		List<CrmCasos> lista=service.buscarEstadoR();
-		return new ResponseEntity<List<CrmCasos>>(lista, HttpStatus.OK);
+	public ResponseEntity<List<FiltroCrmCasosDTO>> casosEstado() throws Exception{
+		List<FiltroCrmCasosDTO> lista=service.buscarEstadoR();
+		return new ResponseEntity<List<FiltroCrmCasosDTO>>(lista, HttpStatus.OK);
 	}
+	
+	@PostMapping("/actualizaCaso")
+	public ResponseEntity<Void> actualizaCaso(@RequestBody ParametrosDTO filtro) throws Exception{
+		service.actuEstadoR(filtro);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+
 
 }

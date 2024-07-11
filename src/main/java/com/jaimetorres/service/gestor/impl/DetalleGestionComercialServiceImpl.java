@@ -41,9 +41,6 @@ public class DetalleGestionComercialServiceImpl extends CRUDImpl<DetalleGestionC
 	public List<GestionComercialDto> buscarGC(ParametrosDTO filtro) {
 		
 		List<GestionComercialDto> detalle = new ArrayList<>();
-		System.out.println(filtro.getIdUsuario());
-		System.out.println(filtro.getFechaFinal());
-		System.out.println(filtro.getFechaInicial());
 		repo.buscarGC(filtro.getFechaInicial(), filtro.getFechaFinal(), filtro.getIdUsuario()).forEach(x -> {
 			GestionComercialDto m = new GestionComercialDto();
 			m.setFechaGestionCargue(String.valueOf(x[0]));
