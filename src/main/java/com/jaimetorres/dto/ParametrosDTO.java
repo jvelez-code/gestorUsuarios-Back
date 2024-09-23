@@ -21,21 +21,61 @@ public class ParametrosDTO {
 	private Integer idDetalleComer;
 	private Integer cicloVida;
 	private Integer campanaSal;
-	private Integer idGestion;	
+	private Integer idGestion;
+	private String nombreArchivo;
+	private Integer clienteNuevo;
+	private Integer gestionNuevo;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date fechaInicial;
+	private LocalDateTime fechaInicial;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date fechaFinal;
+	private LocalDateTime fechaFinal;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime ultimoLogin;
 	//CRM
 	private Integer idCrmDetalle;
 	private Integer idCrmCaso;
 	private Integer idCrmEstado;
+	private Integer idExtension;
 	
 	
 	public ParametrosDTO() {
 	}
+
+	
+    
+	
+	public ParametrosDTO(String tipo, String tipoDoc, String loginAgente, Integer idUsuario, String nroDocumento,
+			Integer idCliente, Integer idEmpresa, Integer idTipoCampana, Integer idEstadoPadre, Integer tipoLlamada,
+			Integer idDetalleComer, Integer cicloVida, Integer campanaSal, Integer idGestion, String nombreArchivo,
+			Integer clienteNuevo, Integer gestionNuevo, LocalDateTime fechaInicial, LocalDateTime fechaFinal,
+			LocalDateTime ultimoLogin, Integer idCrmDetalle, Integer idCrmCaso, Integer idCrmEstado) {
+		super();
+		this.tipo = tipo;
+		this.tipoDoc = tipoDoc;
+		this.loginAgente = loginAgente;
+		this.idUsuario = idUsuario;
+		this.nroDocumento = nroDocumento;
+		this.idCliente = idCliente;
+		this.idEmpresa = idEmpresa;
+		this.idTipoCampana = idTipoCampana;
+		this.idEstadoPadre = idEstadoPadre;
+		this.tipoLlamada = tipoLlamada;
+		this.idDetalleComer = idDetalleComer;
+		this.cicloVida = cicloVida;
+		this.campanaSal = campanaSal;
+		this.idGestion = idGestion;
+		this.nombreArchivo = nombreArchivo;
+		this.clienteNuevo = clienteNuevo;
+		this.gestionNuevo = gestionNuevo;
+		this.fechaInicial = fechaInicial;
+		this.fechaFinal = fechaFinal;
+		this.ultimoLogin = ultimoLogin;
+		this.idCrmDetalle = idCrmDetalle;
+		this.idCrmCaso = idCrmCaso;
+		this.idCrmEstado = idCrmEstado;
+	}
+
+
 
 
 	public String getTipo() {
@@ -156,22 +196,22 @@ public class ParametrosDTO {
 	}
 
 
-	public Date getFechaInicial() {
+	public LocalDateTime getFechaInicial() {
 		return fechaInicial;
 	}
 
 
-	public void setFechaInicial(Date fechaInicial) {
+	public void setFechaInicial(LocalDateTime fechaInicial) {
 		this.fechaInicial = fechaInicial;
 	}
 
 
-	public Date getFechaFinal() {
+	public LocalDateTime getFechaFinal() {
 		return fechaFinal;
 	}
 
 
-	public void setFechaFinal(Date fechaFinal) {
+	public void setFechaFinal(LocalDateTime fechaFinal) {
 		this.fechaFinal = fechaFinal;
 	}
 
@@ -235,6 +275,53 @@ public class ParametrosDTO {
 		this.idCrmEstado = idCrmEstado;
 	}
 
-    
 
+
+	public String getNombreArchivo() {
+		return nombreArchivo;
 	}
+
+
+
+	public void setNombreArchivo(String nombreArchivo) {
+		this.nombreArchivo = nombreArchivo;
+	}
+
+
+	public Integer getClienteNuevo() {
+		return clienteNuevo;
+	}
+
+
+	public void setClienteNuevo(Integer clienteNuevo) {
+		this.clienteNuevo = clienteNuevo;
+	}
+
+
+	public Integer getGestionNuevo() {
+		return gestionNuevo;
+	}
+
+
+	public void setGestionNuevo(Integer gestionNuevo) {
+		this.gestionNuevo = gestionNuevo;
+	}
+
+
+
+
+	public Integer getIdExtension() {
+		return idExtension;
+	}
+
+
+
+
+	public void setIdExtension(Integer idExtension) {
+		this.idExtension = idExtension;
+	}
+	
+	
+
+	
+}

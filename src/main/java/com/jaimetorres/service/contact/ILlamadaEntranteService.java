@@ -13,13 +13,15 @@ import com.jaimetorres.model.contact.LlamadaEntrante;
 public interface ILlamadaEntranteService extends ICRUDContact<LlamadaEntrante, Integer >  {
 	
 	LlamadaEntrante buscarIdAsterisk (ParametrosDTO filtro);
-	List<LlamadaEntranteDTO> entranteSinRegistro (ParametrosDTO filtro);
+	LlamadaEntranteDTO entranteSinRegistro (ParametrosDTO filtro);
 	String validarAsterisk (ParametrosDTO filtro);
 	TmoGestionUsuarioDto validarTmo (ParametrosDTO filtro);
 
 	//Secretaria virtual
 	LlamadaEntrante buscarSecreVirt(LlamadaEntranteDTO filtro);
+	void limpiarSecre(LlamadaEntranteDTO filtro);
 	void actualSecreVirt(LlamadaEntranteDTO filtro);
+	void devoluSecreVirt(LlamadaEntranteDTO filtro);
 	
 
 }

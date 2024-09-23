@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.dto.TmoGestionUsuarioDto;
 import com.jaimetorres.dto.LlamadaEntranteDTO;
@@ -22,6 +21,7 @@ import com.jaimetorres.model.contact.LlamadaEntrante;
 import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.EstadoGestion;
 import com.jaimetorres.service.contact.ILlamadaEntranteService;
+import com.jaimetorres.service.gestor.IGestionService;
 
 @RestController
 @RequestMapping("/LlamadasEntrantes")
@@ -30,6 +30,9 @@ public class LlamadaEntranteController {
 
 	@Autowired
 	private ILlamadaEntranteService service;
+	
+	@Autowired
+	private IGestionService serviceGes;
 	
 	
 	//ResponseEntity Para capturar excepciones
@@ -100,9 +103,9 @@ public class LlamadaEntranteController {
 		}
 		
 		@PostMapping("/llamadaEntrante")
-		public ResponseEntity<List<LlamadaEntranteDTO>> buscarIdAsterisk(@RequestBody ParametrosDTO filtro) throws Exception{
-			List<LlamadaEntranteDTO> obj = service.entranteSinRegistro(filtro);
-			return new ResponseEntity<List<LlamadaEntranteDTO>>(obj, HttpStatus.OK);
+		public ResponseEntity<LlamadaEntranteDTO> buscarIdAsterisk(@RequestBody ParametrosDTO filtro) throws Exception{
+			LlamadaEntranteDTO obj = service.entranteSinRegistro(filtro);
+			return new ResponseEntity<LlamadaEntranteDTO>(obj, HttpStatus.OK);
 		}
 		
 		
@@ -114,15 +117,28 @@ public class LlamadaEntranteController {
 
 		@PostMapping("/llamadaSecretaria")
 		public ResponseEntity<LlamadaEntrante> llamadaSecretaria(@RequestBody LlamadaEntranteDTO filtro) throws Exception{
+				
 			LlamadaEntrante obj = service.buscarSecreVirt(filtro);
 			if (obj == null) {
 		        return null;
 		    }
 			filtro.setIdLlamadaEntrante(obj.getIdLlamadaEntrante());
+			filtro.setnumeroDocumento(obj.getNumeroDocumento());
+			Integer ges = serviceGes.buscarSecre(filtro);
+			if (ges >0) {
+				obj.setOpcionEntrante(555);
+		    }	
 			service.actualSecreVirt(filtro);
+			service.limpiarSecre(filtro);
 			return new ResponseEntity<LlamadaEntrante>(obj, HttpStatus.OK);
 		}
 
+	
+		@PostMapping("/devolSecretaria")
+		public ResponseEntity<Void> devolSecretaria(@RequestBody LlamadaEntranteDTO filtro) throws Exception {
+		    service.devoluSecreVirt(filtro);
+		    return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
 		
 
 	

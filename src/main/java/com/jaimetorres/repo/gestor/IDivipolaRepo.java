@@ -1,12 +1,14 @@
 package com.jaimetorres.repo.gestor;
 
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
-
+import org.springframework.data.repository.query.Param;
 
 import com.jaimetorres.model.gestor.Divipola;
+import com.jaimetorres.model.gestor.Usuario;
 
 public interface IDivipolaRepo extends IGenericRepo<Divipola, Integer> {
 	
@@ -16,5 +18,8 @@ public interface IDivipolaRepo extends IGenericRepo<Divipola, Integer> {
 			+ "WHERE d.id_zona_padre =di.id_zona "
 			+ "ORDER by d.nombre", nativeQuery = true)
 	List<Object[]> buscar();
+	
+	@Query("SELECT d FROM Divipola d WHERE d.nombre = :nombre")
+   List<Divipola> findByNombre(@Param("nombre") String nombre);
 
 }

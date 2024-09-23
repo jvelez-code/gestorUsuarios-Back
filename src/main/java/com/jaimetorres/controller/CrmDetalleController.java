@@ -13,6 +13,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.jaimetorres.dto.FiltroCrmDetallesDTO;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.CrmCasos;
@@ -27,9 +28,6 @@ public class CrmDetalleController {
 	@Autowired
 	private ICrmDetalleService service;
 
-	//ResponseEntity Para capturar excepciones
-	//@PreAuthorize("hasAuthority('ADMIN')")
-	//@PreAuthorize("@authServiceImpl.tieneAcceso('listarId')")
 	@GetMapping
 	public ResponseEntity<List<CrmDetalle>> listar() throws Exception{
 		List<CrmDetalle> lista=service.listar();
@@ -71,12 +69,18 @@ public class CrmDetalleController {
 	}
 	
 	@GetMapping("/detalleCasos/{id}")
-	public ResponseEntity<List<CrmDetalle>> detalleCasosPorId(@PathVariable("id")Integer id) throws Exception{
-		List<CrmDetalle> crmdetalle = new ArrayList<>();
+	public ResponseEntity<List<FiltroCrmDetallesDTO>> detalleCasosPorId(@PathVariable("id")Integer id) throws Exception{
+		List<FiltroCrmDetallesDTO> crmdetalle = new ArrayList<>();
 		crmdetalle = service.buscarDetalleS(id);
-		return new ResponseEntity<List<CrmDetalle>>(crmdetalle, HttpStatus.OK);
+		return new ResponseEntity<List<FiltroCrmDetallesDTO>>(crmdetalle, HttpStatus.OK);
 	}
 	
+	
+	@PostMapping("/registrarDetalle")
+	public ResponseEntity<Void> registrarDetalle(@Valid @RequestBody FiltroCrmDetallesDTO dto) throws Exception{
+		service.registrarObser(dto);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
 	
 
 }

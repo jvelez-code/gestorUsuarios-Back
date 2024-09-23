@@ -4,17 +4,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jaimetorres.dto.ParametrosDTO;
+import com.jaimetorres.model.gestor.Gestion;
 import com.jaimetorres.model.gestor.ResetToken;
 import com.jaimetorres.model.gestor.Usuarios;
 import com.jaimetorres.service.gestor.ILoginService;
@@ -50,14 +57,15 @@ public class LoginController {
 			tokenService.guardar(token);
 			
 			Mail mail = new Mail();
-			mail.setFrom("ASOPAGOS");
+			mail.setFrom("JAIME_TORRES");
 			mail.setTo(us.getEmail());
 			mail.setSubject("RESTABLECER CONTRASEÑA GESTOR");
 			
 			Map<String, Object> model = new HashMap<>();
-			String url = "https://gestorcoordinador.enlace-apb.com/gestorfront/#/recuperar/" + token.getToken();
-			//String url = "https://10.1.1.159/gestorfront/#/recuperar/" + token.getToken();
-			//String url = "http://10.10.11.198:8082/recuperar/" + token.getToken();
+			//String url = "https://gestorcoordinador.enlace-apb.com/gestorfront/#/recuperar/" + token.getToken();
+			String url = "https://10.1.1.159/gestorfront/#/recuperar/" + token.getToken();
+			//String url = "http://127.0.0.1/#/recuperar/" + token.getToken();
+			//String url = "https://10.1.1.218/gestorfront/#/recuperar/" + token.getToken();
 			model.put("user", token.getUser().getUsername());
 			model.put("resetUrl", url);
 			mail.setModel(model);
@@ -96,6 +104,12 @@ public class LoginController {
 			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<Object>(HttpStatus.OK);
+	}
+	
+	@PostMapping("/actualizarIntento")
+	public ResponseEntity<Void> actualizarIntento(@RequestBody ParametrosDTO filtro) {
+		service.cambiarIntento(filtro.getLoginAgente());
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 	
 }

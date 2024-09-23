@@ -22,13 +22,13 @@ public class CrmDetalle implements Serializable {
 	private Integer idDetalle;	   
     
     @Column(name = "fecha_detalle")	
-	private LocalDateTime fechaDetalle;
+	private String fechaDetalle;
     
     @Column(name = "observacion", nullable = false)
    	private String observacion;
     
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_caso", referencedColumnName = "id_caso", foreignKey = @ForeignKey(name = "crm_detalle_casos_fkey"))
    	private CrmCasos crmCasos;
     
@@ -44,11 +44,11 @@ public class CrmDetalle implements Serializable {
 		this.idDetalle = idDetalle;
 	}
 
-	public LocalDateTime getFechaDetalle() {
+	public String getFechaDetalle() {
 		return fechaDetalle;
 	}
 
-	public void setFechaDetalle(LocalDateTime fechaDetalle) {
+	public void setFechaDetalle(String fechaDetalle) {
 		this.fechaDetalle = fechaDetalle;
 	}
 

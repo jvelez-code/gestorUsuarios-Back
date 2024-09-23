@@ -1,5 +1,6 @@
 package com.jaimetorres.controller;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +13,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.jaimetorres.dto.CargueArchivoDTO;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
+import com.jaimetorres.model.gestor.Archivo;
 import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.model.gestor.Gestion;
+import com.jaimetorres.service.gestor.IArchivoService;
+import com.jaimetorres.service.gestor.IClienteService;
 import com.jaimetorres.service.gestor.IGestionService;
+import com.opencsv.exceptions.CsvValidationException;
 
 @RestController
 @RequestMapping("/gestiones")
@@ -29,8 +36,12 @@ public class GestionController {
 	@Autowired
 	private IGestionService service;
 
+	//	@Autowired
+	//	private ModelMapper modelMapper;
+
 	@Autowired
-	private ModelMapper modelMapper;
+	private IClienteService serviceCli;
+
 
 
 	//ResponseEntity Para capturar excepciones
@@ -134,4 +145,29 @@ public class GestionController {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 
+
+	//CARGUE CAMPANA
+	@PostMapping("/cargueArchivo")
+	public ResponseEntity<ParametrosDTO>cargueArchivo(
+			@RequestParam("file") MultipartFile file,
+	        @RequestParam("idUsuario") String idUsuario,
+	        @RequestParam("idEmpresa") String idEmpresa,
+	        HttpServletRequest request) 
+			throws IOException, CsvValidationException {
+
+		if(file.isEmpty()) {
+			throw new RuntimeException("Fallo no se encuentra el archivo");
+		}
+		
+
+		ParametrosDTO cargue = service.readCsvFile(file, idUsuario, idEmpresa,request);
+		return new ResponseEntity<ParametrosDTO>(cargue, HttpStatus.OK);
+	}
+	
+	@PostMapping("/registrarCargue")
+	public ResponseEntity<Gestion> registrarCargue(@Valid @RequestBody Gestion Gestion) throws Exception{
+		Gestion obj=service.registrarTransaccionalCargue(Gestion);
+		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdGestion()).toUri();
+		return new ResponseEntity<Gestion>(obj, HttpStatus.CREATED);
+	}
 }

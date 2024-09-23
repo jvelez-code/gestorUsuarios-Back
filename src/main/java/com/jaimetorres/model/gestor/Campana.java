@@ -45,17 +45,14 @@ public class Campana implements Serializable{
 	private Integer tipoAsignacion;
 	
 	@Column(name = "grupo_rol")
-	private String grupo;
-	
-	@Column(name = "nombre")
-	private String nombre;
+	private String grupoRol;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_empresa")
 	private Empresa empresa;
 	
-//	@OneToMany(mappedBy = "campana")
-//    private List<Archivo> archivoList;
+	@Column(name = "nombre")
+	private String nombre;
 
 	public Integer getIdCampana() {
 		return idCampana;
@@ -97,7 +94,6 @@ public class Campana implements Serializable{
 		this.fechaHoraCargue = fechaHoraCargue;
 	}
 
-
 	public Integer getIdCoordinador() {
 		return idCoordinador;
 	}
@@ -114,20 +110,12 @@ public class Campana implements Serializable{
 		this.tipoAsignacion = tipoAsignacion;
 	}
 
-	public String getGrupo() {
-		return grupo;
+	public String getGrupoRol() {
+		return grupoRol;
 	}
 
-	public void setGrupo(String grupo) {
-		this.grupo = grupo;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setGrupoRol(String grupoRol) {
+		this.grupoRol = grupoRol;
 	}
 
 	public Empresa getEmpresa() {
@@ -138,18 +126,15 @@ public class Campana implements Serializable{
 		this.empresa = empresa;
 	}
 
-//	public List<Archivo> getArchivoList() {
-//		return archivoList;
-//	}
-//
-//	public void setArchivoList(List<Archivo> archivoList) {
-//		this.archivoList = archivoList;
-//	}
+	public String getNombre() {
+		return nombre;
+	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	
 	
-}
+	
+	}

@@ -1,49 +1,35 @@
- spring:
-   mail:
-     default-encoding: UTF-8
-     host: mail.jaimetorres.net
-     port: 25
-     username: gestorclientes@jaimetorres.net  
-     password: G3st0r3*
-     properties:
-       mail:
-         ssl:
-           enable: true
-         smtp:
-           auth: true
-           starttls:
-             enable: true       
-             required: true     
-     protocol: smtp
-     test-connection: false
+spring:
+  mail:
+    default-encoding: UTF-8
+    host: mail.jaimetorres.net
+    port: 25
+    username: gestorclientes@jaimetorres.net
+    password: G3st0r3*
+    properties:
+      mail:
+        ssl:
+          enable: true
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    protocol: smtp
+    test-connection: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+          
+media:
+    location: mediafiles
+   
 
-    
-    
-#  spring:
-#   mail:
-#    default-encoding: UTF-8
-#    host: smtp.gmail.com
-#    port: 587
-#    username: j
-#    password: bwxj fbzs mbdn kwvj
-#    protocol: smtp
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: true
-
-    
-#server:
-  #ssl:
-    #key-store: classpath:helpvoz.p12
-    #key-store-password: master
-    #key-alias: gestorCli 
-    #key-store-type: PKCS12 
-  #port: 8443
-  
-  
-  
-  
-  
+# Configuración de ejemplo para el servidor (comentado)
+# server:
+#   ssl:
+#     key-store: classpath:helpvoz.p12
+#     key-store-password: master
+#     key-alias: gestorCli
+#     key-store-type: PKCS12
+#   port: 8443

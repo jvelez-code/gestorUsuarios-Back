@@ -1,6 +1,6 @@
 package com.jaimetorres.repo.contact;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,8 +10,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.jaimetorres.dto.LlamadaEntranteDTO;
-import com.jaimetorres.dto.TmoGestionUsuarioDto;
 import com.jaimetorres.model.contact.LlamadaEntrante;
+
+
 
 
 public interface ILlamadaEntranteRepo extends IGenericContactRepo< LlamadaEntrante , Integer >{
@@ -21,7 +22,8 @@ public interface ILlamadaEntranteRepo extends IGenericContactRepo< LlamadaEntran
 			+ "SELECT  MAX(ID) FROM queue_log ql WHERE agent = :nroDocumento AND event='CONNECT'))", nativeQuery = true)
 	LlamadaEntrante buscarIdAsterisk(@Param("nroDocumento") String nroDocumento);
 
-	@Query(value="SELECT  id_asterisk ,numero_documento,tipo_doc  "
+	@Query(value = "SELECT le.id_asterisk as idAsterisk, le.numero_documento as numeroDocumento, td.tipo_doc as tipoDoc, "
+			+ "le.id_asterisk as tmoUsuario, le.empresa as empresa "
 			+ "FROM llamada_entrante le,tipo_documento td WHERE le.tipo_documento=td.id  "
 			+ "AND id_asterisk in ( SELECT  callid  FROM queue_log ql WHERE id in "
 			+ "( SELECT  MAX(ID) FROM queue_log ql WHERE agent = :nroDocumento AND event='CONNECT'))", nativeQuery = true)
@@ -67,8 +69,23 @@ public interface ILlamadaEntranteRepo extends IGenericContactRepo< LlamadaEntran
 	
 	@Transactional
 	@Modifying	
-	@Query(value="UPDATE llamada_entrante SET id_agente= :idAgente ,id_detalle_gestion='0' WHERE id_llamada_entrante = :idLlamadaEntrante ", nativeQuery = true)
+	@Query(value="UPDATE llamada_entrante set desea_devolucion =false, id_detalle_gestion='2' "
+			+ "	WHERE DATE(fecha_hora_asterisk) BETWEEN  current_date - integer '8' AND current_date "
+			+ "	AND desea_devolucion= TRUE "
+			+ "	AND id_detalle_gestion IS NULL and numero_documento = :numeroDocumento and id_llamada_entrante <> :idLlamadaEntrante", nativeQuery = true)
+	void limpiarSecretaria(@Param("numeroDocumento") String numeroDocumento, @Param("idLlamadaEntrante") Integer idLlamadaEntrante);
+	
+	@Transactional
+	@Modifying	
+	@Query(value="UPDATE llamada_entrante SET id_agente= :idAgente ,id_detalle_gestion='1', fecha_devolucion = now(), fecha_hora =now() "
+			+ " WHERE id_llamada_entrante = :idLlamadaEntrante ", nativeQuery = true)
     void cambioEstadoSecVirt(@Param("idAgente") Integer idAgente, @Param("idLlamadaEntrante") Integer idLlamadaEntrante);
+	
+	@Transactional
+	@Modifying	
+	@Query(value="UPDATE llamada_entrante SET id_agente = NULL ,id_detalle_gestion= NULL, fecha_devolucion = null, fecha_hora =fecha_hora_asterisk "
+			+ "WHERE id_llamada_entrante = :idLlamadaEntrante ", nativeQuery = true)
+    void devolverEstadoSecVirt(@Param("idLlamadaEntrante") Integer idLlamadaEntrante);
 	
 	
 

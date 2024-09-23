@@ -30,6 +30,8 @@ public class EstadoGestionServiceImpl extends CRUDImpl<EstadoGestion, Integer> i
 	@Override
 	public List<EstadoGestion> buscar(ParametrosDTO filtro) {
 		
+		System.out.println(filtro.getIdEmpresa() + filtro.getTipoLlamada());
+		
 		return repo.buscarEstadoP(filtro.getIdEmpresa(),  filtro.getTipoLlamada());
 		
 	}

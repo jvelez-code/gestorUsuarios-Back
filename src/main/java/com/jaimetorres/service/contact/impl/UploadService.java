@@ -3,7 +3,6 @@ package com.jaimetorres.service.contact.impl;
 import static java.util.stream.Collectors.toMap;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -19,7 +18,9 @@ public class UploadService {
 	
 
     public void readCsvFile(MultipartFile file) throws IOException, CsvValidationException {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+    	
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream())))
+        {        	
             CSVReader csvReader = new CSVReader(reader);
             String[] nextRecord;
             

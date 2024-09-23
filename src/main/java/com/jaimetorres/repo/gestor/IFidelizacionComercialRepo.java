@@ -1,6 +1,7 @@
 package com.jaimetorres.repo.gestor;
 
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,6 @@ public interface IFidelizacionComercialRepo extends IGenericRepo < FidelizacionC
 	
 	
 	@Query(" FROM FidelizacionComercial fc WHERE fc.fechaGestion between :fechaInicial and :fechaFinal ")
-	List<FidelizacionComercial> buscarFidelizacionR	(@Param("fechaInicial") Date fechaInicial,@Param("fechaFinal") Date fechaFinal);
+	List<FidelizacionComercial> buscarFidelizacionR	(@Param("fechaInicial") LocalDateTime localDateTime,@Param("fechaFinal") LocalDateTime localDateTime2);
 	
 }

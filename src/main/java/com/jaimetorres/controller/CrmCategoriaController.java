@@ -13,13 +13,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-
+import com.jaimetorres.dto.FiltroCrmDetallesDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.CrmCategoria;
 import com.jaimetorres.service.gestor.ICrmCategoriaService;
 
 @RestController
-@RequestMapping("/crmCategoria")
+@RequestMapping("/crmCategorias")
 public class CrmCategoriaController {
 
 
@@ -68,6 +68,5 @@ public class CrmCategoriaController {
 		service.eliminar(id);		
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
-
-
+	
 }

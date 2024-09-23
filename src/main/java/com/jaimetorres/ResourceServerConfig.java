@@ -2,12 +2,14 @@ package com.jaimetorres;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+import org.springframework.security.web.AuthenticationEntryPoint;
 
 //Segunda Clase
 @Configuration
@@ -16,8 +18,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 
 	@Autowired
     private ResourceServerTokenServices tokenServices;
-	
-	
+		
     @Value("${security.jwt.resource-ids}")
     private String resourceIds;
     
@@ -28,11 +29,21 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
     
     @Override
     public void configure(HttpSecurity http) throws Exception {
-                http
-                .exceptionHandling().authenticationEntryPoint(new AuthException())
-                .and()
-                .requestMatchers()
-                .and()
+	    	   http
+	           .exceptionHandling()
+	               .authenticationEntryPoint(authenticationEntryPoint())
+	           .and()
+	           .headers()
+	               .contentSecurityPolicy("default-src 'self'")
+	               .and()
+	               .xssProtection()
+	                   .xssProtectionEnabled(true)
+	               .and()
+	               .cacheControl()
+	               .and()
+	               .frameOptions()
+	                   .deny()
+	           .and()
                 .authorizeRequests()                  
                 .antMatchers("/v2/api-docs/**" ).permitAll()
                 .antMatchers("/v3/api-docs/**" ).permitAll()
@@ -47,10 +58,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
                 .antMatchers("/crmCasos/**" ).authenticated()
                 .antMatchers("/usuarios/**" ).permitAll()
                 .antMatchers("/productividad/**" ).authenticated()
-                .antMatchers("/tokens/anular/**" ).permitAll();
+                .antMatchers("/tokens/anular/**" ).permitAll()
+                .antMatchers("/campanas/**" ).permitAll();
                 //.antMatchers("/tokens/**" ).authenticated();     
                 //.antMatchers("/oauth/token/**" ).authenticated();
                 
     }    
-
+    
+    @Bean
+    public AuthenticationEntryPoint authenticationEntryPoint() {
+        return new AuthException(); // Usa tu implementación personalizada de AuthenticationEntryPoint
+    }
 }

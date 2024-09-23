@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jaimetorres.dto.FiltroCrmCasosDTO;
+import com.jaimetorres.dto.FiltroCrmDetallesDTO;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.CrmCasos;
@@ -82,7 +83,7 @@ public class CrmCasosController {
 	}
 	
 	@PostMapping("/actualizaCaso")
-	public ResponseEntity<Void> actualizaCaso(@RequestBody ParametrosDTO filtro) throws Exception{
+	public ResponseEntity<Void> actualizaCaso(@RequestBody FiltroCrmDetallesDTO filtro) throws Exception{
 		service.actuEstadoR(filtro);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}

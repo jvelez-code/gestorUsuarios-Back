@@ -19,4 +19,9 @@ public interface ILoginRepo extends IGenericRepo<Usuarios, Integer>{
 	@Query(value = "UPDATE usuarios SET clave = :clave, intentos= 0, fechaactualizacion = NOW(), fecha_cambio = CURRENT_TIMESTAMP + INTERVAL '1 MONTH' WHERE nombre = :nombre", nativeQuery = true)
 	void cambiarClave(@Param("clave") String clave, @Param("nombre") String nombre);
 	
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE usuarios SET intentos= 0 WHERE nombre = :nombre", nativeQuery = true)
+	void cambiarIntento(@Param("nombre") String nombre);
+	
 }

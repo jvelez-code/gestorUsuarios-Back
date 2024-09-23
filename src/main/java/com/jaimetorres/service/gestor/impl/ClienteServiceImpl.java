@@ -46,6 +46,11 @@ public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IC
 			return repo.buscarAsteriskCliente(tipo, nroDocumento);
 	}
 
+	@Override
+	public Cliente buscarId(ParametrosDTO filtro) {
+		return repo.buscarCargue(filtro.getTipoDoc(),filtro.getNroDocumento());
+	}
+
 
 
 

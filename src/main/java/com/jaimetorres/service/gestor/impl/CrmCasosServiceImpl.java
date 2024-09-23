@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.FiltroCrmCasosDTO;
+import com.jaimetorres.dto.FiltroCrmDetallesDTO;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.model.gestor.CrmCasos;
@@ -33,20 +34,21 @@ public class CrmCasosServiceImpl extends CRUDImpl<CrmCasos, Integer> implements 
 	public List<FiltroCrmCasosDTO> buscarCasosS(ParametrosDTO filtro) {
 		
 		List<FiltroCrmCasosDTO> detalle = new ArrayList<>();
-		repo.buscarEstadoR().forEach(x ->{
+		repo.buscarCasosR(filtro.getIdCliente()).forEach(x ->{
 			FiltroCrmCasosDTO m = new FiltroCrmCasosDTO();
 	        m.setIdCaso(Integer.valueOf(x[0].toString()));
 	        m.setTipoDocumento(String.valueOf(x[1]));
 	        m.setNroDocumento(String.valueOf(x[2]));
 	        m.setNroRealmarcado(String.valueOf(x[3]));
-	        m.setFechaGestion(String.valueOf(x[4]));
+	        m.setFechaCaso(String.valueOf(x[4]));
 	        m.setFechaVencimiento(String.valueOf(x[5]));
-	        m.setNombreCategoria(String.valueOf(x[6]));
-	        m.setNombreSubcategoria(String.valueOf(x[7]));
-	        m.setNombreTipologia(String.valueOf(x[8]));
-	        m.setNombreEstado(String.valueOf(x[9]));
-	        m.setNombreNivel(String.valueOf(x[10]));
-	        m.setNombreDepartamento(String.valueOf(x[11]));
+	        m.setFechaCierre(String.valueOf(x[6]));
+	        m.setNombreCategoria(String.valueOf(x[7]));
+	        m.setNombreSubcategoria(String.valueOf(x[8]));
+	        m.setNombreTipologia(String.valueOf(x[9]));
+	        m.setNombreEstado(String.valueOf(x[10]));
+	        m.setNombreNivel(String.valueOf(x[11]));
+	        m.setNombreDepartamento(String.valueOf(x[12]));
 
 	        detalle.add(m);
 		});
@@ -63,14 +65,15 @@ public class CrmCasosServiceImpl extends CRUDImpl<CrmCasos, Integer> implements 
 	        m.setTipoDocumento(String.valueOf(x[1]));
 	        m.setNroDocumento(String.valueOf(x[2]));
 	        m.setNroRealmarcado(String.valueOf(x[3]));
-	        m.setFechaGestion(String.valueOf(x[4]));
+	        m.setFechaCaso(String.valueOf(x[4]));
 	        m.setFechaVencimiento(String.valueOf(x[5]));
-	        m.setNombreCategoria(String.valueOf(x[6]));
-	        m.setNombreSubcategoria(String.valueOf(x[7]));
-	        m.setNombreTipologia(String.valueOf(x[8]));
-	        m.setNombreEstado(String.valueOf(x[9]));
-	        m.setNombreNivel(String.valueOf(x[10]));
-	        m.setNombreDepartamento(String.valueOf(x[11]));
+	        m.setFechaCierre(String.valueOf(x[6]));
+	        m.setNombreCategoria(String.valueOf(x[7]));
+	        m.setNombreSubcategoria(String.valueOf(x[8]));
+	        m.setNombreTipologia(String.valueOf(x[9]));
+	        m.setNombreEstado(String.valueOf(x[10]));
+	        m.setNombreNivel(String.valueOf(x[11]));
+	        m.setNombreDepartamento(String.valueOf(x[12]));
 
 	        detalle.add(m);
 		});
@@ -79,8 +82,8 @@ public class CrmCasosServiceImpl extends CRUDImpl<CrmCasos, Integer> implements 
 	}
 
 	@Override
-	public void actuEstadoR(ParametrosDTO filtro) {
-		repo.actuEstado(filtro.getIdCrmEstado(), filtro.getIdCrmCaso());
+	public void actuEstadoR(FiltroCrmDetallesDTO filtro) {
+		repo.actuEstado(filtro.getIdCrmEstado(), filtro.getFechaDetalle(), filtro.getIdCrmCaso());
 	}
 
 	@Override

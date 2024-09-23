@@ -9,5 +9,8 @@ import com.jaimetorres.model.gestor.Divipola;
 public interface IDivipolaService extends ICRUD<Divipola , Integer >{
 	
 	List<DivipolaDto> listaCiudades();
+	
+	List<Divipola> cargueCampana(DivipolaDto filtro);
+	
 
 }

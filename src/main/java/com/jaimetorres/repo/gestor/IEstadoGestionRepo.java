@@ -21,7 +21,7 @@ public interface IEstadoGestionRepo extends IGenericRepo<EstadoGestion, Integer>
 			+ "AND e.aplicaDG is TRUE AND e.tipoLlamada= :tipoLlamada ORDER BY e.nombre")
 	List<EstadoGestion> buscarEstadoP(@Param("idEmpresa") Integer idEmpresa, @Param("tipoLlamada") Integer tipoLlamada );
 	
-	@Query("FROM EstadoGestion e WHERE e.idEstadoGestionPadre= :idEstadoPadre ORDER BY e.nombre")
+	@Query("FROM EstadoGestion e WHERE e.idEstadoGestionPadre= :idEstadoPadre AND e.aplicaDG is TRUE ORDER BY e.nombre")
 	List<EstadoGestion> buscarEstadoH(@Param("idEstadoPadre") Integer idEstadoPadre );
 	
 	@Query("SELECT e.nombre FROM EstadoGestion e WHERE e.idEstadoGestionPadre is NULL AND e.empresa.idEmpresa= :idEmpresa "

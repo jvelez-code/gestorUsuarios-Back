@@ -25,6 +25,11 @@ public interface IClienteRepo extends IGenericRepo< Cliente , Integer > {
 	@Query(value="SELECT  c.* FROM cliente c, tipo_documento td "
 			+ "WHERE c.tipo_documento =td.tipo_doc and td.id = :tipo AND c.nro_documento = :nroDocumento", nativeQuery = true)
 	Cliente buscarAsteriskCliente(@Param("tipo") Integer tipo, @Param("nroDocumento") String nroDocumento);
+	
+	@Query("FROM Cliente c WHERE c.tipoDocumento.tipoDoc= :tipoDoc AND c.nroDocumento= :nroDocumento")
+	Cliente buscarCargue(@Param("tipoDoc") String tipoDoc,@Param("nroDocumento") String nroDocumento);
+	
+
 
 
 

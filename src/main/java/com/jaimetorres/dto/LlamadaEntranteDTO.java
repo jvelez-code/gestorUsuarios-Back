@@ -4,8 +4,8 @@ package com.jaimetorres.dto;
 public class LlamadaEntranteDTO {
 	
 	private String idAsterisk;
-	private String numero_documento;
-	private String tipo_doc;
+	private String numeroDocumento;
+	private String tipoDoc;
 	private String tmoUsuario;
 	private String empresa;
 	private Integer idLlamadaEntrante;
@@ -16,12 +16,12 @@ public class LlamadaEntranteDTO {
 		// TODO Auto-generated constructor stub
 	}	
 
-	public LlamadaEntranteDTO(String idAsterisk, String numero_documento, String tipo_doc, String tmoUsuario,
+	public LlamadaEntranteDTO(String idAsterisk, String numeroDocumento, String tipoDoc, String tmoUsuario,
 			String empresa, Integer idLlamadaEntrante, Integer idAgente) {
 		super();
 		this.idAsterisk = idAsterisk;
-		this.numero_documento = numero_documento;
-		this.tipo_doc = tipo_doc;
+		this.numeroDocumento = numeroDocumento;
+		this.tipoDoc = tipoDoc;
 		this.tmoUsuario = tmoUsuario;
 		this.empresa = empresa;
 		this.idLlamadaEntrante = idLlamadaEntrante;
@@ -37,20 +37,20 @@ public class LlamadaEntranteDTO {
 		this.idAsterisk = idAsterisk;
 	}
 
-	public String getNumero_documento() {
-		return numero_documento;
+	public String getnumeroDocumento() {
+		return numeroDocumento;
 	}
 
-	public void setNumero_documento(String numero_documento) {
-		this.numero_documento = numero_documento;
+	public void setnumeroDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
 	}
 
-	public String getTipo_doc() {
-		return tipo_doc;
+	public String gettipoDoc() {
+		return tipoDoc;
 	}
 
-	public void setTipo_doc(String tipo_doc) {
-		this.tipo_doc = tipo_doc;
+	public void settipoDoc(String tipoDoc) {
+		this.tipoDoc = tipoDoc;
 	}
 
 	public String getTmoUsuario() {

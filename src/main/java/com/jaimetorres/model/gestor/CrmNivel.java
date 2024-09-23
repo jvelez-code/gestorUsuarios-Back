@@ -14,7 +14,7 @@ public class CrmNivel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id_nivel")
+	@Column(name = "id_nivel")
 	private Integer idNivel;	
 
     @Column(name = "nombre_nivel", length = 32, nullable = false)

@@ -1,9 +1,11 @@
 package com.jaimetorres.model.gestor;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "archivo")
@@ -31,8 +33,8 @@ public class Archivo implements Serializable{
 	private Integer cantidadRegistros;
 	
 	@Column(name = "fecha_hora_cargue")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaHoraCargue;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime fechaHoraCargue;
 	
 	@Column(name = "registros_exitosos")
 	private Integer registrosExitosos;
@@ -83,11 +85,11 @@ public class Archivo implements Serializable{
 		this.cantidadRegistros = cantidadRegistros;
 	}
 
-	public Date getFechaHoraCargue() {
+	public LocalDateTime getFechaHoraCargue() {
 		return fechaHoraCargue;
 	}
 
-	public void setFechaHoraCargue(Date fechaHoraCargue) {
+	public void setFechaHoraCargue(LocalDateTime fechaHoraCargue) {
 		this.fechaHoraCargue = fechaHoraCargue;
 	}
 
@@ -114,12 +116,8 @@ public class Archivo implements Serializable{
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
 	
 
-
+	
 }

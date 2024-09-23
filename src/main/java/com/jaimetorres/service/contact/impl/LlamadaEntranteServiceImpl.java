@@ -36,18 +36,23 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 	}
 	
 	@Override
-	public List<LlamadaEntranteDTO> entranteSinRegistro(ParametrosDTO filtro) {
+	public LlamadaEntranteDTO entranteSinRegistro(ParametrosDTO filtro) {
 		
-		List<LlamadaEntranteDTO> detalle = new ArrayList<>();
+		List<Object[]> results = repo.buscarIdEntrante(filtro.getNroDocumento());
+		  
+		if (results.isEmpty()) {
+	            return null;
+	        }
 		
-		repo.buscarIdEntrante(filtro.getNroDocumento()).forEach(x -> {
-			LlamadaEntranteDTO m = new LlamadaEntranteDTO();
-			m.setidAsterisk(String.valueOf(x[0]));
-			m.setNumero_documento(String.valueOf(x[1]));
-			m.setTipo_doc(String.valueOf(x[2]));			
-			detalle.add(m);
-		});
-		return detalle;
+		Object[] row = results.get(0); // Suponiendo que solo hay un resultado
+        return new LlamadaEntranteDTO(
+            (String) row[0],
+            (String) row[1],
+            (String) row[2],
+            (String) row[3],
+            (String) row[4], null, null
+        );
+    
 		
 	}
 
@@ -73,14 +78,25 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 	}
 
 	@Override
-	public LlamadaEntrante buscarSecreVirt(LlamadaEntranteDTO filtro) {		
+	public synchronized LlamadaEntrante buscarSecreVirt(LlamadaEntranteDTO filtro) {		
 		return repo.secretariaVirtual(filtro.getEmpresa());
 	}
 
 	@Override
-	public void actualSecreVirt(LlamadaEntranteDTO filtro) {
+	public synchronized void actualSecreVirt(LlamadaEntranteDTO filtro) {
 		repo.cambioEstadoSecVirt(filtro.getIdAgente(),filtro.getIdLlamadaEntrante());
 	}
+
+	@Override
+	public void limpiarSecre(LlamadaEntranteDTO filtro) {
+		repo.limpiarSecretaria(filtro.getnumeroDocumento(), filtro.getIdLlamadaEntrante());
+	}
+
+	@Override
+	public void devoluSecreVirt(LlamadaEntranteDTO filtro) {
+		repo.devolverEstadoSecVirt(filtro.getIdLlamadaEntrante());		
+	}
+
 
 	
 

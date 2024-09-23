@@ -27,6 +27,11 @@ public class LoginServiceImpl implements ILoginService{
 	public void cambiarClave(String clave, String nombre) {
 		repo.cambiarClave(bcrypt.encode(clave), nombre);
 	}
+
+	@Override
+	public void cambiarIntento(String nombre) {
+		repo.cambiarIntento(nombre);		
+	}
 	
 	
 

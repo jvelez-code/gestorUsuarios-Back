@@ -52,7 +52,7 @@ public class AgenteCampanaServiceImpl extends CRUDImpl<AgenteCampana, Integer> i
 		if(ags != null) {
 			agente.setIdCampanaS(ags.getCampana().getIdCampana());
 			agente.setNombreCamS(ags.getCampana().getTipoCampana().getNombre());
-			agente.setTipoLlamadaCamE(ags.getCampana().getTipoCampana().getTipoLlamada());
+			agente.setTipoLlamadaCamS(ags.getCampana().getTipoCampana().getTipoLlamada());
 		}
 		
             InetAddress localhost = InetAddress.getLocalHost();

@@ -14,7 +14,7 @@ import com.jaimetorres.model.gestor.CrmCasos;
 public interface ICrmCasosRepo extends IGenericRepo < CrmCasos, Integer> {
 
 	@Query(value = "SELECT cc.id_caso, c.tipo_documento, c.nro_documento, cc.nro_realmarcado, " +
-			"cc.fecha_gestion, cc.fecha_vencimiento, cc2.nombre_categoria, " +
+			"cc.fecha_caso, cc.fecha_vencimiento,cc.fecha_cierre, cc2.nombre_categoria, " +
 			"cs.nombre_subcategoria, ct.nombre_tipologia, ce.nombre_estado, " +
 			"cn.nombre_nivel, cd.nombre_departamento " +
 			"FROM crm_casos cc " +
@@ -26,12 +26,12 @@ public interface ICrmCasosRepo extends IGenericRepo < CrmCasos, Integer> {
 			"JOIN crm_categoria cc2 ON cs.id_categoria = cc2.id_categoria " +
 			"JOIN cliente c ON cc.id_cliente = c.id_cliente " +
 			"WHERE cc.id_cliente= :idCliente " +
-			"ORDER BY cc.fecha_vencimiento",
+			"ORDER BY ce.nombre_estado, cc.id_caso DESC ",
 			nativeQuery = true)
 	List<Object[]> buscarCasosR(@Param("idCliente") Integer idCliente );
 
 	@Query(value = "SELECT cc.id_caso, c.tipo_documento, c.nro_documento, cc.nro_realmarcado, " +
-			"cc.fecha_gestion, cc.fecha_vencimiento, cc2.nombre_categoria, " +
+			"cc.fecha_caso, cc.fecha_vencimiento,cc.fecha_cierre, cc2.nombre_categoria, " +
 			"cs.nombre_subcategoria, ct.nombre_tipologia, ce.nombre_estado, " +
 			"cn.nombre_nivel, cd.nombre_departamento " +
 			"FROM crm_casos cc " +
@@ -42,16 +42,16 @@ public interface ICrmCasosRepo extends IGenericRepo < CrmCasos, Integer> {
 			"JOIN crm_subcategoria cs ON ct.id_subcategoria = cs.id_subcategoria " +
 			"JOIN crm_categoria cc2 ON cs.id_categoria = cc2.id_categoria " +
 			"JOIN cliente c ON cc.id_cliente = c.id_cliente " +
-			"WHERE cc.id_estado = '1' " +
-			"ORDER BY cc.fecha_vencimiento",
+			"WHERE cc.id_estado in ('1','3') " +
+			"ORDER BY cc.id_caso DESC ",
 			nativeQuery = true)
 	List<Object[]> buscarEstadoR();
 
 
 	@Transactional
 	@Modifying	
-	@Query(value="UPDATE crm_casos SET id_estado = :idCrmEstado WHERE id_caso = :idCrmCaso ", nativeQuery = true)
-	void actuEstado(@Param("idCrmEstado") Integer idCrmEstado, @Param("idCrmCaso") Integer idCrmCaso );
+	@Query(value="UPDATE crm_casos SET id_estado = :idCrmEstado,fecha_cierre= :fechaDetalle  WHERE id_caso = :idCrmCaso ", nativeQuery = true)
+	void actuEstado(@Param("idCrmEstado") Integer idCrmEstado, @Param("fechaDetalle") String fechaDetalle, @Param("idCrmCaso") Integer idCrmCaso );
 
 
 

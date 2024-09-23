@@ -1,6 +1,7 @@
 package com.jaimetorres.repo.gestor;
 
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -42,10 +43,10 @@ public interface IDetalleGestionComercialRepo extends IGenericRepo<DetalleGestio
 			+ "WHERE DETGESCOM.fecha_gestion BETWEEN :fechaInicial AND :fechaFinal  "
 			+ "AND DETGESCOM.id_agente = :idUsuario  "
 			+ "ORDER BY GES.fecha_gestion DESC ", nativeQuery = true)
-		List<Object[]> buscarGC(@Param("fechaInicial") Date fechaInicial, @Param("fechaFinal") Date fechaFinal,@Param("idUsuario") Integer idUsuario);
+		List<Object[]> buscarGC(@Param("fechaInicial") LocalDateTime localDateTime, @Param("fechaFinal") LocalDateTime localDateTime2,@Param("idUsuario") Integer idUsuario);
 		
 		@Query("FROM DetalleGestionComercial dc JOIN dc.usuario u WHERE dc.fechaGestion BETWEEN :fechaInicial AND :fechaFinal")
-		List<DetalleGestionComercial> buscarUsuarios(@Param("fechaInicial") Date fechaInicial, @Param("fechaFinal") Date fechaFinal);
+		List<DetalleGestionComercial> buscarUsuarios(@Param("fechaInicial") LocalDateTime localDateTime, @Param("fechaFinal") LocalDateTime localDateTime2);
 	
 		}
 

@@ -18,8 +18,8 @@ import com.jaimetorres.service.contact.impl.UploadService;
 import com.opencsv.exceptions.CsvValidationException;
 
 @RestController
-@RequestMapping("/api")
-public class UploadController {
+@RequestMapping("/cargarCampana")
+public class CargarCampanaController {
 
 	
 	@Autowired

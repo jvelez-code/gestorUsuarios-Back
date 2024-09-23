@@ -93,8 +93,7 @@ public class ClienteController {
 		
 		//@RequestBody json a objeto  java
 		@PostMapping("/buscar")
-		public ResponseEntity<List<Cliente>> buscar(@RequestBody ParametrosDTO filtro) throws Exception {
-			
+		public ResponseEntity<List<Cliente>> buscar(@RequestBody ParametrosDTO filtro) throws Exception {			
 			List<Cliente> cliente = new ArrayList<>();
 			cliente = service.buscar(filtro);			
 			return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
@@ -103,8 +102,7 @@ public class ClienteController {
 		
 		//@RequestBody json a objeto  java
 		@GetMapping("/buscar")
-		public ResponseEntity<List<Cliente>> buscarp(@RequestBody ParametrosDTO filtro) throws Exception{
-					
+		public ResponseEntity<List<Cliente>> buscarp(@RequestBody ParametrosDTO filtro) throws Exception{					
 			List<Cliente> cliente = new ArrayList<>();
 			cliente = service.buscarByCliente(filtro);		
 			return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
