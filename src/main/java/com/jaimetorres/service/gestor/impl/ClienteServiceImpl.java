@@ -30,6 +30,11 @@ public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IC
 		return repo.buscar(filtro.getTipoDoc(),filtro.getNroDocumento());
 		
 	}
+	
+	@Override
+	public Cliente buscarCliente(ParametrosDTO filtro) {
+		return repo.buscarCliente(filtro.getTipoDoc(),filtro.getNroDocumento());
+	}
 
 	@Override
 	public List<Cliente> buscarByCliente(ParametrosDTO filtro) {
@@ -51,10 +56,7 @@ public class ClienteServiceImpl extends CRUDImpl<Cliente, Integer> implements IC
 		return repo.buscarCargue(filtro.getTipoDoc(),filtro.getNroDocumento());
 	}
 
-
-
-
-		
+			
 }
 
 

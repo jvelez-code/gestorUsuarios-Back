@@ -132,8 +132,8 @@ public class GestionController {
 			obj= service.buscarGestioSaliente(idges);
 		}
 
-		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdGestion()).toUri();
-		return new ResponseEntity<ParametrosDTO>(obj, HttpStatus.CREATED);
+		//URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdGestion()).toUri();
+		return new ResponseEntity<ParametrosDTO>(obj,  HttpStatus.OK);
 	}
 
 
@@ -170,4 +170,17 @@ public class GestionController {
 		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdGestion()).toUri();
 		return new ResponseEntity<Gestion>(obj, HttpStatus.CREATED);
 	}
+	
+	@PostMapping("/gestionCampana")
+	public ResponseEntity <Integer> gestionCampana (@RequestBody ParametrosDTO filtro) throws Exception{
+		Integer idGestion=service.contarGestiones(filtro);
+		return new ResponseEntity<Integer>(idGestion,  HttpStatus.OK);
+	}
+	
+	@PostMapping("/gestionCampanaFal")
+	public ResponseEntity <Integer> gestionCampanaFal (@RequestBody ParametrosDTO filtro) throws Exception{
+		Integer idGestion=service.contarGestionesfalt(filtro);
+		return new ResponseEntity<Integer>(idGestion,  HttpStatus.OK);
+	}
+	
 }

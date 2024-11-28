@@ -8,5 +8,6 @@ public interface IAskLogEstadoService extends ICRUDContact<AskLogEstado, Integer
 	Integer buscarExt (FiltroEstadoDTO filtro);
 	void actualizarExt (Integer idLog);
 	void registrarExt (FiltroEstadoDTO filtro);
+	void registrarExtNue (FiltroEstadoDTO filtro);
 
 }

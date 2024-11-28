@@ -17,31 +17,20 @@ public class AgenteCampana implements Serializable {
 	private Integer idAgenteCampana;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_agente",nullable = false, foreignKey = @ForeignKey(name ="fk_agentecampana_agente"))
+	@JoinColumn(name = "id_agente", nullable = false, foreignKey = @ForeignKey(name ="fk_agentecampana_agente"))
 	private Usuario usuario;
 	
-//	@Column(name = "id_agente")
-//	private Integer idAgente;
-	
 	@ManyToOne
-	@JoinColumn(name = "id_campana")
+	@JoinColumn(name = "id_campana", nullable = false, foreignKey = @ForeignKey(name ="fk_agentecampana_campana"))
 	private Campana campana;
 	
 	@Column(name = "activo")
 	private Boolean activo;
-	
-	
-	
-	
-	
 
 	public AgenteCampana() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-	
 
 	public AgenteCampana(Integer idAgenteCampana, Usuario usuario, Campana campana, Boolean activo) {
 		super();
@@ -61,17 +50,6 @@ public class AgenteCampana implements Serializable {
 	public void setIdAgenteCampana(Integer idAgenteCampana) {
 		this.idAgenteCampana = idAgenteCampana;
 	}
-	
-	
-
-	
-//	public Integer getIdAgente() {
-//		return idAgente;
-//	}
-//
-//	public void setIdAgente(Integer idAgente) {
-//		this.idAgente = idAgente;
-//	}
 
 	public Usuario getAgente() {
 		return usuario;

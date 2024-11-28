@@ -1,6 +1,7 @@
 package com.jaimetorres.controller;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Collections;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +45,7 @@ public class MediaController {
 				.path(path)
 				.toUriString();
 
-		return Map.of("url", url);		
+		return Collections.singletonMap("url", url);
 	}
 
 

@@ -18,9 +18,6 @@ public class AskEstadoExtension implements Serializable {
 	@Column(name="login_agente", nullable = false, unique = true)
 	private String loginAgente;
 	
-//	@Column(name="estado", nullable = false)
-//	private Integer estadoAsk;
-	
 	@ManyToOne
 	@JoinColumn(name="estado",nullable = false, foreignKey = @ForeignKey(name = "fk_ask_estado_extension_estado"))
 	private AskEstado askEstado;

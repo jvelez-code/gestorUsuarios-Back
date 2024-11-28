@@ -48,6 +48,16 @@ public class UsuarioServiceImpl extends CRUDImpl<Usuario, Integer> implements IU
 		
 	}
 
+	@Override
+	public List<Usuario> buscarCalidad() {
+		return repo.buscarCalidad();
+	}
+
+	@Override
+	public List<Usuario> buscarAsignaciones(ParametrosDTO filtro) {
+		return repo.buscarAsignar(filtro.getIdEmpresa());
+	}
+
 	
 	
 }

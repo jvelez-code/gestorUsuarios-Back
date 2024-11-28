@@ -75,7 +75,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         .realmName(securityRealm)
         .and()
         .csrf()
-        .disable();        
+        .disable()
+        .headers()
+        .contentSecurityPolicy("default-src 'self' https://maps.googleapis.com; " +
+                                "frame-ancestors 'self' https://habilitacion.faceldi.net; " +
+                                "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://maps.googleapis.com; " +
+                                "style-src 'self' 'unsafe-inline'; " +
+                                "font-src 'self'; " +
+                                "img-src 'self'; " +
+                                "object-src 'none'")
+        .and()
+        .xssProtection()
+            .block(true)
+        .and()
+        .frameOptions()
+            .sameOrigin();  // Ajusta según tus necesidades
 	}
 	
 	@Bean

@@ -47,8 +47,8 @@ public class AskEstadoExtensionController {
 
 	//@RequestBody json a objeto  java
 	@PostMapping
-	public ResponseEntity<AskEstadoExtension> registrar(@Valid @RequestBody AskEstadoExtension AskEstadoExtension) throws Exception{
-		AskEstadoExtension obj=service.registrar(AskEstadoExtension);
+	public ResponseEntity<AskEstadoExtension> registrar(@Valid @RequestBody AskEstadoExtension askEstadoExtension) throws Exception{
+		AskEstadoExtension obj=service.registrar(askEstadoExtension);
 
 		//localhost:8080/pacientes/7
 		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdExtension()).toUri();
@@ -97,7 +97,11 @@ public class AskEstadoExtensionController {
 		try {			
 			service.cambioEstado(filtro);
 			Integer maxLog= serviceExt.buscarExt(filtro);
+			if (maxLog==0) {
+				serviceExt.registrarExtNue(filtro);
+			}
 			serviceExt.actualizarExt(maxLog);
+			
 			serviceExt.registrarExt(filtro);
 
 		} catch (Exception e) {

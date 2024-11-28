@@ -88,8 +88,7 @@ public class UsuarioController {
 	public ResponseEntity<AgenteDTO> buscarUsuarioExt(@RequestBody ParametrosDTO filtro) throws Exception{
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String ip = request.getRemoteAddr();
-		AgenteDTO obj = serviceAg.buscarCampana(filtro);
-		
+		AgenteDTO obj = serviceAg.buscarCampana(filtro);		
 		return new ResponseEntity<AgenteDTO>(obj, HttpStatus.OK);
 	}
 	
@@ -110,5 +109,15 @@ public class UsuarioController {
 		service.intentoFallido(filtro);		
 		return new ResponseEntity<Void>( HttpStatus.OK);
 	}
-
+	
+	@GetMapping("/listarCalidad")
+	public List<Usuario> listarCalidad() throws Exception{
+		return service.buscarCalidad();
+	}
+	
+	@PostMapping("/buscarAsignaciones")
+	public ResponseEntity <List<Usuario>> buscarAsignaciones(@RequestBody ParametrosDTO filtro) throws Exception {		
+		List<Usuario> lista=service.buscarAsignaciones(filtro);	
+		return new ResponseEntity <List<Usuario>>(lista, HttpStatus.OK);
+	}
 }

@@ -22,7 +22,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 
 @SpringBootApplication
-
 public class GestorUsuariosBackApplication extends SpringBootServletInitializer {
 	
 	 private static final String ALGORITHM = "AES";

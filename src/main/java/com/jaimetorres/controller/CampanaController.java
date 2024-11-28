@@ -47,7 +47,6 @@ public class CampanaController {
 	@PostMapping
 	public ResponseEntity<Campana> registrar(@Valid @RequestBody Campana Campana) throws Exception{
 		Campana obj=service.registrar(Campana);
-
 		//localhost:8080/pacientes/7
 		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getIdCampana()).toUri();
 		return new ResponseEntity<Campana>(obj, HttpStatus.CREATED);
@@ -69,6 +68,12 @@ public class CampanaController {
 		}
 		service.eliminar(id);		
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+	
+	@PostMapping("/listarAsignacion")
+	public ResponseEntity<List<Campana>> listarAsignacion(@Valid @RequestBody ParametrosDTO filtro) throws Exception{
+		List<Campana> obj=service.asignarCampana(filtro);
+		return new ResponseEntity<>(obj,  HttpStatus.OK);
 	}
 
 

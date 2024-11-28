@@ -77,21 +77,30 @@ public class LoginController {
 	}
 	
 	@GetMapping(value = "/restablecer/verificar/{token}")
-	public ResponseEntity<Integer> verificarToken(@PathVariable("token") String token) {
+	public ResponseEntity<ParametrosDTO> verificarToken(@PathVariable("token") String token) {
+		
 		int rpta = 0;
+		int usua = 0;
+		
+		ParametrosDTO para =new ParametrosDTO();
+		para.setIdCliente(rpta);
+		para.setIdUsuario(usua);
 		try {
 			if (token != null && !token.isEmpty()) {
 				ResetToken rt = tokenService.findByToken(token);
 				if (rt != null && rt.getId() > 0) {
 					if (!rt.estaExpirado()) {
 						rpta = 1;
+						usua = rt.getUser().getIdUsuario();
 					}
 				}
 			}
 		} catch (Exception e) {
-			return new ResponseEntity<Integer>(rpta, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<ParametrosDTO>(para, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<Integer>(rpta, HttpStatus.OK);
+		para.setIdCliente(rpta);
+		para.setIdUsuario(usua);
+		return new ResponseEntity<ParametrosDTO>(para, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "/restablecer/{token}", produces = MediaType.APPLICATION_JSON_VALUE)

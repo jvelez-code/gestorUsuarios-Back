@@ -58,6 +58,14 @@ public interface IGestionRepo extends IGenericRepo<Gestion, Integer> {
 	
 	//CARGUE CAMPANA
 	
+	@Query(value = "SELECT COUNT(*) FROM gestion g WHERE g.id_campana = :campanaSal ", nativeQuery = true)
+	Integer contarGestiones(@Param("campanaSal") Integer campanaSal);
+	
+	@Query(value = "SELECT COUNT(*) FROM gestion g WHERE g.id_campana = :campanaSal AND g.id_estado_gestion in ('7','4')", nativeQuery = true)
+	Integer contarGestionesfalt(@Param("campanaSal") Integer campanaSal);
+
+
+	
 	
 	
 	

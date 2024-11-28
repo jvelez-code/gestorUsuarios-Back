@@ -9,6 +9,7 @@ import com.jaimetorres.model.gestor.Cliente;
 public interface IClienteService extends ICRUD<Cliente , Integer >{
 	
 	List<Cliente> buscar(ParametrosDTO filtro);
+	Cliente buscarCliente(ParametrosDTO filtro);
 	List<Cliente> buscarByCliente(ParametrosDTO filtro);
 	List<Cliente> buscarByClientes(ParametrosDTO filtro);
 	Cliente buscarIdAsterisk(Integer tipo, String nroDocumento);

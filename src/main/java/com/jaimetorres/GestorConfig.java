@@ -52,7 +52,7 @@ public class GestorConfig {
 		  HikariConfig config = new HikariConfig();
 	        config.setJdbcUrl(env.getProperty("gestor.datasource.url"));
 	        config.setUsername(env.getProperty("gestor.datasource.username"));
-	        //config.setPassword(env.getProperty("V3l3z24*"));
+	        //config.setPassword(env.getProperty("V3l3z2024*"));
 	        config.setPassword(decryptedPassword);
 	        //System.out.print(decryptedPassword);
 	        config.setDriverClassName(env.getProperty("gestor.datasource.driver-class-name"));

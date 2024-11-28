@@ -26,7 +26,10 @@ public class askLogEstadoServiceImpl extends CRUDContactImpl<AskLogEstado, Integ
 
 	@Override
 	public Integer buscarExt(FiltroEstadoDTO filtro) {
-		return repo.buscar(filtro.getIdExtension());
+		Integer idExt =repo.buscar(filtro.getIdExtension());
+		return (idExt != null && idExt > 0) ? idExt : 0;
+		
+		
 	}
 
 	@Override
@@ -39,6 +42,12 @@ public class askLogEstadoServiceImpl extends CRUDContactImpl<AskLogEstado, Integ
 	public void registrarExt(FiltroEstadoDTO filtro) {
 		
 		repo.registrar(filtro.getIdExtension(), filtro.getEstadoAsk());
+		
+	}
+
+	@Override
+	public void registrarExtNue(FiltroEstadoDTO filtro) {
+		repo.registrarNuevo(filtro.getIdExtension(), filtro.getEstadoAsk());
 		
 	}
 

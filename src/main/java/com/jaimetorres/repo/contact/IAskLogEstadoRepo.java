@@ -24,4 +24,10 @@ public interface IAskLogEstadoRepo extends IGenericContactRepo< AskLogEstado , I
 	void registrar(@Param("idExtension") Integer idExtension, @Param("estadoAsk") Integer estadoAsk);
 	
 	
+	@Transactional
+	@Modifying
+	@Query(value = "INSERT INTO ask_log_estados (id_log,id_extension,estado) VALUES ((select max(id_log)+1  from ask_log_estados) , :idExtension, :estadoAsk)", nativeQuery = true)
+	void registrarNuevo(@Param("idExtension") Integer idExtension, @Param("estadoAsk") Integer estadoAsk);
+	
+	
 }

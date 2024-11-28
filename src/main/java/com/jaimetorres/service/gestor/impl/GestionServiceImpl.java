@@ -339,6 +339,18 @@ public class GestionServiceImpl extends CRUDImpl<Gestion, Integer> implements IG
 		gestion.getListaContacto().forEach(det ->det.setGestion(gestion));
 		return repo.save(gestion);	
 	}
+
+
+	@Override
+	public Integer contarGestiones(ParametrosDTO filtro) {
+		return repo.contarGestiones(filtro.getCampanaSal());
+	}
+
+
+	@Override
+	public Integer contarGestionesfalt(ParametrosDTO filtro) {
+		return repo.contarGestionesfalt(filtro.getCampanaSal());
+	}
 }
 
 

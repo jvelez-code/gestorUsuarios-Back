@@ -18,9 +18,14 @@ import com.opencsv.exceptions.CsvValidationException;
 
 public interface IGestionService extends ICRUD<Gestion , Integer >{
 	
+	//ASIGNAR CAMPAÑA
+	Integer contarGestiones(ParametrosDTO filtro);
+	Integer contarGestionesfalt(ParametrosDTO filtro);
+	
+	
 	Gestion registrarTransaccional(Gestion gestion) throws Exception;
 	
-	//Gestion C0mercial
+	//GESTION COMERCIAL
 	Gestion registrarTransaccionalComercial(Gestion gestion) throws Exception;
 	void actuaGestionComer( Integer idGestion, DetalleGestion detalleGestion);
 	
@@ -50,6 +55,8 @@ public interface IGestionService extends ICRUD<Gestion , Integer >{
 	
 	// SECRETARIA VIRTUAL
 	Integer buscarSecre(LlamadaEntranteDTO filtro);
+	
+	
 	
 
 }

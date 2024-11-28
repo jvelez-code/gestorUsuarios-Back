@@ -108,6 +108,13 @@ public class ClienteController {
 			return new ResponseEntity<List<Cliente>>(cliente, HttpStatus.OK);
 		}
 		
+		@PostMapping("/buscarCliente")
+		public ResponseEntity<Cliente> buscarCliente(@RequestBody ParametrosDTO filtro) throws Exception{					
+			Cliente cliente = new Cliente();
+			cliente = service.buscarCliente(filtro);		
+			return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+		}
+		
 		@PostMapping("/buscarId")
 		public ResponseEntity<List<Cliente>> buscarId(@RequestBody ParametrosDTO filtro) throws Exception{
 			
