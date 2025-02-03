@@ -52,6 +52,8 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter{
 	
 	@Override
 	public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
+		System.out.println(clientId);
+		System.out.println(clientSecret);
 		configurer.inMemory().withClient(clientId).secret(bcrypt.encode(clientSecret)).authorizedGrantTypes(grantType, "refresh_token")
 		.scopes(scopeRead, scopeWrite).resourceIds(resourceIds).accessTokenValiditySeconds(300000)
 		.refreshTokenValiditySeconds(300000);

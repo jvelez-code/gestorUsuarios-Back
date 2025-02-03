@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,9 @@ public class LoginController {
 	@Autowired
 	private EmailUtil emailUtil;
 	
+	@Value("${url_correo}")
+    private String urlCorreo;
+	
 	@PostMapping(value = "/enviarCorreo", consumes = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<Integer> enviarCorreo(@RequestBody String correo) throws Exception {
 		int rpta = 0; 
@@ -63,7 +67,7 @@ public class LoginController {
 			
 			Map<String, Object> model = new HashMap<>();
 			//String url = "https://gestorcoordinador.enlace-apb.com/gestorfront/#/recuperar/" + token.getToken();
-			String url = "https://10.1.1.159/gestorfront/#/recuperar/" + token.getToken();
+			String url = urlCorreo + "/#/recuperar/" + token.getToken();
 			//String url = "http://127.0.0.1/#/recuperar/" + token.getToken();
 			//String url = "https://10.1.1.218/gestorfront/#/recuperar/" + token.getToken();
 			model.put("user", token.getUser().getUsername());

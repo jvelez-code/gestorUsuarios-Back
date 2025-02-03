@@ -44,24 +44,25 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 	               .frameOptions()
 	                   .deny()
 	           .and()
-                .authorizeRequests()                  
-                .antMatchers("/v2/api-docs/**" ).permitAll()
-                .antMatchers("/v3/api-docs/**" ).permitAll()
-                //.antMatchers("/tipoDocumentos/**" ).authenticated() 
-                .antMatchers("/askEstados/**" ).authenticated()
-                .antMatchers("/LlamadasEntrantes/**" ).authenticated()                
-                .antMatchers("/askEstadoExtensiones/**" ).authenticated()
-                .antMatchers("/clientes/**" ).authenticated()
-                .antMatchers("/contactos/**" ).authenticated()
-                .antMatchers("/detallegestiones/**" ).authenticated()
-                .antMatchers("/estadoGestiones/**" ).authenticated()
-                .antMatchers("/crmCasos/**" ).authenticated()
-                .antMatchers("/usuarios/**" ).permitAll()
-                .antMatchers("/productividad/**" ).authenticated()
-                .antMatchers("/tokens/anular/**" ).permitAll()
-                .antMatchers("/campanas/**" ).permitAll();
-                //.antMatchers("/tokens/**" ).authenticated();     
-                //.antMatchers("/oauth/token/**" ).authenticated();
+                .authorizeRequests()
+                .antMatchers("/oauth/token", "/apijavabackend/oauth/token").permitAll()
+                .antMatchers("/apijavabackend/v2/api-docs/**" ).permitAll()
+                .antMatchers("/apijavabackend/v3/api-docs/**" ).permitAll()
+                //.antMatchers("/apijavabackend/tipoDocumentos/**" ).authenticated() 
+                .antMatchers("/apijavabackend/askEstados/**" ).authenticated()
+                .antMatchers("/apijavabackend/LlamadasEntrantes/**" ).authenticated()                
+                .antMatchers("/apijavabackend/askEstadoExtensiones/**" ).authenticated()
+                .antMatchers("/apijavabackend/clientes/**" ).authenticated()
+                .antMatchers("/apijavabackend/contactos/**" ).authenticated()
+                .antMatchers("/apijavabackend/detallegestiones/**" ).authenticated()
+                .antMatchers("/apijavabackend/estadoGestiones/**" ).authenticated()
+                .antMatchers("/apijavabackend/crmCasos/**" ).authenticated()
+                .antMatchers("/apijavabackend/usuarios/**" ).permitAll()
+                .antMatchers("/apijavabackend/productividad/**" ).authenticated()
+                .antMatchers("/apijavabackend/tokens/anular/**" ).permitAll()
+                .antMatchers("/apijavabackend/campanas/**" ).permitAll();
+                //.antMatchers("/apijavabackend/tokens/**" ).authenticated();     
+                //.antMatchers("/apijavabackend/oauth/token/**" ).authenticated();
                 
     }    
     

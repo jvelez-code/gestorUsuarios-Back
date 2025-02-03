@@ -57,5 +57,18 @@ public class UsuariosServiceImpl extends CRUDImpl<Usuarios, Integer> implements 
 		
 	}
 
+	@Override
+	public Usuarios listarUsuarios(ParametrosDTO filtro) {
+		Usuarios usuario = repo.usuariosCalidad(filtro.getLoginAgente());
+		if (usuario == null) {
+			Usuarios nuevoUsuario = new Usuarios();
+			nuevoUsuario.setEmail("notiene@notiene.com");
+			return nuevoUsuario;		
+		}
+		
+		return usuario;
+	}
+
+
 
 }

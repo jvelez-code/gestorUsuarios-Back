@@ -10,4 +10,5 @@ public interface IUsuariosClavesService extends ICRUD<UsuariosClaves , Integer >
 	
 	boolean buscarClaves(ParametrosDTO filtro);
 	
+	
 }

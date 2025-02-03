@@ -79,5 +79,12 @@ public class UsuariosController {
 		return new ResponseEntity<Void>( HttpStatus.OK);
 	}
 	
+	@PostMapping("/usuariosCalidad")
+	public ResponseEntity<Usuarios> usuariosCalidad(@RequestBody ParametrosDTO filtro) throws Exception{
+		Usuarios lista=service.listarUsuarios(filtro);
+		return new ResponseEntity <Usuarios>(lista, HttpStatus.OK);
+	}
+
+	
 
 }

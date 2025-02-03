@@ -36,17 +36,17 @@ public class CORS implements Filter {
 		response.setHeader("Access-Control-Max-Age", "3600");
 		response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN");
 		String cspPolicy = "default-src 'self'; " +
-                "script-src 'self' 'unsafe-inline' https://apis.google.com; " +
-                "style-src 'self' 'unsafe-inline'; " +
-                "img-src 'self'; " +
-                "connect-src 'self'; " +
-                "font-src 'self'; " +
-                "frame-ancestors 'none'; " +
-                "object-src 'none'; " +
-                "base-uri 'self'; " +
-                "form-action 'self';";
+                           "script-src 'self' 'unsafe-inline' https://apis.google.com; " +
+                           "style-src 'self' 'unsafe-inline'; " +
+                           "img-src 'self'; " +
+                           "connect-src 'self'; " +
+                           "font-src 'self'; " +
+                           "frame-ancestors 'none'; " +
+                           "object-src 'none'; " +
+                           "base-uri 'self'; " +
+                           "form-action 'self';";
 
-		response.setHeader("Content-Security-Policy", cspPolicy);
+                response.setHeader("Content-Security-Policy", cspPolicy);
 		if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
 			response.setStatus(HttpServletResponse.SC_OK);
 		} else {
