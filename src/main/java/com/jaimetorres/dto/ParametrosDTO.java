@@ -1,7 +1,6 @@
 package com.jaimetorres.dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -12,6 +11,7 @@ public class ParametrosDTO {
 	private String tipo;
 	private String tipoDoc;
 	private String loginAgente;
+	private String email;
 	private Integer idUsuario;
 	private List<Integer> idUsuarios;
 	private String nroDocumento;
@@ -28,6 +28,9 @@ public class ParametrosDTO {
 	private Integer clienteNuevo;
 	private Integer gestionNuevo;
 	private String password;
+	private String extension;
+	private Integer idEstadoGestion;
+    private Boolean aplicaDG;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime fechaInicial;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -44,16 +47,21 @@ public class ParametrosDTO {
 	public ParametrosDTO() {
 	}
 	
-	public ParametrosDTO(String tipo, String tipoDoc, String loginAgente, Integer idUsuario, List<Integer> idUsuarios,
+
+
+
+
+	public ParametrosDTO(String tipo, String tipoDoc, String loginAgente, String email, Integer idUsuario, List<Integer> idUsuarios,
 			String nroDocumento, Integer idCliente, Integer idEmpresa, Integer idTipoCampana, Integer idEstadoPadre,
 			Integer tipoLlamada, Integer idDetalleComer, Integer cicloVida, Integer campanaSal, Integer idGestion,
-			String nombreArchivo, Integer clienteNuevo, Integer gestionNuevo, LocalDateTime fechaInicial,
-			LocalDateTime fechaFinal, LocalDateTime ultimoLogin, Integer idCrmDetalle, Integer idCrmCaso,
-			Integer idCrmEstado, Integer idExtension,String password) {
-		super();
+			String nombreArchivo, Integer clienteNuevo, Integer gestionNuevo, String password, String extension,
+			Integer idEstadoGestion, Boolean aplicaDG, LocalDateTime fechaInicial, LocalDateTime fechaFinal,
+			LocalDateTime ultimoLogin, Integer idCrmDetalle, Integer idCrmCaso, Integer idCrmEstado,
+			Integer idExtension) {
 		this.tipo = tipo;
 		this.tipoDoc = tipoDoc;
 		this.loginAgente = loginAgente;
+		this.email = email;
 		this.idUsuario = idUsuario;
 		this.idUsuarios = idUsuarios;
 		this.nroDocumento = nroDocumento;
@@ -69,6 +77,10 @@ public class ParametrosDTO {
 		this.nombreArchivo = nombreArchivo;
 		this.clienteNuevo = clienteNuevo;
 		this.gestionNuevo = gestionNuevo;
+		this.password = password;
+		this.extension = extension;
+		this.idEstadoGestion = idEstadoGestion;
+		this.aplicaDG = aplicaDG;
 		this.fechaInicial = fechaInicial;
 		this.fechaFinal = fechaFinal;
 		this.ultimoLogin = ultimoLogin;
@@ -76,8 +88,44 @@ public class ParametrosDTO {
 		this.idCrmCaso = idCrmCaso;
 		this.idCrmEstado = idCrmEstado;
 		this.idExtension = idExtension;
-		this.password = password;
 	}
+
+
+
+
+
+
+	public Integer getIdEstadoGestion() {
+		return idEstadoGestion;
+	}
+
+
+
+
+
+
+	public void setIdEstadoGestion(Integer idEstadoGestion) {
+		this.idEstadoGestion = idEstadoGestion;
+	}
+
+
+
+
+
+
+	public Boolean getAplicaDG() {
+		return aplicaDG;
+	}
+
+
+
+
+
+
+	public void setAplicaDG(Boolean aplicaDG) {
+		this.aplicaDG = aplicaDG;
+	}
+
 
 
 
@@ -335,8 +383,22 @@ public class ParametrosDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-    	
 
+	public String getExtension() {
+		return extension;
+	}
+
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	
 }

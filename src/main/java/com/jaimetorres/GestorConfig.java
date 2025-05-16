@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -40,33 +41,37 @@ public class GestorConfig {
 	
 	
 	
+	@SuppressWarnings("null")
 	@Bean(name = "gestorDataSource")
 	public DataSource gestorDatasource() throws Exception {
-//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//		dataSource.setUrl(env.getProperty("gestor.datasource.url"));
-//		dataSource.setUsername(env.getProperty("gestor.datasource.username"));
-//		dataSource.setPassword(env.getProperty("gestor.datasource.password"));
-//		dataSource.setDriverClassName(env.getProperty("gestor.datasource.driver-class-name"));		
-//		return dataSource;
 		String decryptedPassword = decryptPassword(encryptedPassword, base64SecretKey);
-		  HikariConfig config = new HikariConfig();
-	        config.setJdbcUrl(env.getProperty("gestor.datasource.url"));
-	        config.setUsername(env.getProperty("gestor.datasource.username"));
-	        //config.setPassword(env.getProperty("V3l3z2024*"));
-	        config.setPassword(decryptedPassword);
-	        //System.out.print(decryptedPassword);
-	        config.setDriverClassName(env.getProperty("gestor.datasource.driver-class-name"));
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setUrl(env.getProperty("gestor.datasource.url"));
+		dataSource.setUsername(env.getProperty("gestor.datasource.username"));
+		dataSource.setPassword(decryptedPassword);
+		//config.setPassword(decryptedPassword);
+		dataSource.setDriverClassName(env.getProperty("gestor.datasource.driver-class-name"));		
+		return dataSource;
+
+		    // String decryptedPassword = decryptPassword(encryptedPassword, base64SecretKey);
+		    // HikariConfig config = new HikariConfig();
+	        // config.setJdbcUrl(env.getProperty("gestor.datasource.url"));
+	        // config.setUsername(env.getProperty("gestor.datasource.username"));
+	        // //config.setPassword(env.getProperty("V3l3z2024*"));
+	        // config.setPassword(decryptedPassword);
+	        // //System.out.print(decryptedPassword);
+	        // config.setDriverClassName(env.getProperty("gestor.datasource.driver-class-name"));
 	        
 	        
 	        
-	        // Configuración del pool de conexiones a través de propiedades en application.properties
-	        config.setMaximumPoolSize(Integer.parseInt(env.getProperty("gestor.datasource.hikari.maximum-pool-size")));
-	        config.setMinimumIdle(Integer.parseInt(env.getProperty("gestor.datasource.hikari.minimum-idle")));
-	        config.setIdleTimeout(Long.parseLong(env.getProperty("gestor.datasource.hikari.idle-timeout")));
-	        config.setConnectionTimeout(Long.parseLong(env.getProperty("gestor.datasource.hikari.connection-timeout")));
-	        config.setMaxLifetime(Long.parseLong(env.getProperty("gestor.datasource.hikari.max-lifetime")));
+	        // // Configuración del pool de conexiones a través de propiedades en application.properties
+	        // config.setMaximumPoolSize(Integer.parseInt(env.getProperty("gestor.datasource.hikari.maximum-pool-size")));
+	        // config.setMinimumIdle(Integer.parseInt(env.getProperty("gestor.datasource.hikari.minimum-idle")));
+	        // config.setIdleTimeout(Long.parseLong(env.getProperty("gestor.datasource.hikari.idle-timeout")));
+	        // config.setConnectionTimeout(Long.parseLong(env.getProperty("gestor.datasource.hikari.connection-timeout")));
+	        // config.setMaxLifetime(Long.parseLong(env.getProperty("gestor.datasource.hikari.max-lifetime")));
 	        
-	        return new HikariDataSource(config);
+	        // return new HikariDataSource(config);
 	}
 	
 	private String decryptPassword(String encryptedPassword, String base64Key) throws Exception {

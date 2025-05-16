@@ -2,15 +2,11 @@ package com.jaimetorres.controller;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -83,11 +79,11 @@ public class DetalleGestionComercialController {
 		return new ResponseEntity<List<GestionComercialDto>>(gestion, HttpStatus.OK);
 	}
 	
-	@PostMapping("/comercialUsuario")
-	public ResponseEntity<List<DetalleGestionComercial>> comercialUsuario(@RequestBody ParametrosDTO filtro) throws Exception{
-		List<DetalleGestionComercial> gestion = new ArrayList<>();
-		gestion = service.buscarUsuarios(filtro);
-		return new ResponseEntity<List<DetalleGestionComercial>>(gestion, HttpStatus.OK);
-	}
+//	@PostMapping("/comercialUsuario")
+//	public ResponseEntity<List<DetalleGestionComercial>> comercialUsuario(@RequestBody ParametrosDTO filtro) throws Exception{
+//		List<DetalleGestionComercial> gestion = new ArrayList<>();
+//		gestion = service.buscarUsuarios(filtro);
+//		return new ResponseEntity<List<DetalleGestionComercial>>(gestion, HttpStatus.OK);
+//	}
 
 			}

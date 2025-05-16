@@ -15,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.dto.estadoComercialDto;
 import com.jaimetorres.exception.ModeloNotFoundException;
-import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.model.gestor.EstadoGestion;
 import com.jaimetorres.service.gestor.IEstadoGestionService;
 
@@ -99,6 +98,32 @@ public class EstadoGestionController {
 	public ResponseEntity<List<EstadoGestion>> estadoSecretaria(@RequestBody ParametrosDTO filtro) throws Exception {
 		List<EstadoGestion> estadoGestion = new ArrayList<>();
 		estadoGestion = service.buscarSecretaria(filtro);
+		return new ResponseEntity<List<EstadoGestion>>(estadoGestion, HttpStatus.OK);
+	}
+
+	@PostMapping("/admEstado")
+	public ResponseEntity<List<EstadoGestion>> admEstado(@RequestBody ParametrosDTO filtro) throws Exception {
+		List<EstadoGestion> estadoGestion = new ArrayList<>();
+		estadoGestion = service.busEstado(filtro);
+		return new ResponseEntity<List<EstadoGestion>>(estadoGestion, HttpStatus.OK);
+	}
+
+
+	@PostMapping("/activarEstado")
+	public ResponseEntity <Void> activarEstado(@RequestBody ParametrosDTO filtro) throws Exception {
+		service.activarEstado(filtro);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+
+	@PostMapping("/admEstadoAct")
+	public ResponseEntity<List<EstadoGestion>> admEstadoAct(@RequestBody ParametrosDTO filtro) throws Exception {
+			List<EstadoGestion> estadoGestion = service.busEstadoAct(filtro);
+		return new ResponseEntity<List<EstadoGestion>>(estadoGestion, HttpStatus.OK);
+	}
+
+	@PostMapping("/admSubEstado")
+	public ResponseEntity<List<EstadoGestion>> admSubEstado(@RequestBody ParametrosDTO filtro) throws Exception {
+			List<EstadoGestion> estadoGestion = service.busSubEstado(filtro);
 		return new ResponseEntity<List<EstadoGestion>>(estadoGestion, HttpStatus.OK);
 	}
 

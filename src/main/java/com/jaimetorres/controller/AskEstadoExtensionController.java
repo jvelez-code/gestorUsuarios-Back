@@ -1,7 +1,6 @@
 package com.jaimetorres.controller;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,7 +15,6 @@ import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.dto.FiltroEstadoDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.contact.AskEstadoExtension;
-import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.service.contact.IAskEstadoExtensionService;
 import com.jaimetorres.service.contact.IAskLogEstadoService;
 

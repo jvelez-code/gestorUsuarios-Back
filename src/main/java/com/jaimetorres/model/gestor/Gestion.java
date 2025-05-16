@@ -7,17 +7,15 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "gestion")
 public class Gestion implements Serializable {
 	
 	private static final long serialVersionUID = 6374638625076330423L;
+	
 	@Id
 	@SequenceGenerator(name = "Gestion.sequence", sequenceName = "gestion_id_gestion_seq", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Gestion.sequence")
-
 	@Column(name = "id_gestion")
 	private Integer idGestion;
 	
@@ -71,11 +69,10 @@ public class Gestion implements Serializable {
 	
 	@OneToMany(mappedBy = "gestion", cascade = { CascadeType.ALL }, orphanRemoval = true)	
 	private List<DetalleGestionComercial> listaDetalleGestionComercial;
-//	
-//	
-//	@OneToMany(mappedBy = "gestion")	
-//	private List<DataIAGestion> listaDataIAGestion;
-//	
+
+	@OneToMany(mappedBy = "gestion", cascade = { CascadeType.ALL }, orphanRemoval = true)	
+	private List<SeguimientoComercial> listaSeguimientoComercial;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_archivo_exclusion")
 	private Archivo archivoExclusion;
@@ -93,17 +90,18 @@ public class Gestion implements Serializable {
 	
 	@Column(name = "callid")   	
 	private String callid;
-	
-	
-	
-	
+
+	public Gestion() {
+		super();
+		// TODO Auto-generated constructor stub
+	}	
 
 	public Gestion(Integer idGestion, Archivo archivo, Campana campana, Cliente cliente, Boolean flagGestionSucursal,
 			EstadoGestion estadoGestion, Usuario agente, Date fechaGestion, BigInteger valorCotizacion,
-			String usuarioAct, String ipAct, List<Contacto> listaContacto, List<Empleado> listaEmpleado,
-			List<DetalleGestion> listaDetalleGestion, List<DetalleGestionComercial> listaDetalleGestionComercial,
-			List<DataIAGestion> listaDataIAGestion, Archivo archivoExclusion, Date fechaAgenda, Integer idGestionPadre,
-			Date fechaHoraSis, String callid) {
+			String usuarioAct, String ipAct, List<Contacto> listaContacto, List<DetalleGestion> listaDetalleGestion,
+			List<DetalleGestionComercial> listaDetalleGestionComercial,
+			List<SeguimientoComercial> listaSeguimientoComerciall, Archivo archivoExclusion, Date fechaAgenda,
+			Integer idGestionPadre, Date fechaHoraSis, String callid) {
 		super();
 		this.idGestion = idGestion;
 		this.archivo = archivo;
@@ -117,27 +115,15 @@ public class Gestion implements Serializable {
 		this.usuarioAct = usuarioAct;
 		this.ipAct = ipAct;
 		this.listaContacto = listaContacto;
-//		this.listaEmpleado = listaEmpleado;
 		this.listaDetalleGestion = listaDetalleGestion;
 		this.listaDetalleGestionComercial = listaDetalleGestionComercial;
-//		this.listaDataIAGestion = listaDataIAGestion;
+		this.listaSeguimientoComercial = listaSeguimientoComercial;
 		this.archivoExclusion = archivoExclusion;
 		this.fechaAgenda = fechaAgenda;
 		this.idGestionPadre = idGestionPadre;
 		this.fechaHoraSis = fechaHoraSis;
 		this.callid = callid;
 	}
-	
-	
-	
-
-	public Gestion() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-
-
 
 	public Integer getIdGestion() {
 		return idGestion;
@@ -186,7 +172,7 @@ public class Gestion implements Serializable {
 	public void setEstadoGestion(EstadoGestion estadoGestion) {
 		this.estadoGestion = estadoGestion;
 	}
-	
+
 	public Usuario getAgente() {
 		return agente;
 	}
@@ -231,49 +217,33 @@ public class Gestion implements Serializable {
 		return listaContacto;
 	}
 
-//	public void setListaContacto(List<Contacto> listaContacto) {
-//		this.listaContacto = listaContacto;
-//	}
-//
-//	public List<Empleado> getListaEmpleado() {
-//		return listaEmpleado;
-//	}
-//
-//	public void setListaEmpleado(List<Empleado> listaEmpleado) {
-//		this.listaEmpleado = listaEmpleado;
-//	}
-//
+	public void setListaContacto(List<Contacto> listaContacto) {
+		this.listaContacto = listaContacto;
+	}
+
 	public List<DetalleGestion> getListaDetalleGestion() {
 		return listaDetalleGestion;
 	}
-//
-//	public void setListaDetalleGestion(List<DetalleGestion> listaDetalleGestion) {
-//		this.listaDetalleGestion = listaDetalleGestion;
-//	}
-//
-//	
-//
+
+	public void setListaDetalleGestion(List<DetalleGestion> listaDetalleGestion) {
+		this.listaDetalleGestion = listaDetalleGestion;
+	}
+
 	public List<DetalleGestionComercial> getListaDetalleGestionComercial() {
 		return listaDetalleGestionComercial;
 	}
-//
-//
-//
-//
-//	public void setListaDetalleGestionComercial(List<DetalleGestionComercial> listaDetalleGestionComercial) {
-//		this.listaDetalleGestionComercial = listaDetalleGestionComercial;
-//	}
-//
-//
-//
-//
-//	public List<DataIAGestion> getListaDataIAGestion() {
-//		return listaDataIAGestion;
-//	}
-//
-//	public void setListaDataIAGestion(List<DataIAGestion> listaDataIAGestion) {
-//		this.listaDataIAGestion = listaDataIAGestion;
-//	}
+
+	public void setListaDetalleGestionComercial(List<DetalleGestionComercial> listaDetalleGestionComercial) {
+		this.listaDetalleGestionComercial = listaDetalleGestionComercial;
+	}
+
+	public List<SeguimientoComercial> getListaSeguimientoComercial() {
+		return listaSeguimientoComercial;
+	}
+
+	public void setListaSeguimientoComerciall(List<SeguimientoComercial> listaSeguimientoComercial) {
+		this.listaSeguimientoComercial = listaSeguimientoComercial;
+	}
 
 	public Archivo getArchivoExclusion() {
 		return archivoExclusion;
@@ -314,12 +284,6 @@ public class Gestion implements Serializable {
 	public void setCallid(String callid) {
 		this.callid = callid;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	
 	
 		
 }

@@ -15,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.UsuariosClaves;
-import com.jaimetorres.model.gestor.UsuariosClaves;
 import com.jaimetorres.service.gestor.IUsuariosClavesService;
 
 @RestController

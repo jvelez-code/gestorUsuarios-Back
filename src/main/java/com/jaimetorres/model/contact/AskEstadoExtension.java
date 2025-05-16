@@ -3,6 +3,7 @@ package com.jaimetorres.model.contact;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ask_estado_extension")
@@ -33,14 +34,15 @@ public class AskEstadoExtension implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)	
 	private Date fechahoraInicioEstado;
 	
+	@Size(max = 20, message = "El número de documento no puede tener más de 10 caracteres")
 	@Column(name="nro_documento", nullable = false)
 	private String nroDocumento;
 	
 	@Column(name="empresa", nullable = false)
 	private String empresaAsk;
 	
-	@Column(name="activo", nullable = false)
-	private boolean activoAsk;	
+	@Column(name="activo")
+	private Boolean activoAsk;	
 	
 	
 	
@@ -136,13 +138,14 @@ public class AskEstadoExtension implements Serializable {
 		this.empresaAsk = empresaAsk;
 	}
 
-	public boolean getActivoAsk() {
+	public Boolean getActivoAsk() {
 		return activoAsk;
 	}
 
-	public void setActivoAsk(boolean activoAsk) {
+	public void setActivoAsk(Boolean activoAsk) {
 		this.activoAsk = activoAsk;
 	}
+
 	
 	
 	

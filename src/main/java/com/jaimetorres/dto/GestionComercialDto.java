@@ -1,43 +1,64 @@
 package com.jaimetorres.dto;
 
-import java.util.Date;
-
 public class GestionComercialDto {
-	
+
+	private Integer idDetalleComercial;
 	private String fechaGestionCargue;
-	private String tipoDocumentoCliente;
-	private String nroDocumentoCliente;
-	private String razonSocialCliente;
-	private String nombreContacto;
+	private String tipoDocumento;
+	private String nroDocumento;
+	private String razonSocial;	
 	private String numeroContacto;
-	private String celularContacto;
-	private String correoElectronicoContacto;
-	private String ciudadCliente;
-	private String direccionCliente;
-	private String nombreMotivo;
-	private String regProyectadosCliente;
-	private String nombreEstadoGestion;
-	private String regObtenidosCliente;
-	private String observacionDetGestion;
-	private String nroGestionRealizadaDetGestion;
-	private String compromisosDetGestion;
+	private String telefonoCelular;
+	private String correoElectronico;
+	private String ciudad;
+	private String direccion;	
+	private String regProyectados;	
+	private String observacion;
 	private String fechaGestion;
-	private Integer idDetalleGestionComercial;
-	private Integer idAgente;
-	private Integer idCliente;
-	private String gestionRealizada;
-	private String nombreUsuario;
-	private FidelizacionComercialDto fidelizacionDto;
-	private Integer idEstadoGestion;
-	private Integer idMotivo;
-	private Integer idZonaDivipola;
-	private String ciclodeVida;
-	private boolean activar;
+	private String usuario;
+	private String contactoNombre;
+	private String motivoNombre;
+	private String estadoNombre;
 	
-	
+
 	public GestionComercialDto() {
 		super();
-		// TODO Auto-generated constructor stub
+		
+	}
+
+
+	public GestionComercialDto(Integer idDetalleComercial, String fechaGestionCargue, String tipoDocumento,
+			String nroDocumento, String razonSocial, String numeroContacto, String telefonoCelular,
+			String correoElectronico, String ciudad, String direccion, String regProyectados, String observacion,
+			String fechaGestion, String usuario, String contactoNombre, String motivoNombre, String estadoNombre) {
+		super();
+		this.idDetalleComercial = idDetalleComercial;
+		this.fechaGestionCargue = fechaGestionCargue;
+		this.tipoDocumento = tipoDocumento;
+		this.nroDocumento = nroDocumento;
+		this.razonSocial = razonSocial;
+		this.numeroContacto = numeroContacto;
+		this.telefonoCelular = telefonoCelular;
+		this.correoElectronico = correoElectronico;
+		this.ciudad = ciudad;
+		this.direccion = direccion;
+		this.regProyectados = regProyectados;
+		this.observacion = observacion;
+		this.fechaGestion = fechaGestion;
+		this.usuario = usuario;
+		this.contactoNombre = contactoNombre;
+		this.motivoNombre = motivoNombre;
+		this.estadoNombre = estadoNombre;
+	}
+
+
+	public Integer getIdDetalleComercial() {
+		return idDetalleComercial;
+	}
+
+
+	public void setIdDetalleComercial(Integer idDetalleComercial) {
+		this.idDetalleComercial = idDetalleComercial;
 	}
 
 
@@ -51,43 +72,33 @@ public class GestionComercialDto {
 	}
 
 
-	public String getTipoDocumentoCliente() {
-		return tipoDocumentoCliente;
+	public String getTipoDocumento() {
+		return tipoDocumento;
 	}
 
 
-	public void setTipoDocumentoCliente(String tipoDocumentoCliente) {
-		this.tipoDocumentoCliente = tipoDocumentoCliente;
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 
 
-	public String getNroDocumentoCliente() {
-		return nroDocumentoCliente;
+	public String getNroDocumento() {
+		return nroDocumento;
 	}
 
 
-	public void setNroDocumentoCliente(String nroDocumentoCliente) {
-		this.nroDocumentoCliente = nroDocumentoCliente;
+	public void setNroDocumento(String nroDocumento) {
+		this.nroDocumento = nroDocumento;
 	}
 
 
-	public String getRazonSocialCliente() {
-		return razonSocialCliente;
+	public String getRazonSocial() {
+		return razonSocial;
 	}
 
 
-	public void setRazonSocialCliente(String razonSocialCliente) {
-		this.razonSocialCliente = razonSocialCliente;
-	}
-
-
-	public String getNombreContacto() {
-		return nombreContacto;
-	}
-
-
-	public void setNombreContacto(String nombreContacto) {
-		this.nombreContacto = nombreContacto;
+	public void setRazonSocial(String razonSocial) {
+		this.razonSocial = razonSocial;
 	}
 
 
@@ -101,113 +112,63 @@ public class GestionComercialDto {
 	}
 
 
-	public String getCelularContacto() {
-		return celularContacto;
+	public String getTelefonoCelular() {
+		return telefonoCelular;
 	}
 
 
-	public void setCelularContacto(String celularContacto) {
-		this.celularContacto = celularContacto;
+	public void setTelefonoCelular(String telefonoCelular) {
+		this.telefonoCelular = telefonoCelular;
 	}
 
 
-	public String getCorreoElectronicoContacto() {
-		return correoElectronicoContacto;
+	public String getCorreoElectronico() {
+		return correoElectronico;
 	}
 
 
-	public void setCorreoElectronicoContacto(String correoElectronicoContacto) {
-		this.correoElectronicoContacto = correoElectronicoContacto;
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
 	}
 
 
-	public String getCiudadCliente() {
-		return ciudadCliente;
+	public String getCiudad() {
+		return ciudad;
 	}
 
 
-	public void setCiudadCliente(String ciudadCliente) {
-		this.ciudadCliente = ciudadCliente;
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
 	}
 
 
-	public String getDireccionCliente() {
-		return direccionCliente;
+	public String getDireccion() {
+		return direccion;
 	}
 
 
-	public void setDireccionCliente(String direccionCliente) {
-		this.direccionCliente = direccionCliente;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 
-	public String getNombreMotivo() {
-		return nombreMotivo;
+	public String getRegProyectados() {
+		return regProyectados;
 	}
 
 
-	public void setNombreMotivo(String nombreMotivo) {
-		this.nombreMotivo = nombreMotivo;
+	public void setRegProyectados(String regProyectados) {
+		this.regProyectados = regProyectados;
 	}
 
 
-	public String getRegProyectadosCliente() {
-		return regProyectadosCliente;
+	public String getObservacion() {
+		return observacion;
 	}
 
 
-	public void setRegProyectadosCliente(String regProyectadosCliente) {
-		this.regProyectadosCliente = regProyectadosCliente;
-	}
-
-
-	public String getNombreEstadoGestion() {
-		return nombreEstadoGestion;
-	}
-
-
-	public void setNombreEstadoGestion(String nombreEstadoGestion) {
-		this.nombreEstadoGestion = nombreEstadoGestion;
-	}
-
-
-	public String getRegObtenidosCliente() {
-		return regObtenidosCliente;
-	}
-
-
-	public void setRegObtenidosCliente(String regObtenidosCliente) {
-		this.regObtenidosCliente = regObtenidosCliente;
-	}
-
-
-	public String getObservacionDetGestion() {
-		return observacionDetGestion;
-	}
-
-
-	public void setObservacionDetGestion(String observacionDetGestion) {
-		this.observacionDetGestion = observacionDetGestion;
-	}
-
-
-	public String getNroGestionRealizadaDetGestion() {
-		return nroGestionRealizadaDetGestion;
-	}
-
-
-	public void setNroGestionRealizadaDetGestion(String nroGestionRealizadaDetGestion) {
-		this.nroGestionRealizadaDetGestion = nroGestionRealizadaDetGestion;
-	}
-
-
-	public String getCompromisosDetGestion() {
-		return compromisosDetGestion;
-	}
-
-
-	public void setCompromisosDetGestion(String compromisosDetGestion) {
-		this.compromisosDetGestion = compromisosDetGestion;
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
 	}
 
 
@@ -221,118 +182,46 @@ public class GestionComercialDto {
 	}
 
 
-	public Integer getIdDetalleGestionComercial() {
-		return idDetalleGestionComercial;
+	public String getUsuario() {
+		return usuario;
 	}
 
 
-	public void setIdDetalleGestionComercial(Integer idDetalleGestionComercial) {
-		this.idDetalleGestionComercial = idDetalleGestionComercial;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 
-	public Integer getIdAgente() {
-		return idAgente;
+	public String getContactoNombre() {
+		return contactoNombre;
 	}
 
 
-	public void setIdAgente(Integer idAgente) {
-		this.idAgente = idAgente;
+	public void setContactoNombre(String contactoNombre) {
+		this.contactoNombre = contactoNombre;
 	}
 
 
-	public Integer getIdCliente() {
-		return idCliente;
+	public String getMotivoNombre() {
+		return motivoNombre;
 	}
 
 
-	public void setIdCliente(Integer idCliente) {
-		this.idCliente = idCliente;
+	public void setMotivoNombre(String motivoNombre) {
+		this.motivoNombre = motivoNombre;
 	}
 
 
-	public String getGestionRealizada() {
-		return gestionRealizada;
+	public String getEstadoNombre() {
+		return estadoNombre;
 	}
 
 
-	public void setGestionRealizada(String gestionRealizada) {
-		this.gestionRealizada = gestionRealizada;
+	public void setEstadoNombre(String estadoNombre) {
+		this.estadoNombre = estadoNombre;
 	}
 
-
-	public String getNombreUsuario() {
-		return nombreUsuario;
-	}
-
-
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
-	}
-
-
-	public FidelizacionComercialDto getFidelizacionDto() {
-		return fidelizacionDto;
-	}
-
-
-	public void setFidelizacionDto(FidelizacionComercialDto fidelizacionDto) {
-		this.fidelizacionDto = fidelizacionDto;
-	}
-
-
-	public Integer getIdEstadoGestion() {
-		return idEstadoGestion;
-	}
-
-
-	public void setIdEstadoGestion(Integer idEstadoGestion) {
-		this.idEstadoGestion = idEstadoGestion;
-	}
-
-
-	public Integer getIdMotivo() {
-		return idMotivo;
-	}
-
-
-	public void setIdMotivo(Integer idMotivo) {
-		this.idMotivo = idMotivo;
-	}
-
-
-	public Integer getIdZonaDivipola() {
-		return idZonaDivipola;
-	}
-
-
-	public void setIdZonaDivipola(Integer idZonaDivipola) {
-		this.idZonaDivipola = idZonaDivipola;
-	}
-
-
-	public String getCiclodeVida() {
-		return ciclodeVida;
-	}
-
-
-	public void setCiclodeVida(String ciclodeVida) {
-		this.ciclodeVida = ciclodeVida;
-	}
-
-
-	public boolean isActivar() {
-		return activar;
-	}
-
-
-	public void setActivar(boolean activar) {
-		this.activar = activar;
-	}
 	
-	
-	
-	
-	
+
 
 }

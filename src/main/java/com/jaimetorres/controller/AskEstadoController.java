@@ -1,7 +1,6 @@
 package com.jaimetorres.controller;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -12,10 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.contact.AskEstado;
-import com.jaimetorres.model.gestor.Cliente;
 import com.jaimetorres.service.contact.IAskEstadoService;
 
 @RestController

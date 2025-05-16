@@ -2,6 +2,7 @@ package com.jaimetorres.repo.contact;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -55,7 +56,7 @@ public interface ILlamadaEntranteRepo extends IGenericContactRepo< LlamadaEntran
 			+ "INNER JOIN (SELECT DISTINCT(nro_documento), login_Agente \n"
 			+ "FROM ask_estado_extension  WHERE activo=true \n"
 			+ "GROUP BY login_Agente,nro_documento) ask ON c.agent=nro_documento \n", nativeQuery = true)
-	Object[] validarTMO(@Param("nroDocumento") String nroDocumento);
+	Optional<String> validarTMO(@Param("nroDocumento") String nroDocumento);
 		
 	//SECRETARIA VIRTUAL
 	

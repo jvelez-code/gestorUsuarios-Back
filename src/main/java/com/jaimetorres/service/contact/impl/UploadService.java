@@ -1,7 +1,5 @@
 package com.jaimetorres.service.contact.impl;
 
-import static java.util.stream.Collectors.toMap;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,16 +19,17 @@ public class UploadService {
     	
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream())))
         {        	
-            CSVReader csvReader = new CSVReader(reader);
-            String[] nextRecord;
-            
-            while ((nextRecord = csvReader.readNext()) != null) {
-                // Aquí puedes procesar cada registro del archivo CSV
-                // nextRecord es un arreglo de Strings que contiene los valores de cada columna del archivo
-                for (String value : nextRecord) {
-                    System.out.print(value + "**");
+            try (CSVReader csvReader = new CSVReader(reader)) {
+                String[] nextRecord;
+                
+                while ((nextRecord = csvReader.readNext()) != null) {
+                    // Aquí puedes procesar cada registro del archivo CSV
+                    // nextRecord es un arreglo de Strings que contiene los valores de cada columna del archivo
+                    for (String value : nextRecord) {
+                        System.out.print(value + "**");
+                    }
+                    System.out.println("Repo");
                 }
-                System.out.println("hola");
             }
         }
     }

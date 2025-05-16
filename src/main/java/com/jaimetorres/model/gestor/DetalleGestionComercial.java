@@ -23,49 +23,47 @@ public class DetalleGestionComercial implements Serializable {
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_gestion", nullable = false, foreignKey = @ForeignKey(name = "fk_contacto_gestion") )
-	private Gestion gestion;
-	
-	
-	@Column(name = "id_detalle_gestion")
-	private Integer detalleGestion;
+	private Gestion gestion;	
 	
 	@Column(name = "fecha_gestion")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaGestion;
 	
-	@OneToOne
-	@JoinColumn(name = "id_motivo")
+	@ManyToOne()
+	@JoinColumn(name = "id_motivo", nullable = false, foreignKey = @ForeignKey(name = "fk_detalle_gestion_comercial_motivo") )
 	private Motivo motivo;
-
-	@Column(name = "gestion_realizada")
-	private String gestionRealizada;
-	
-	@Column(name = "nro_gestion_realizada")
-	private String nroGestionRealizada;
-	
-	@Column(name = "compromisos")
-	private String compromisos;
-
-	@ManyToOne
-	@JoinColumn(name = "id_agente")
-	private Usuario usuario;	
-	
-	@Column(name = "reg_proyectados")
-	private String regProyectados;
 	
 	@Column(name = "reg_obtenidos")
 	private String regObtenidos;
 	
-	//@Column(name = "ciclo_vida")
-	@ManyToOne
-	@JoinColumn(name = "ciclo_vida")
-	private CicloDeVida cicloVida;
+	@Column(name = "reg_proyectados")
+	private String regProyectados;	
 	
 	@Column(name = "activar")
-	private boolean activarMod;
+	private boolean activar;
 	
 	@Column(name = "nom_archivo")
 	private String nomArchivo;
+	
+	
+
+	public DetalleGestionComercial() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public DetalleGestionComercial(Integer idDetalleGestionComercial, Gestion gestion, Date fechaGestion, Motivo motivo,
+			String regObtenidos, String regProyectados, boolean activar, String nomArchivo) {
+		super();
+		this.idDetalleGestionComercial = idDetalleGestionComercial;
+		this.gestion = gestion;
+		this.fechaGestion = fechaGestion;
+		this.motivo = motivo;
+		this.regObtenidos = regObtenidos;
+		this.regProyectados = regProyectados;
+		this.activar = activar;
+		this.nomArchivo = nomArchivo;
+	}
 
 	public Integer getIdDetalleGestionComercial() {
 		return idDetalleGestionComercial;
@@ -81,14 +79,6 @@ public class DetalleGestionComercial implements Serializable {
 
 	public void setGestion(Gestion gestion) {
 		this.gestion = gestion;
-	}
-
-	public Integer getDetalleGestion() {
-		return detalleGestion;
-	}
-
-	public void setDetalleGestion(Integer detalleGestion) {
-		this.detalleGestion = detalleGestion;
 	}
 
 	public Date getFechaGestion() {
@@ -107,36 +97,12 @@ public class DetalleGestionComercial implements Serializable {
 		this.motivo = motivo;
 	}
 
-	public String getGestionRealizada() {
-		return gestionRealizada;
+	public String getRegObtenidos() {
+		return regObtenidos;
 	}
 
-	public void setGestionRealizada(String gestionRealizada) {
-		this.gestionRealizada = gestionRealizada;
-	}
-
-	public String getNroGestionRealizada() {
-		return nroGestionRealizada;
-	}
-
-	public void setNroGestionRealizada(String nroGestionRealizada) {
-		this.nroGestionRealizada = nroGestionRealizada;
-	}
-
-	public String getCompromisos() {
-		return compromisos;
-	}
-
-	public void setCompromisos(String compromisos) {
-		this.compromisos = compromisos;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setRegObtenidos(String regObtenidos) {
+		this.regObtenidos = regObtenidos;
 	}
 
 	public String getRegProyectados() {
@@ -147,28 +113,12 @@ public class DetalleGestionComercial implements Serializable {
 		this.regProyectados = regProyectados;
 	}
 
-	public String getRegObtenidos() {
-		return regObtenidos;
+	public boolean isActivar() {
+		return activar;
 	}
 
-	public void setRegObtenidos(String regObtenidos) {
-		this.regObtenidos = regObtenidos;
-	}
-
-	public CicloDeVida getCicloVida() {
-		return cicloVida;
-	}
-
-	public void setCicloVida(CicloDeVida cicloVida) {
-		this.cicloVida = cicloVida;
-	}
-
-	public boolean isActivarMod() {
-		return activarMod;
-	}
-
-	public void setActivarMod(boolean activarMod) {
-		this.activarMod = activarMod;
+	public void setActivar(boolean activar) {
+		this.activar = activar;
 	}
 
 	public String getNomArchivo() {
@@ -177,12 +127,10 @@ public class DetalleGestionComercial implements Serializable {
 
 	public void setNomArchivo(String nomArchivo) {
 		this.nomArchivo = nomArchivo;
-	}	
- 
+	}
 	
 	
+	
 
-
-
-
+	
 }

@@ -1,9 +1,9 @@
 package com.jaimetorres.service.gestor.impl;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.ObjectUtils.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.ParametrosDTO;
-import com.jaimetorres.model.gestor.TipoDocumento;
 import com.jaimetorres.model.gestor.Usuarios;
 import com.jaimetorres.repo.gestor.IGenericRepo;
 import com.jaimetorres.repo.gestor.IUsuariosRepo;
@@ -67,6 +66,23 @@ public class UsuariosServiceImpl extends CRUDImpl<Usuarios, Integer> implements 
 		}
 		
 		return usuario;
+	}
+
+	@Override
+	public List<Usuarios> listarEmpresa(ParametrosDTO filtro) {
+		return repo.usuariosEmpresa(filtro.getIdEmpresa());
+	}
+
+	@Override
+	public Usuarios validarUsuarios(ParametrosDTO filtro) {
+		Usuarios usu =  repo.findOneByUsername(filtro.getLoginAgente());
+		Usuarios usua =  repo.findOneByEmail(filtro.getEmail());
+		if (usu != null) {
+			return usu;
+		} else if (usua != null) {
+			return usua;
+		}
+		return usu;
 	}
 
 

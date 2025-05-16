@@ -2,14 +2,9 @@ package com.jaimetorres.service.gestor.impl;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.AgenteDTO;
@@ -18,7 +13,6 @@ import com.jaimetorres.model.gestor.AgenteCampana;
 import com.jaimetorres.model.gestor.Campana;
 import com.jaimetorres.model.gestor.Usuario;
 import com.jaimetorres.repo.gestor.*;
-import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 import com.jaimetorres.service.gestor.IAgenteCampanaService;
 
 @Service
@@ -66,8 +60,6 @@ public class AgenteCampanaServiceImpl extends CRUDImpl<AgenteCampana, Integer> i
 		
 			
 			Usuario usu= repoUsu.buscarLogin(filtro.getLoginAgente());
-			
-			System.out.println(usu.getNroDocumento()+ "documentoi");
 			agente.setIdUsuario(usu.getIdUsuario());
 			agente.setUsuario(usu.getUsuario());
 			agente.setNroDocumento(usu.getNroDocumento());
@@ -100,10 +92,7 @@ public class AgenteCampanaServiceImpl extends CRUDImpl<AgenteCampana, Integer> i
 	@Override
 	public void guardarCampana(ParametrosDTO filtro) {
 		Campana cam = new Campana();
-		cam.setIdCampana(filtro.getCampanaSal());
-		
-		System.out.println(filtro.getCampanaSal());	
-		System.out.println(filtro.getIdTipoCampana());	
+		cam.setIdCampana(filtro.getCampanaSal());	
 		
 		List<AgenteCampana> agentesCampana = new ArrayList<>();
 		

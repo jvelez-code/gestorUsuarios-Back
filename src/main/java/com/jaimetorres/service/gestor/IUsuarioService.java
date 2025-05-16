@@ -22,4 +22,8 @@ public interface IUsuarioService extends ICRUD<Usuario , Integer >{
 	
 	//ASIGNAR CAMPAÑA
 	List<Usuario> buscarAsignaciones(ParametrosDTO filtro);
+
+	//ASIGNAR  EXTENSIÓN
+	List<Usuario> listarEmpresa(ParametrosDTO filtro);
+	void actualizarAct(ParametrosDTO filtro);
 }

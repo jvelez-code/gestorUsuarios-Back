@@ -35,7 +35,9 @@ public class GestorUsuariosBackApplication extends SpringBootServletInitializer 
 	public static void main(String[] args) throws Exception {
 		
 		SpringApplication.run(GestorUsuariosBackApplication.class, args);
-		System.out.println("Hola Mundo homeOfice:v1");	
+		System.out.println("Hola Mundo homeOfice:v1");
+		//String miVariable = System.getenv("CONTACT_DB_URL");
+		//System.out.println("El valor de MI_VARIABLE es: " + miVariable);
 //		// Generar la clave AES
 //        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
 //        keyGen.init(256); // Puedes usar 128, 192 o 256 bits

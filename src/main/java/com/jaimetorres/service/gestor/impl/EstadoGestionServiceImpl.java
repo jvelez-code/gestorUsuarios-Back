@@ -16,6 +16,8 @@ import com.jaimetorres.model.gestor.EstadoGestion;
 import com.jaimetorres.repo.gestor.*;
 import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 import com.jaimetorres.service.gestor.IEstadoGestionService;
+
+import net.bytebuddy.asm.Advice.Return;
 @Service
 public class EstadoGestionServiceImpl extends CRUDImpl<EstadoGestion, Integer> implements IEstadoGestionService {
 
@@ -30,10 +32,7 @@ public class EstadoGestionServiceImpl extends CRUDImpl<EstadoGestion, Integer> i
 	@Override
 	public List<EstadoGestion> buscar(ParametrosDTO filtro) {
 		
-		System.out.println(filtro.getIdEmpresa() + filtro.getTipoLlamada());
-		
-		return repo.buscarEstadoP(filtro.getIdEmpresa(),  filtro.getTipoLlamada());
-		
+		return repo.buscarEstadoP(filtro.getIdEmpresa(),  filtro.getTipoLlamada());		
 	}
 
 	@Override
@@ -58,6 +57,26 @@ public class EstadoGestionServiceImpl extends CRUDImpl<EstadoGestion, Integer> i
 	@Override
 	public List<EstadoGestion> buscarSecretaria(ParametrosDTO filtro) {
 		return repo.buscarSecretaria(filtro.getIdEmpresa());
+	}
+
+	@Override
+	public List<EstadoGestion> busEstado(ParametrosDTO filtro) {
+		return repo.busEstado(filtro.getIdEmpresa());
+	}
+
+	@Override
+	public List<EstadoGestion> busEstadoAct(ParametrosDTO filtro) {
+		return repo.busEstadoAct(filtro.getIdEmpresa());
+	}
+
+	@Override
+	public List<EstadoGestion> busSubEstado(ParametrosDTO filtro) {
+		return repo.busSubEstado(filtro.getIdEstadoPadre());
+	}
+
+	@Override
+	public void activarEstado(ParametrosDTO filtro) {
+		repo.actualizarEstado(filtro.getIdEstadoPadre(),filtro.getAplicaDG());
 	}
 
 

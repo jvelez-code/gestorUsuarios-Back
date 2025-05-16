@@ -1,10 +1,7 @@
 package com.jaimetorres.controller;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 
@@ -12,16 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import com.jaimetorres.dto.AgenteDTO;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
-import com.jaimetorres.model.gestor.AgenteCampana;
 import com.jaimetorres.model.gestor.Usuarios;
-import com.jaimetorres.service.gestor.IAgenteCampanaService;
 import com.jaimetorres.service.gestor.IUsuarioMigraService;
 
 @RestController
@@ -82,6 +73,18 @@ public class UsuariosController {
 	@PostMapping("/usuariosCalidad")
 	public ResponseEntity<Usuarios> usuariosCalidad(@RequestBody ParametrosDTO filtro) throws Exception{
 		Usuarios lista=service.listarUsuarios(filtro);
+		return new ResponseEntity <Usuarios>(lista, HttpStatus.OK);
+	}
+	
+	@PostMapping("/usuariosEmpresa")
+	public ResponseEntity <List<Usuarios>> usuariosEmpresa(@RequestBody ParametrosDTO filtro) throws Exception{
+		 List<Usuarios> lista=service.listarEmpresa(filtro);
+		return new ResponseEntity <List<Usuarios>>(lista, HttpStatus.OK);
+	}
+
+	@PostMapping("/validarUsuarios")
+	public ResponseEntity <Usuarios>validarUsuarios(@RequestBody ParametrosDTO filtro) throws Exception{
+		 Usuarios lista=service.validarUsuarios(filtro);
 		return new ResponseEntity <Usuarios>(lista, HttpStatus.OK);
 	}
 

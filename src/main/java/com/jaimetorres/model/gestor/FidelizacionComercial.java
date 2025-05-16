@@ -46,8 +46,7 @@ public class FidelizacionComercial implements Serializable {
 	private Integer registrosRecuperados;
 	
 	@Column(name = "fecha_pago")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaPago;
+	private String fechaPago;
 	
 	@Column(name = "numero_planilla")
 	private String numeroPlanilla;
@@ -70,9 +69,11 @@ public class FidelizacionComercial implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+     
+
 	public FidelizacionComercial(Integer idFidelizacion, DetalleGestionComercial idDetalleGestionComercial,
 			Cliente idCliente, Usuario idUsuario, String codCaja, Integer registrosNuevos,
-			Integer registrosRecuperados, Date fechaPago, String numeroPlanilla, String observacion, String migracion,
+			Integer registrosRecuperados, String fechaPago, String numeroPlanilla, String observacion, String migracion,
 			String sucursal, Date fechaGestion) {
 		super();
 		this.idFidelizacion = idFidelizacion;
@@ -89,6 +90,8 @@ public class FidelizacionComercial implements Serializable {
 		this.sucursal = sucursal;
 		this.fechaGestion = fechaGestion;
 	}
+
+
 
 	public Integer getIdFidelizacion() {
 		return idFidelizacion;
@@ -146,11 +149,11 @@ public class FidelizacionComercial implements Serializable {
 		this.registrosRecuperados = registrosRecuperados;
 	}
 
-	public Date getFechaPago() {
+	public String getFechaPago() {
 		return fechaPago;
 	}
 
-	public void setFechaPago(Date fechaPago) {
+	public void setFechaPago(String fechaPago) {
 		this.fechaPago = fechaPago;
 	}
 

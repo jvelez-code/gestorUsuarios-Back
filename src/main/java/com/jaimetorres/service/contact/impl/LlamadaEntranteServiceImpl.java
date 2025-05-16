@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,9 +73,16 @@ public class LlamadaEntranteServiceImpl extends CRUDContactImpl<LlamadaEntrante,
 	@Override
 	public TmoGestionUsuarioDto validarTmo(ParametrosDTO filtro) {
 		
-		Object[] result = repo.validarTMO(filtro.getNroDocumento());
-		TmoGestionUsuarioDto dto = new TmoGestionUsuarioDto((String) result[0]);
-		return dto;		
+		Optional<String> result = repo.validarTMO(filtro.getNroDocumento());
+		if(result.isPresent()) {
+			 return new TmoGestionUsuarioDto(result.get());
+			
+		} else {
+			TmoGestionUsuarioDto dto = new TmoGestionUsuarioDto("00");
+			return  dto ;
+			
+		}
+				
 	}
 
 	@Override

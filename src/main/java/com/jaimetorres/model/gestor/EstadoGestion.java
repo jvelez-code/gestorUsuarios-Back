@@ -11,6 +11,8 @@ public class EstadoGestion implements Serializable {
 	private static final long serialVersionUID = -7355194626370500329L;
 	
 	@Id
+	@SequenceGenerator(name = "EstadoGestion.sequence", sequenceName = "estado_gestion_id_estado_gestion_seq", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EstadoGestion.sequence")
 	@Column(name = "id_estado_gestion")
 	private Integer idEstadoGestion;
 	
@@ -21,30 +23,30 @@ public class EstadoGestion implements Serializable {
 	private Integer idEstadoGestionPadre;
 	
 	@Column(name = "aplica_dg")
-	private Boolean aplicaDG;
-	
+	private Boolean aplicaDG = true;
+
 	@Column(name = "es_estado_final")
-	private Boolean estadoFinal;
-	
+	private Boolean estadoFinal = true; 
+
 	@Column(name = "es_efectiva")
-	private Boolean esEfectiva;
-	
+	private Boolean esEfectiva = true;  
+
 	@Column(name = "permite_cambio")
-	private Boolean permiteCambio;
+	private Boolean permiteCambio = false;
 	
 	@Column(name = "tipo_llamada")
 	private Integer tipoLlamada;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_empresa", insertable=false, updatable=false)
+	@JoinColumn(name = "id_empresa", nullable = false, foreignKey =  @ForeignKey(name = "fk_idempresa"))
 	private Empresa empresa;
 
-	@ManyToOne
-	@JoinColumn(name = "id_estado_gestion_padre", insertable=false, updatable=false)
-	private EstadoGestion estadoGestionPadre;
+//	@ManyToOne
+//	@JoinColumn(name = "id_estado_gestion_padre", insertable=false, updatable=false)
+//	private EstadoGestion estadoGestionPadre;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_tipo_campana", insertable=false, updatable=false)
+	@JoinColumn(name = "id_tipo_campana", nullable = false, foreignKey =  @ForeignKey(name = "fk_estado_campana_tipo_campana"))
 	private TipoCampana tipoCampana;
 
 	public Integer getIdEstadoGestion() {
@@ -119,13 +121,13 @@ public class EstadoGestion implements Serializable {
 		this.empresa = empresa;
 	}
 
-	public EstadoGestion getEstadoGestionPadre() {
-		return estadoGestionPadre;
-	}
-
-	public void setEstadoGestionPadre(EstadoGestion estadoGestionPadre) {
-		this.estadoGestionPadre = estadoGestionPadre;
-	}
+//	public EstadoGestion getEstadoGestionPadre() {
+//		return estadoGestionPadre;
+//	}
+//
+//	public void setEstadoGestionPadre(EstadoGestion estadoGestionPadre) {
+//		this.estadoGestionPadre = estadoGestionPadre;
+//	}
 
 	public TipoCampana getTipoCampana() {
 		return tipoCampana;

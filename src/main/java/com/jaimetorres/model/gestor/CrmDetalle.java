@@ -1,9 +1,6 @@
 package com.jaimetorres.model.gestor;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
-
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

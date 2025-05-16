@@ -1,11 +1,6 @@
 package com.jaimetorres.service.gestor.impl;
 
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.repo.gestor.IGenericRepo;
 import com.jaimetorres.service.gestor.ICRUD;
 

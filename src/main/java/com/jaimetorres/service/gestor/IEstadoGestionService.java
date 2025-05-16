@@ -15,6 +15,12 @@ public interface IEstadoGestionService extends ICRUD<EstadoGestion , Integer >{
 	
 	//Secretaria Virtual
 	List<EstadoGestion> buscarSecretaria(ParametrosDTO filtro);
+
+	//ADMINISTRACION DE ESTADOS
+	List<EstadoGestion> busEstado(ParametrosDTO filtro);
+	void activarEstado(ParametrosDTO filtro);
+	List<EstadoGestion> busEstadoAct(ParametrosDTO filtro);
+	List<EstadoGestion> busSubEstado(ParametrosDTO filtro);
 	
 	
 }

@@ -40,30 +40,32 @@ public class ContactConfig {
 	@Value("${encryption.secret.key}")
 	private String base64SecretKey;
 
+	@SuppressWarnings("null")
 	@Bean(name = "contactDataSource")
 	public DataSource contactDatasource() throws Exception {
-		//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		//		dataSource.setUrl(env.getProperty("contact.datasource.url"));
-		//		dataSource.setUsername(env.getProperty("contact.datasource.username"));
-		//		dataSource.setPassword(env.getProperty("contact.datasource.password"));
-		//		dataSource.setDriverClassName(env.getProperty("contact.datasource.driver-class-name"));		
-		//		return dataSource;
 		String decryptedPassword = decryptPassword(encryptedPassword, base64SecretKey);
-		HikariConfig config = new HikariConfig();
-		config.setJdbcUrl(env.getProperty("contact.datasource.url"));
-		config.setUsername(env.getProperty("contact.datasource.username"));
-		//config.setPassword(env.getProperty("contact.datasource.password"));
-		config.setPassword(decryptedPassword);
-		config.setDriverClassName(env.getProperty("contact.datasource.driver-class-name"));
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setUrl(env.getProperty("contact.datasource.url"));
+		dataSource.setUsername(env.getProperty("contact.datasource.username"));
+		dataSource.setPassword(decryptedPassword);
+		dataSource.setDriverClassName(env.getProperty("contact.datasource.driver-class-name"));		
+		return dataSource;
+		// String decryptedPassword = decryptPassword(encryptedPassword, base64SecretKey);
+		// HikariConfig config = new HikariConfig();
+		// config.setJdbcUrl(env.getProperty("contact.datasource.url"));
+		// config.setUsername(env.getProperty("contact.datasource.username"));
+		// //config.setPassword(env.getProperty("contact.datasource.password"));
+		// config.setPassword(decryptedPassword);
+		// config.setDriverClassName(env.getProperty("contact.datasource.driver-class-name"));
 
-		// Configuración del pool de conexiones a través de propiedades en application.properties
-		config.setMaximumPoolSize(Integer.parseInt(env.getProperty("contact.datasource.hikari.maximum-pool-size")));
-		config.setMinimumIdle(Integer.parseInt(env.getProperty("contact.datasource.hikari.minimum-idle")));
-		config.setIdleTimeout(Long.parseLong(env.getProperty("contact.datasource.hikari.idle-timeout")));
-		config.setConnectionTimeout(Long.parseLong(env.getProperty("contact.datasource.hikari.connection-timeout")));
-		config.setMaxLifetime(Long.parseLong(env.getProperty("contact.datasource.hikari.max-lifetime")));
+		// // Configuración del pool de conexiones a través de propiedades en application.properties
+		// config.setMaximumPoolSize(Integer.parseInt(env.getProperty("contact.datasource.hikari.maximum-pool-size")));
+		// config.setMinimumIdle(Integer.parseInt(env.getProperty("contact.datasource.hikari.minimum-idle")));
+		// config.setIdleTimeout(Long.parseLong(env.getProperty("contact.datasource.hikari.idle-timeout")));
+		// config.setConnectionTimeout(Long.parseLong(env.getProperty("contact.datasource.hikari.connection-timeout")));
+		// config.setMaxLifetime(Long.parseLong(env.getProperty("contact.datasource.hikari.max-lifetime")));
 
-		return new HikariDataSource(config);
+		// return new HikariDataSource(config);
 	}
 
 	private String decryptPassword(String encryptedPassword, String base64Key) throws Exception {

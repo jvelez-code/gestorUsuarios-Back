@@ -19,11 +19,11 @@ public class Campana implements Serializable{
 	private Integer idCampana;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_tipo_campana")
+	@JoinColumn(name = "id_tipo_campana", nullable = false, foreignKey = @ForeignKey(name ="fk_campana_tipocampana"))
 	private TipoCampana tipoCampana;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_estado_campana")
+	@JoinColumn(name = "id_estado_campana", nullable = false, foreignKey = @ForeignKey(name ="fk_campana_estadocampana"))
 	private EstadoCampana estadoCampana;
 	
 	@Column(name = "tiempo_cargue_campana")
@@ -33,13 +33,9 @@ public class Campana implements Serializable{
 	@Column(name = "fecha_hora_cargue")
 	private String fechaHoraCargue;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "id_coordinador")
-//	private Usuario coordinador;
-	
-	@Column(name = "id_coordinador")
-	private Integer idCoordinador;
-	
+	@ManyToOne
+	@JoinColumn(name = "id_coordinador", nullable = false, foreignKey = @ForeignKey(name ="fk_campana_coordinador"))
+	private Usuario usuario;	
 	
 	@Column(name = "tipo_asignacion")
 	private Integer tipoAsignacion;
@@ -48,7 +44,7 @@ public class Campana implements Serializable{
 	private String grupoRol;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_empresa")
+	@JoinColumn(name = "id_empresa" , nullable = false, foreignKey = @ForeignKey(name ="fk_campana_id_empresa"))
 	private Empresa empresa;
 	
 	@Column(name = "nombre")
@@ -93,13 +89,13 @@ public class Campana implements Serializable{
 	public void setFechaHoraCargue(String fechaHoraCargue) {
 		this.fechaHoraCargue = fechaHoraCargue;
 	}
-
-	public Integer getIdCoordinador() {
-		return idCoordinador;
+	
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setIdCoordinador(Integer idCoordinador) {
-		this.idCoordinador = idCoordinador;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Integer getTipoAsignacion() {

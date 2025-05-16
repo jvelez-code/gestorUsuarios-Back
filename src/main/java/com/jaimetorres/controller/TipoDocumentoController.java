@@ -1,7 +1,4 @@
 package com.jaimetorres.controller;
-
-import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -9,10 +6,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 
 import com.jaimetorres.exception.ModeloNotFoundException;
 import com.jaimetorres.model.gestor.TipoDocumento;
@@ -26,9 +20,6 @@ public class TipoDocumentoController {
 	@Autowired
 	private ITipoDocumentoService service;
 
-	//ResponseEntity Para capturar excepciones
-	//@PreAuthorize("hasAuthority('ADMIN')")
-	//@PreAuthorize("@authServiceImpl.tieneAcceso('listarId')")
 	@GetMapping
 	public ResponseEntity<List<TipoDocumento>> listar() throws Exception{
 		List<TipoDocumento> lista=service.listar();
@@ -36,40 +27,16 @@ public class TipoDocumentoController {
 	}
 
 	@GetMapping("/{id}")
-	public TipoDocumento listarPorId(@PathVariable("id") Integer id) throws Exception{
+	public TipoDocumento listarPorId(@PathVariable("id") String id) throws Exception{
 		return service.listarPorId(id);
 	}
 
-	//	@GetMapping("/hateoas/{id}")
-	//	public EntityModel<TipoDocumento> listarPorIdHateoas(@PathVariable("id") Integer id) throws Exception{
-	//		TipoDocumento obj=service.listarPorId(id);
-	//		
-	//		if(obj==null) {
-	//			throw new ModeloNotFoundException("ID NO ENCONTRADO: " +id);
-	//		}
-	//		
-	//		
-	//		
-	//		//localhost:8080/TipoDocumento/{id}
-	//		EntityModel<TipoDocumento> recurso=EntityModel.of(obj);
-	//		WebMvcLinkBuilder linkTo= linkTo(methodOn(this.getClass()).listarPorId(id));
-	//		
-	//		//return new ResponseEntity<TipoDocumento>(obj, HttpStatus.OK);
-	//		
-	//		recurso.add(linkTo.withRel("TipoDocumento-recurso"));
-	//		return recurso;
-	//	}
-
-	//@RequestBody json a objeto  java
 	@PostMapping
 	public ResponseEntity<TipoDocumento> registrar(@Valid @RequestBody TipoDocumento TipoDocumento) throws Exception{
 		TipoDocumento obj=service.registrar(TipoDocumento);
-
-		//localhost:8080/pacientes/7
-		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		//URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return new ResponseEntity<TipoDocumento>(obj, HttpStatus.CREATED);
 	}
-
 
 	@PutMapping
 	public ResponseEntity<TipoDocumento> modificar(@Valid @RequestBody TipoDocumento TipoDocumento) throws Exception{
@@ -77,9 +44,8 @@ public class TipoDocumentoController {
 		return new ResponseEntity<TipoDocumento>(obj, HttpStatus.OK);
 	}
 
-
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> eliminar(@PathVariable("id") Integer id) throws Exception{
+	public ResponseEntity<Void> eliminar(@PathVariable("id") String id) throws Exception{
 		TipoDocumento obj=service.listarPorId(id);
 		if(obj==null) {
 			throw new ModeloNotFoundException("ID NO ENCONTRADO: " +id);

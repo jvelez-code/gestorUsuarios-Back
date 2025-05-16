@@ -3,17 +3,15 @@ package com.jaimetorres.dto;
 public class CantidadGestionDto {
 
 	private String cantidad;
-	private String usuario;
 	private String efectiva;
 	
 
 	
 
 
-	public CantidadGestionDto(String cantidad, String usuario, String efectiva) {
+	public CantidadGestionDto(String cantidad,String efectiva) {
 		super();
 		this.cantidad = cantidad;
-		this.usuario = usuario;
 		this.efectiva = efectiva;
 	}
 	
@@ -29,12 +27,6 @@ public class CantidadGestionDto {
 	}
 	public void setCantidad(String cantidad) {
 		this.cantidad = cantidad;
-	}
-	public String getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
 	}
 	public String getEfectiva() {
 		return efectiva;

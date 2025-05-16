@@ -1,28 +1,16 @@
 package com.jaimetorres.service.gestor.impl;
-
-import java.math.BigInteger;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jaimetorres.dto.CantidadGestionDto;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.ParametrosDTO;
-import com.jaimetorres.dto.tmoGestionDto;
 import com.jaimetorres.model.gestor.DetalleGestion;
-import com.jaimetorres.model.gestor.EstadoGestion;
 import com.jaimetorres.model.gestor.Gestion;
-import com.jaimetorres.model.gestor.Menu;
 import com.jaimetorres.repo.gestor.*;
-import com.jaimetorres.service.contact.impl.CRUDContactImpl;
 import com.jaimetorres.service.gestor.IDetalleGestionService;
 
 @Service
@@ -66,14 +54,26 @@ public class DetalleGestionServiceImpl extends CRUDImpl<DetalleGestion, Integer>
 	@Override
 	public List<CantidadGestionDto> cantidadGestion(ParametrosDTO filtro) {
 		List<CantidadGestionDto> detalle = new ArrayList<>();
-		repo.cantidadGestion(filtro.getLoginAgente()).forEach(x -> {
-			CantidadGestionDto m = new CantidadGestionDto();
-			m.setUsuario(String.valueOf(x[0]));
-			m.setEfectiva(String.valueOf(x[1]));
-			m.setCantidad(String.valueOf(x[2]));
-			detalle.add(m);
-		});
-		return detalle;
+		
+		List<Object[]> result = repo.cantidadGestion(filtro.getIdUsuario());
+		
+		if (result != null && !result.isEmpty()) {
+	        result.forEach(x -> {
+	            CantidadGestionDto m = new CantidadGestionDto();
+	            m.setEfectiva(String.valueOf(x[0]));
+	            m.setCantidad(String.valueOf(x[1]));
+	            detalle.add(m);
+	        });
+	    } else {
+	        
+	         CantidadGestionDto m = new CantidadGestionDto();
+	         m.setEfectiva("0");
+	         m.setCantidad("0");
+	         detalle.add(m);
+	         return detalle;
+	    }
+
+	    return detalle;
 	}
 
 	@Override

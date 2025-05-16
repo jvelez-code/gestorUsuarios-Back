@@ -12,5 +12,12 @@ public interface IUsuarioMigraService extends ICRUD < Usuarios, Integer > {
 	void ultimoLoginS(ParametrosDTO filtro);
 	
 	Usuarios listarUsuarios(ParametrosDTO filtro);
+	
+	List<Usuarios> listarEmpresa(ParametrosDTO filtro);
+
+	Usuarios validarUsuarios(ParametrosDTO filtro);
+
+
+	
 
 }

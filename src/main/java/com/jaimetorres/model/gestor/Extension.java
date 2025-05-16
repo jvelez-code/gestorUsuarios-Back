@@ -1,8 +1,7 @@
 package com.jaimetorres.model.gestor;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
@@ -15,44 +14,52 @@ public class Extension implements Serializable {
 	@Id
 	@Column(unique = true, nullable = false, length = 20)
 	private String extension;
+	
+	@Column(name = "fechaestado", nullable = false)
+	private LocalDateTime fechaestado;
 
-	@Column
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date duracionultimoestado;
+	@Column(name = "duracionultimoestado", nullable = false)
+	private LocalDateTime duracionultimoestado;
 
-	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaestado;
-
-	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechaultimoestado;
+	@Column(name = "disponible")
+	private String disponible;	
 	
-	@Column(nullable = true)
-	private String extensionconectado;
 	
-	@Column(nullable = true)
-	private Long espera;
+    @ManyToOne
+    @JoinColumn(name = "empresa" , nullable = false, foreignKey =  @ForeignKey(name = "fk_ext_empresa"))
+    private Empresa empresa;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_usuario" , referencedColumnName = "id_usuario", foreignKey =  @ForeignKey(name = "fk_ext_usuario"))
+    private Usuario usuario;
 	
-	@Column
-	private String monitoreo;
 	
-	@Column
-	private String disponible;
+//	@Column(nullable = false)
+//	@Temporal(TemporalType.TIMESTAMP)
+//	private Date fechaultimoestado;
+//	
+//	@Column(nullable = true)
+//	private String extensionconectado;
+//	
+//	@Column(nullable = true)
+//	private Long espera;
+//	
+//	@Column
+//	private String monitoreo;
+//	
+	
 	
 //	@OneToMany(cascade = CascadeType.ALL, mappedBy = "extension")
 //    private List<DetalleHorario> detalleHorarioList;
 //	
-	@Transient
-	private String labelDuracion;
-	@Transient
-	private String numeroLlamante;
-	@Transient
-	private String numeroLlamado;
+//	@Transient
+//	private String labelDuracion;
+//	@Transient
+//	private String numeroLlamante;
+//	@Transient
+//	private String numeroLlamado;
 	
-	@JoinColumn(name = "empresa")
-    @ManyToOne
-    private Empresa empresa;
+
 
 	public String getExtension() {
 		return extension;
@@ -61,55 +68,7 @@ public class Extension implements Serializable {
 	public void setExtension(String extension) {
 		this.extension = extension;
 	}
-
-	public Date getDuracionultimoestado() {
-		return duracionultimoestado;
-	}
-
-	public void setDuracionultimoestado(Date duracionultimoestado) {
-		this.duracionultimoestado = duracionultimoestado;
-	}
-
-	public Date getFechaestado() {
-		return fechaestado;
-	}
-
-	public void setFechaestado(Date fechaestado) {
-		this.fechaestado = fechaestado;
-	}
-
-	public Date getFechaultimoestado() {
-		return fechaultimoestado;
-	}
-
-	public void setFechaultimoestado(Date fechaultimoestado) {
-		this.fechaultimoestado = fechaultimoestado;
-	}
-
-	public String getExtensionconectado() {
-		return extensionconectado;
-	}
-
-	public void setExtensionconectado(String extensionconectado) {
-		this.extensionconectado = extensionconectado;
-	}
-
-	public Long getEspera() {
-		return espera;
-	}
-
-	public void setEspera(Long espera) {
-		this.espera = espera;
-	}
-
-	public String getMonitoreo() {
-		return monitoreo;
-	}
-
-	public void setMonitoreo(String monitoreo) {
-		this.monitoreo = monitoreo;
-	}
-
+	
 	public String getDisponible() {
 		return disponible;
 	}
@@ -117,37 +76,20 @@ public class Extension implements Serializable {
 	public void setDisponible(String disponible) {
 		this.disponible = disponible;
 	}
-
-//	public List<DetalleHorario> getDetalleHorarioList() {
-//		return detalleHorarioList;
-//	}
-//
-//	public void setDetalleHorarioList(List<DetalleHorario> detalleHorarioList) {
-//		this.detalleHorarioList = detalleHorarioList;
-//	}
-
-	public String getLabelDuracion() {
-		return labelDuracion;
+	public LocalDateTime getDuracionultimoestado() {
+		return duracionultimoestado;
 	}
 
-	public void setLabelDuracion(String labelDuracion) {
-		this.labelDuracion = labelDuracion;
+	public void setDuracionultimoestado(LocalDateTime duracionultimoestado) {
+		this.duracionultimoestado = duracionultimoestado;
 	}
 
-	public String getNumeroLlamante() {
-		return numeroLlamante;
+	public LocalDateTime getFechaestado() {
+		return fechaestado;
 	}
 
-	public void setNumeroLlamante(String numeroLlamante) {
-		this.numeroLlamante = numeroLlamante;
-	}
-
-	public String getNumeroLlamado() {
-		return numeroLlamado;
-	}
-
-	public void setNumeroLlamado(String numeroLlamado) {
-		this.numeroLlamado = numeroLlamado;
+	public void setFechaestado(LocalDateTime fechaestado) {
+		this.fechaestado = fechaestado;
 	}
 
 	public Empresa getEmpresa() {
@@ -158,10 +100,12 @@ public class Extension implements Serializable {
 		this.empresa = empresa;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	
-	
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 }

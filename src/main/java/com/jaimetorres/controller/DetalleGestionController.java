@@ -2,31 +2,22 @@ package com.jaimetorres.controller;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jaimetorres.dto.CantidadGestionDto;
-import com.jaimetorres.dto.FiltroContactoDTO;
 import com.jaimetorres.dto.FiltroDetalleGestionDTO;
 import com.jaimetorres.dto.ParametrosDTO;
-import com.jaimetorres.dto.tmoGestionDto;
 import com.jaimetorres.exception.ModeloNotFoundException;
-import com.jaimetorres.model.gestor.Cliente;
-import com.jaimetorres.model.gestor.Contacto;
 import com.jaimetorres.model.gestor.DetalleGestion;
 import com.jaimetorres.model.gestor.Gestion;
-import com.jaimetorres.model.gestor.Menu;
 import com.jaimetorres.service.gestor.IDetalleGestionService;
 
 @RestController

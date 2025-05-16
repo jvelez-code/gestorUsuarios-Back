@@ -1,7 +1,6 @@
 package com.jaimetorres.controller;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.jaimetorres.dto.AgenteDTO;
 import com.jaimetorres.dto.ParametrosDTO;
 import com.jaimetorres.exception.ModeloNotFoundException;
-import com.jaimetorres.model.gestor.AgenteCampana;
 import com.jaimetorres.model.gestor.Usuario;
 import com.jaimetorres.model.gestor.Usuarios;
 import com.jaimetorres.service.gestor.IAgenteCampanaService;
@@ -120,4 +118,18 @@ public class UsuarioController {
 		List<Usuario> lista=service.buscarAsignaciones(filtro);	
 		return new ResponseEntity <List<Usuario>>(lista, HttpStatus.OK);
 	}
+
+	@PostMapping("/usuarioEmpresa")
+	public ResponseEntity <List<Usuario>> usuariosEmpresa(@RequestBody ParametrosDTO filtro) throws Exception{
+		 List<Usuario> lista=service.listarEmpresa(filtro);
+		return new ResponseEntity <List<Usuario>>(lista, HttpStatus.OK);
+	}
+
+	@PostMapping("/usuarioActivo")
+	public ResponseEntity <Void> usuarioActivo(@RequestBody ParametrosDTO filtro) throws Exception{
+		     service.actualizarAct(filtro);
+		 return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
+
+
 }
